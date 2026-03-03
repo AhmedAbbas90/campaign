@@ -390,7 +390,7 @@
       const checked = [...document.querySelectorAll('input[name="help"]:checked')]
         .map(c => c.value).join(', ');
 
-      const fd = new FormData();
+      const fd = new URLSearchParams();
       fd.append('entry.760835848',  document.getElementById('joinName').value.trim());
       fd.append('entry.1278129233', document.getElementById('joinEmail').value.trim());
       fd.append('entry.1320348182', document.getElementById('joinDept').value);
@@ -416,7 +416,7 @@
       btn.disabled = true;
       btn.textContent = 'Sending…';
 
-      const fd = new FormData();
+      const fd = new URLSearchParams();
       fd.append('entry.760835848',  document.getElementById('fbName').value.trim()  || 'Anonymous');
       fd.append('entry.1278129233', document.getElementById('fbEmail').value.trim() || 'Not provided');
       fd.append('entry.1320348182', document.getElementById('fbType').value);
@@ -424,9 +424,6 @@
       if (document.getElementById('fbAnon').checked) {
         fd.append('entry.584414385', "Please share my feedback (we won't share your full name/email)");
       }
-      fd.append('fvv', '1');
-      fd.append('pageHistory', '0');
-      fd.append('fbzx', '-2153706278071237444');
 
       fetch('https://docs.google.com/forms/d/e/1FAIpQLSeSDIx4SWN6jypfPc9A3NoXTYMZMCgNqiwPF9fTNHvkEPk1hA/formResponse', {
         method: 'POST', mode: 'no-cors', body: fd
