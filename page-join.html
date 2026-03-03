@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GWC – Join the Movement</title>
+  <link rel="stylesheet" href="_shared.css" />
+  <style>
+    /* ── Form cards ─────────────────────────────────────────────────── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 620px) {
+      .form-grid { grid-template-columns: 1fr; }
+    }
+
+    .form-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background: var(--bg-soft);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-card:hover {
+      border-color: var(--red);
+      box-shadow: 0 4px 20px var(--red-dim);
+    }
+
+    .form-card-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .form-card h2 {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+
+    .form-card .card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: -8px;
+    }
+
+    /* ── Form fields ────────────────────────────────────────────────── */
+    .gwc-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .gwc-input,
+    .gwc-select,
+    .gwc-textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: 0.88rem;
+      color: var(--dark);
+      background: #fff;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      appearance: none;
+    }
+
+    .gwc-input:focus,
+    .gwc-select:focus,
+    .gwc-textarea:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px var(--red-dim);
+    }
+
+    .gwc-input::placeholder,
+    .gwc-textarea::placeholder {
+      color: #bbb;
+    }
+
+    .gwc-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* ── Checkboxes ─────────────────────────────────────────────────── */
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: var(--red-light);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+
+    .checkbox-group-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--mid);
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      accent-color: var(--red);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* ── Anonymous toggle ───────────────────────────────────────────── */
+    .anon-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+    }
+
+    .anon-row input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      accent-color: var(--red);
+      flex-shrink: 0;
+      margin-top: 2px;
+      cursor: pointer;
+    }
+
+    .anon-row label {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    /* ── Submit button ──────────────────────────────────────────────── */
+    .gwc-submit {
+      padding: 13px 20px;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      margin-top: 4px;
+    }
+
+    .gwc-submit:hover  { background: #9a1c1c; }
+    .gwc-submit:active { transform: scale(0.98); }
+    .gwc-submit:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── Privacy note ───────────────────────────────────────────────── */
+    .privacy-note {
+      font-size: 0.78rem;
+      color: #bbb;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* ── Success state ──────────────────────────────────────────────── */
+    .success-message {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+      padding: 24px 0;
+    }
+
+    .success-message .check {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .success-message h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .success-message p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Toast ──────────────────────────────────────────────────────── */
+    #gwc-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--dark);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: var(--font);
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 100;
+    }
+
+    #gwc-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    #gwc-toast.error { background: #9a1c1c; }
+  </style>
+</head>
+<body>
+
+  <iframe class="gwc-logo-frame" src="logo-page-join.html" title="GWC Logo" scrolling="no"></iframe>
+
+  <p class="hero-intro">
+    Want to make a difference? Join our team as a volunteer, or share your thoughts to help shape what we stand for. Every voice counts.
+  </p>
+
+  <!-- ── Two form cards side by side ─────────────────────────────────── -->
+  <div class="form-grid">
+
+    <!-- FORM 1: Join the Team -->
+    <div class="form-card">
+      <div class="form-card-icon">✊</div>
+      <h2>Join Our Team</h2>
+      <p class="card-desc">Help us build a stronger, fairer workplace. Volunteer your time and skills for the campaign.</p>
+
+      <form class="gwc-form" id="join-form" onsubmit="submitJoin(event)">
+
+        <input class="gwc-input" type="text"  id="joinName"  placeholder="Your Name *" required />
+        <input class="gwc-input" type="email" id="joinEmail" placeholder="Your Email *" required />
+
+        <select class="gwc-select" id="joinDept" required>
+          <option value="">Select Your Department *</option>
+          <option value="Tech">Tech</option>
+          <option value="Product">Product</option>
+          <option value="Operations">Operations</option>
+          <option value="Finance">Finance</option>
+          <option value="Commercial">Commercial</option>
+          <option value="HR">HR</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <div class="checkbox-group">
+          <div class="checkbox-group-label">How would you like to help?</div>
+          <label class="checkbox-item">
+            <input type="checkbox" name="help" value="Join the Team" /> Join the core team
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="help" value="Organize events and meetups" /> Organize events &amp; meetups
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="help" value="Spread the word on social platforms" /> Spread the word
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="help" value="Create content and materials" /> Create content &amp; materials
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="help" value="Reach out to colleagues" /> Reach out to colleagues
+          </label>
+        </div>
+
+        <textarea class="gwc-textarea" id="joinMessage" placeholder="Tell us why you want to join (optional)"></textarea>
+
+        <button class="gwc-submit" type="submit">Join the Movement →</button>
+        <p class="privacy-note">🔒 Your info is only used for campaign coordination.</p>
+      </form>
+
+      <div class="success-message" id="join-success">
+        <div class="check">✓</div>
+        <h3>Welcome aboard!</h3>
+        <p>We received your application and will be in touch soon.</p>
+      </div>
+    </div>
+
+    <!-- FORM 2: Share Feedback -->
+    <div class="form-card">
+      <div class="form-card-icon">💬</div>
+      <h2>Share Your Feedback</h2>
+      <p class="card-desc">Your thoughts help shape our campaign priorities. Anonymous submissions are welcome.</p>
+
+      <form class="gwc-form" id="feedback-form" onsubmit="submitFeedback(event)">
+
+        <input class="gwc-input" type="text"  id="fbName"  placeholder="Your Name (optional)" />
+        <input class="gwc-input" type="email" id="fbEmail" placeholder="Your Email (optional — for follow-up)" />
+
+        <select class="gwc-select" id="fbType" required>
+          <option value="">Type of feedback *</option>
+          <option value="Suggestion/Idea">Suggestion / Idea</option>
+          <option value="Concern/Issue">Concern / Issue</option>
+          <option value="Question">Question</option>
+          <option value="Words of Support">Words of Support</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <textarea class="gwc-textarea" id="fbMessage" placeholder="Share your thoughts… *" required style="min-height:130px;"></textarea>
+
+        <div class="anon-row">
+          <input type="checkbox" id="fbAnon" />
+          <label for="fbAnon">Share my feedback publicly within the team (your name/email will not be disclosed)</label>
+        </div>
+
+        <button class="gwc-submit" type="submit">Send Feedback →</button>
+        <p class="privacy-note">🔒 All feedback is treated confidentially.</p>
+      </form>
+
+      <div class="success-message" id="fb-success">
+        <div class="check">✓</div>
+        <h3>Thank you!</h3>
+        <p>Your feedback has been received. It shapes everything we do.</p>
+      </div>
+    </div>
+
+  </div><!-- /form-grid -->
+
+  <!-- closing banner (reused from other pages) -->
+  <div class="closing-banner">
+    <div class="vote-line">Works Council Election 2026</div>
+    <div class="voice-line">Your voice is our <span>mandate.</span></div>
+    <div class="intl-line">Global Workforce Community — Real Voice. Real Change. Real Accountability.</div>
+  </div>
+
+  <!-- Toast -->
+  <div id="gwc-toast"></div>
+
+  <script>
+    /* ── Toast helper ─────────────────────────────────────────────── */
+    function toast(msg, type) {
+      const el = document.getElementById('gwc-toast');
+      el.textContent = msg;
+      el.className = 'show' + (type === 'error' ? ' error' : '');
+      clearTimeout(el._t);
+      el._t = setTimeout(() => { el.className = ''; }, 3500);
+    }
+
+    /* ── Join the Team ────────────────────────────────────────────── */
+    function submitJoin(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.gwc-submit');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      const checked = [...document.querySelectorAll('input[name="help"]:checked')]
+        .map(c => c.value).join(', ');
+
+      const fd = new FormData();
+      fd.append('entry.760835848',  document.getElementById('joinName').value.trim());
+      fd.append('entry.1278129233', document.getElementById('joinEmail').value.trim());
+      fd.append('entry.1320348182', document.getElementById('joinDept').value);
+      fd.append('entry.1607410288', checked || 'Not specified');
+      fd.append('entry.1075144989', document.getElementById('joinMessage').value.trim());
+
+      fetch('https://docs.google.com/forms/d/e/1FAIpQLSeQUnmeRIv1y15sE-adCntNS2VXYK8E2_Hp9sVrjMLQiBKmsw/formResponse', {
+        method: 'POST', mode: 'no-cors', body: fd
+      }).then(() => {
+        document.getElementById('join-form').style.display = 'none';
+        document.getElementById('join-success').style.display = 'flex';
+      }).catch(() => {
+        toast('Submission failed — please try again.', 'error');
+        btn.disabled = false;
+        btn.textContent = 'Join the Movement →';
+      });
+    }
+
+    /* ── Feedback ─────────────────────────────────────────────────── */
+    function submitFeedback(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.gwc-submit');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      const fd = new FormData();
+      fd.append('entry.760835848',  document.getElementById('fbName').value.trim()  || 'Anonymous');
+      fd.append('entry.1278129233', document.getElementById('fbEmail').value.trim() || 'Not provided');
+      fd.append('entry.1320348182', document.getElementById('fbType').value);
+      fd.append('entry.1075144989', document.getElementById('fbMessage').value.trim());
+      if (document.getElementById('fbAnon').checked) {
+        fd.append('entry.584414385', "Please share my feedback (we won't share your full name/email)");
+      }
+      fd.append('fvv', '1');
+      fd.append('pageHistory', '0');
+      fd.append('fbzx', '-2153706278071237444');
+
+      fetch('https://docs.google.com/forms/d/e/1FAIpQLSeSDIx4SWN6jypfPc9A3NoXTYMZMCgNqiwPF9fTNHvkEPk1hA/formResponse', {
+        method: 'POST', mode: 'no-cors', body: fd
+      }).then(() => {
+        document.getElementById('feedback-form').style.display = 'none';
+        document.getElementById('fb-success').style.display = 'flex';
+      }).catch(() => {
+        toast('Submission failed — please try again.', 'error');
+        btn.disabled = false;
+        btn.textContent = 'Send Feedback →';
+      });
+    }
+  </script>
+
+</body>
+</html>
