@@ -61,27 +61,32 @@
       white-space: nowrap;
     }
 
-    /* page word loops: glides in slowly, holds, fades out, pauses, repeats */
+    /* page word: drifts in gently, breathes, dissolves, pauses, repeats */
     .gwc-word {
       font-size: 48px;
       font-weight: 900;
       color: #b22222;
       white-space: nowrap;
       opacity: 0;
-      transform: translateX(-36px);
+      transform: translateX(-18px);
       /*
-        8s cycle: 0→25% glide in (2s), 25→75% hold (4s),
-        75→87.5% fade+slide out (1s), 87.5→100% pause (1s)
+        11s cycle:
+        0→27%  drift in  (3s) — ease-out feel via keyframe spacing
+        27→73% hold       (5s)
+        73→86% dissolve   (1.5s)
+        86→100% pause     (1.5s, reset off-screen)
       */
-      animation: wordLoop 8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s infinite;
+      animation: wordLoop 11s ease-in-out 0.5s infinite;
     }
 
     @keyframes wordLoop {
-      0%     { opacity: 0; transform: translateX(-36px); }
-      25%    { opacity: 1; transform: translateX(0);     }
-      75%    { opacity: 1; transform: translateX(0);     }
-      87.5%  { opacity: 0; transform: translateX(20px);  }
-      100%   { opacity: 0; transform: translateX(-36px); }
+      0%   { opacity: 0; transform: translateX(-18px); }
+      10%  { opacity: 0.4; transform: translateX(-8px); }
+      27%  { opacity: 1;   transform: translateX(0);   }
+      73%  { opacity: 1;   transform: translateX(0);   }
+      86%  { opacity: 0;   transform: translateX(10px);}
+      87%  { opacity: 0;   transform: translateX(-18px);}
+      100% { opacity: 0;   transform: translateX(-18px);}
     }
 
     /* ── Wordmark ────────────────────────────────────────────────────── */
