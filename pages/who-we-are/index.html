@@ -58,7 +58,6 @@
       height: auto;
       border-radius: var(--radius-lg);
       display: block;
-      margin: 0 auto;
     }
   </style>
 </head>
@@ -66,27 +65,25 @@
 
   <iframe class="gwc-logo-frame" src="logo.html" title="GWC Logo" scrolling="no"></iframe>
 
-  <div class="page-header">
-    <div class="subtitle">About us</div>
-    <h1>Who We Are</h1>
+  <!-- ── Global language toggle ────────────────────────────────────── -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en', event)">EN</button>
+    <button class="lang-btn" onclick="setLang('de', event)">DE</button>
   </div>
 
-  <p class="hero-intro">
-    We are over 70 colleagues from across Zalando — bridging job families, cultures, hierarchies,
-    and diverse lived experiences. What unites us is a shared belief: that every employee
-    deserves a Works Council that truly works for them.
-  </p>
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- ENGLISH                                                           -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="lang-section active" id="section-en">
 
-  <!-- ── Our Story ──────────────────────────────────────────────────── -->
-  <div class="section">
-    <h2 class="section-title">Our Story</h2>
-
-    <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('en', event)">EN</button>
-      <button class="lang-btn" onclick="setLang('de', event)">DE</button>
+    <div class="page-header">
+      <div class="subtitle">About us</div>
+      <h1>Who We Are</h1>
     </div>
 
-    <div class="lang-section active" id="section-en">
+    <!-- Our Story -->
+    <div class="section">
+      <h2 class="section-title">Our Story</h2>
       <p class="story-para">
         We are over 70 colleagues from across Zalando — bridging job families, cultures,
         hierarchy, and diverse experiences. Our group goes beyond divisions because
@@ -104,7 +101,73 @@
       </p>
     </div>
 
-    <div class="lang-section" id="section-de">
+    <!-- Our List, Your World -->
+    <div class="section">
+      <h2 class="section-title">Our List, Your World</h2>
+      <img src="worldlist.png" alt="GWC members from around the world" class="content-image" />
+    </div>
+
+    <!-- Our Roots in Employee Resource Groups -->
+    <div class="section">
+      <h2 class="section-title">Our Roots in Employee Resource Groups</h2>
+      <img src="ERGs.png" alt="Employee Resource Groups represented in GWC" class="content-image" />
+    </div>
+
+    <!-- The Candidates -->
+    <div class="section">
+      <h2 class="section-title">The Candidates</h2>
+      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:20px;">
+        A diverse team representing every corner of our global community.
+      </p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">AB</div>
+          <div class="team-name">Candidate Name</div>
+          <div class="team-role">Role / Department</div>
+          <div class="team-bio">A short sentence about this person and why they're running.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">CD</div>
+          <div class="team-name">Candidate Name</div>
+          <div class="team-role">Role / Department</div>
+          <div class="team-bio">A short sentence about this person and why they're running.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">EF</div>
+          <div class="team-name">Candidate Name</div>
+          <div class="team-role">Role / Department</div>
+          <div class="team-bio">A short sentence about this person and why they're running.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">GH</div>
+          <div class="team-name">Candidate Name</div>
+          <div class="team-role">Role / Department</div>
+          <div class="team-bio">A short sentence about this person and why they're running.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="closing-banner">
+      <div class="vote-line">A Works Council That Stands for You</div>
+      <div class="voice-line">Built by employees. <span>For employees.</span></div>
+      <div class="intl-line">An International WoCo for an International Workforce.</div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- GERMAN                                                            -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="lang-section" id="section-de">
+
+    <div class="page-header">
+      <div class="subtitle">Über uns</div>
+      <h1>Wer wir sind</h1>
+    </div>
+
+    <!-- Unsere Geschichte -->
+    <div class="section">
+      <h2 class="section-title">Unsere Geschichte</h2>
       <p class="story-para">
         Wir sind über 70 Mitarbeiter aus allen Bereichen bei Zalando und vereinen diverse
         Jobfamilien, Kulturen, Hierarchieebenen und Lebenserfahrungen. Wir glauben, dass
@@ -123,73 +186,59 @@
         jedes einzelnen Mitarbeitenden vertreten zu können.
       </p>
     </div>
-  </div>
 
-  <!-- ── Our List, Your World ───────────────────────────────────────── -->
-  <div class="section">
-    <h2 class="section-title">Our List, Your World</h2>
-    <img src="worldlist.png" alt="GWC members from around the world" class="content-image" />
-  </div>
-
-  <!-- ── Our Roots in Employee Resource Groups ──────────────────────── -->
-  <div class="section">
-    <h2 class="section-title">Our Roots in Employee Resource Groups</h2>
-    <img src="ERGs.png" alt="Employee Resource Groups represented in GWC" class="content-image" />
-  </div>
-
-  <!-- ── The Candidates ─────────────────────────────────────────────── -->
-  <div class="section">
-    <h2 class="section-title">The Candidates</h2>
-    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:20px;">
-      A diverse team representing every corner of our global community.
-    </p>
-
-    <div class="team-grid">
-
-      <!--
-        Duplicate this block for each candidate.
-        - Replace initials in .team-avatar (or swap for <img>)
-        - Fill in name, role/department, and a short bio
-      -->
-      <div class="team-card">
-        <div class="team-avatar">AB</div>
-        <div class="team-name">Candidate Name</div>
-        <div class="team-role">Role / Department</div>
-        <div class="team-bio">A short sentence about this person and why they're running.</div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-avatar">CD</div>
-        <div class="team-name">Candidate Name</div>
-        <div class="team-role">Role / Department</div>
-        <div class="team-bio">A short sentence about this person and why they're running.</div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-avatar">EF</div>
-        <div class="team-name">Candidate Name</div>
-        <div class="team-role">Role / Department</div>
-        <div class="team-bio">A short sentence about this person and why they're running.</div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-avatar">GH</div>
-        <div class="team-name">Candidate Name</div>
-        <div class="team-role">Role / Department</div>
-        <div class="team-bio">A short sentence about this person and why they're running.</div>
-      </div>
-
+    <!-- Unsere Liste, Eure Welt -->
+    <div class="section">
+      <h2 class="section-title">Unsere Liste, Eure Welt</h2>
+      <img src="worldlist.png" alt="GWC-Mitglieder aus aller Welt" class="content-image" />
     </div>
-  </div>
 
-  <div class="closing-banner">
-    <div class="vote-line">A Works Council That Stands for You</div>
-    <div class="voice-line">
-      Built by employees. <span>For employees.</span>
+    <!-- Unsere Wurzeln in den Employee Resource Groups -->
+    <div class="section">
+      <h2 class="section-title">Unsere Wurzeln in den Employee Resource Groups</h2>
+      <img src="ERGs.png" alt="In GWC vertretene Employee Resource Groups" class="content-image" />
     </div>
-    <div class="intl-line">
-      An International WoCo for an International Workforce.
+
+    <!-- Die Kandidatinnen und Kandidaten -->
+    <div class="section">
+      <h2 class="section-title">Die Kandidatinnen und Kandidaten</h2>
+      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:20px;">
+        Ein vielfältiges Team, das jeden Winkel unserer globalen Gemeinschaft repräsentiert.
+      </p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">AB</div>
+          <div class="team-name">Candidate Name</div>
+          <div class="team-role">Rolle / Abteilung</div>
+          <div class="team-bio">Ein kurzer Satz über diese Person und ihre Motivation zur Kandidatur.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">CD</div>
+          <div class="team-name">Candidate Name</div>
+          <div class="team-role">Rolle / Abteilung</div>
+          <div class="team-bio">Ein kurzer Satz über diese Person und ihre Motivation zur Kandidatur.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">EF</div>
+          <div class="team-name">Candidate Name</div>
+          <div class="team-role">Rolle / Abteilung</div>
+          <div class="team-bio">Ein kurzer Satz über diese Person und ihre Motivation zur Kandidatur.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">GH</div>
+          <div class="team-name">Candidate Name</div>
+          <div class="team-role">Rolle / Abteilung</div>
+          <div class="team-bio">Ein kurzer Satz über diese Person und ihre Motivation zur Kandidatur.</div>
+        </div>
+      </div>
     </div>
+
+    <div class="closing-banner">
+      <div class="vote-line">Ein Betriebsrat, der für dich steht</div>
+      <div class="voice-line">Von Mitarbeitenden. <span>Für Mitarbeitende.</span></div>
+      <div class="intl-line">Ein internationaler Betriebsrat für eine internationale Belegschaft.</div>
+    </div>
+
   </div>
 
   <script>
