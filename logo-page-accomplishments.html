@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GWC – Our Accomplishments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #fff;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    }
+
+    .gwc-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      user-select: none;
+    }
+
+    .gwc-acronym {
+      font-size: 72px;
+      font-weight: 900;
+      letter-spacing: -3px;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+    .gwc-acronym .red { color: #b22222; }
+
+    .gwc-rule {
+      width: 100%;
+      height: 3px;
+      background: #b22222;
+      border-radius: 2px;
+    }
+
+    /* Page title row: "Our [Word]" */
+    .gwc-slogan {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .gwc-static {
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    .gwc-word-track {
+      position: relative;
+      height: 1.2em;
+      overflow: hidden;
+    }
+
+    .gwc-word-track .word {
+      position: absolute;
+      left: 0;
+      top: 0;
+      line-height: 1.2em;
+      color: #b22222;
+      white-space: nowrap;
+      /*
+        Single word: enter 0.3s, hold 1.0s, exit 0.3s = 1.6s cycle.
+        Percentages: enter 18.75%, hold 81.25%, exit 100%.
+        But we want it to pulse slightly — brief dip and return.
+      */
+      animation: wordPulse 3.2s cubic-bezier(0.22,1,0.36,1) 0s infinite;
+    }
+
+    @keyframes wordPulse {
+      0%    { opacity: 0; transform: translateY(100%); }
+      9%    { opacity: 1; transform: translateY(0);    }
+      85%   { opacity: 1; transform: translateY(0);    }
+      100%  { opacity: 1; transform: translateY(0);    }
+    }
+
+    .gwc-wordmark {
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .gwc-fullname {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    .gwc-tagline {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="gwc-logo">
+    <div class="gwc-acronym"><span class="red">G</span>WC</div>
+    <div class="gwc-rule"></div>
+    <div class="gwc-slogan">
+      <span class="gwc-static">Our</span>
+      <div class="gwc-word-track">
+        <span class="word">Accomplishments</span>
+      </div>
+    </div>
+    <div class="gwc-wordmark">
+      <div class="gwc-fullname">Global Workforce Community</div>
+      <div class="gwc-tagline">A Works Council That Acts for You</div>
+    </div>
+  </div>
+</body>
+</html>

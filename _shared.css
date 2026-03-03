@@ -49,9 +49,9 @@ body {
 */
 .gwc-logo-frame {
   width: 100%;
-  height: 260px;
+  height: 200px;
   border: none;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   background: transparent;
 }
 

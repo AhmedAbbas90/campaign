@@ -3,13 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GWC Logo v8 – Bilingual Split</title>
+  <title>GWC Logo</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,7 +28,7 @@
       user-select: none;
     }
 
-    /* ── Top: GWC acronym ────────────────────────────────────────── */
+    /* ── Acronym ─────────────────────────────────────────────────────── */
     .gwc-acronym {
       font-size: 72px;
       font-weight: 900;
@@ -39,10 +36,9 @@
       color: #1a1a1a;
       line-height: 1;
     }
-
     .gwc-acronym .red { color: #b22222; }
 
-    /* ── Rule ────────────────────────────────────────────────────── */
+    /* ── Rule ────────────────────────────────────────────────────────── */
     .gwc-rule {
       width: 100%;
       height: 3px;
@@ -50,55 +46,45 @@
       border-radius: 2px;
     }
 
-    /* ── Split slogan ────────────────────────────────────────────── */
+    /* ── Slogan row ──────────────────────────────────────────────────── */
     /*
-      Each line is a row. "Real"/"Echte" slides in from the right,
-      the word slides in from the left. They meet in the middle.
-      On exit they split apart. The next word pair replaces them.
+      "Real" / "Echte" is static. Only the keyword slides up/down.
+      6 words × 1.6 s = 9.6 s cycle.
+      enter end = 3.125%  (0.3 s)
+      hold  end = 13.542% (1.3 s)
+      exit  end = 16.667% (1.6 s)
     */
     .gwc-slogan {
       margin-top: 8px;
-      position: relative;
-      height: 2em;
-      width: 360px;
-      overflow: hidden;
-    }
-
-    /* One pair = prefix + word, absolutely positioned */
-    .gwc-pair {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
       display: flex;
       align-items: center;
       gap: 10px;
       font-size: 26px;
       font-weight: 700;
       line-height: 1;
-      opacity: 0;
     }
 
-    .gwc-pair .real {
+    /* Static prefix — cycles in sync with the keyword */
+    .gwc-static {
       color: #1a1a1a;
-      transform: translateX(60px);
+      position: relative;
+      min-width: 3.6em;   /* wide enough for "Echter" */
+      height: 1.2em;
+      overflow: hidden;
     }
 
-    .gwc-pair .word {
-      color: #b22222;
-      transform: translateX(-60px);
+    .gwc-static span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      line-height: 1.2em;
+      opacity: 0;
+      white-space: nowrap;
     }
 
-    /*
-      6 pairs × 1.6 s each = 9.6 s cycle.
-      Each pair: slide in (0.3 s), hold (1.0 s), split out (0.3 s).
-      enter end  = 0.3/9.6 =  3.125%
-      hold end   = 1.3/9.6 = 13.542%
-      exit end   = 1.6/9.6 = 16.667%
-    */
-    @keyframes pairIn {
+    /* Each prefix fades in sync with its keyword slot */
+    @keyframes prefixIn {
       0%      { opacity: 0; }
-      1%      { opacity: 1; }
       3.125%  { opacity: 1; }
       13.542% { opacity: 1; }
       16.667% { opacity: 0; }
@@ -106,45 +92,49 @@
       100%    { opacity: 0; }
     }
 
-    @keyframes realSplit {
-      0%      { transform: translateX(60px);  }
-      3.125%  { transform: translateX(0);     }
-      13.542% { transform: translateX(0);     }
-      16.667% { transform: translateX(60px);  }
-      100%    { transform: translateX(60px);  }
+    .gwc-static span:nth-child(1) { animation: prefixIn 9.6s cubic-bezier(0.22,1,0.36,1) 0.0s infinite; }
+    .gwc-static span:nth-child(2) { animation: prefixIn 9.6s cubic-bezier(0.22,1,0.36,1) 1.6s infinite; }
+    .gwc-static span:nth-child(3) { animation: prefixIn 9.6s cubic-bezier(0.22,1,0.36,1) 3.2s infinite; }
+    .gwc-static span:nth-child(4) { animation: prefixIn 9.6s cubic-bezier(0.22,1,0.36,1) 4.8s infinite; }
+    .gwc-static span:nth-child(5) { animation: prefixIn 9.6s cubic-bezier(0.22,1,0.36,1) 6.4s infinite; }
+    .gwc-static span:nth-child(6) { animation: prefixIn 9.6s cubic-bezier(0.22,1,0.36,1) 8.0s infinite; }
+
+    /* Cycling keyword track */
+    .gwc-word-track {
+      position: relative;
+      height: 1.2em;
+      overflow: hidden;
     }
 
-    @keyframes wordSplit {
-      0%      { transform: translateX(-60px); }
-      3.125%  { transform: translateX(0);     }
-      13.542% { transform: translateX(0);     }
-      16.667% { transform: translateX(-60px); }
-      100%    { transform: translateX(-60px); }
+    .gwc-word-track .word {
+      position: absolute;
+      left: 0;
+      top: 0;
+      line-height: 1.2em;
+      color: #b22222;
+      opacity: 0;
+      transform: translateY(100%);
+      white-space: nowrap;
     }
 
-    /* EN pairs: 0 s, 1.6 s, 3.2 s — DE pairs: 4.8 s, 6.4 s, 8.0 s */
-    .gwc-pair:nth-child(1) { animation: pairIn    9.6s cubic-bezier(0.22,1,0.36,1) 0.0s infinite; }
-    .gwc-pair:nth-child(2) { animation: pairIn    9.6s cubic-bezier(0.22,1,0.36,1) 1.6s infinite; }
-    .gwc-pair:nth-child(3) { animation: pairIn    9.6s cubic-bezier(0.22,1,0.36,1) 3.2s infinite; }
-    .gwc-pair:nth-child(4) { animation: pairIn    9.6s cubic-bezier(0.22,1,0.36,1) 4.8s infinite; }
-    .gwc-pair:nth-child(5) { animation: pairIn    9.6s cubic-bezier(0.22,1,0.36,1) 6.4s infinite; }
-    .gwc-pair:nth-child(6) { animation: pairIn    9.6s cubic-bezier(0.22,1,0.36,1) 8.0s infinite; }
+    @keyframes wordSlide {
+      0%      { opacity: 0; transform: translateY(100%);  }
+      3.125%  { opacity: 1; transform: translateY(0);     }
+      13.542% { opacity: 1; transform: translateY(0);     }
+      16.667% { opacity: 0; transform: translateY(-100%); }
+      16.7%   { opacity: 0; transform: translateY(100%);  }
+      100%    { opacity: 0; transform: translateY(100%);  }
+    }
 
-    .gwc-pair:nth-child(1) .real { animation: realSplit 9.6s cubic-bezier(0.22,1,0.36,1) 0.0s infinite; }
-    .gwc-pair:nth-child(2) .real { animation: realSplit 9.6s cubic-bezier(0.22,1,0.36,1) 1.6s infinite; }
-    .gwc-pair:nth-child(3) .real { animation: realSplit 9.6s cubic-bezier(0.22,1,0.36,1) 3.2s infinite; }
-    .gwc-pair:nth-child(4) .real { animation: realSplit 9.6s cubic-bezier(0.22,1,0.36,1) 4.8s infinite; }
-    .gwc-pair:nth-child(5) .real { animation: realSplit 9.6s cubic-bezier(0.22,1,0.36,1) 6.4s infinite; }
-    .gwc-pair:nth-child(6) .real { animation: realSplit 9.6s cubic-bezier(0.22,1,0.36,1) 8.0s infinite; }
+    /* EN words: 0 s, 1.6 s, 3.2 s — DE words: 4.8 s, 6.4 s, 8.0 s */
+    .gwc-word-track .word:nth-child(1) { animation: wordSlide 9.6s cubic-bezier(0.22,1,0.36,1) 0.0s infinite; }
+    .gwc-word-track .word:nth-child(2) { animation: wordSlide 9.6s cubic-bezier(0.22,1,0.36,1) 1.6s infinite; }
+    .gwc-word-track .word:nth-child(3) { animation: wordSlide 9.6s cubic-bezier(0.22,1,0.36,1) 3.2s infinite; }
+    .gwc-word-track .word:nth-child(4) { animation: wordSlide 9.6s cubic-bezier(0.22,1,0.36,1) 4.8s infinite; }
+    .gwc-word-track .word:nth-child(5) { animation: wordSlide 9.6s cubic-bezier(0.22,1,0.36,1) 6.4s infinite; }
+    .gwc-word-track .word:nth-child(6) { animation: wordSlide 9.6s cubic-bezier(0.22,1,0.36,1) 8.0s infinite; }
 
-    .gwc-pair:nth-child(1) .word { animation: wordSplit 9.6s cubic-bezier(0.22,1,0.36,1) 0.0s infinite; }
-    .gwc-pair:nth-child(2) .word { animation: wordSplit 9.6s cubic-bezier(0.22,1,0.36,1) 1.6s infinite; }
-    .gwc-pair:nth-child(3) .word { animation: wordSplit 9.6s cubic-bezier(0.22,1,0.36,1) 3.2s infinite; }
-    .gwc-pair:nth-child(4) .word { animation: wordSplit 9.6s cubic-bezier(0.22,1,0.36,1) 4.8s infinite; }
-    .gwc-pair:nth-child(5) .word { animation: wordSplit 9.6s cubic-bezier(0.22,1,0.36,1) 6.4s infinite; }
-    .gwc-pair:nth-child(6) .word { animation: wordSplit 9.6s cubic-bezier(0.22,1,0.36,1) 8.0s infinite; }
-
-    /* ── Wordmark ────────────────────────────────────────────────── */
+    /* ── Wordmark ────────────────────────────────────────────────────── */
     .gwc-wordmark {
       margin-top: 4px;
       display: flex;
@@ -180,11 +170,6 @@
       opacity: 0;
     }
 
-    /*
-      Tagline stays in EN for first 4.8 s, DE for next 4.8 s.
-      Uses same pairIn keyframe percentages but holds for 3 slots each.
-      enter end = 3.125%, hold end = 50% - 3.125% = 46.875%, exit end = 50%
-    */
     @keyframes taglineIn {
       0%      { opacity: 0; }
       3.125%  { opacity: 1; }
@@ -206,28 +191,24 @@
     <div class="gwc-rule"></div>
 
     <div class="gwc-slogan">
-      <div class="gwc-pair">
-        <span class="real">Real</span>
+      <div class="gwc-static">
+        <!-- EN -->
+        <span>Real</span>
+        <span>Real</span>
+        <span>Real</span>
+        <!-- DE -->
+        <span>Echte</span>
+        <span>Echter</span>
+        <span>Echte</span>
+      </div>
+      <div class="gwc-word-track">
+        <!-- EN -->
         <span class="word">Voice</span>
-      </div>
-      <div class="gwc-pair">
-        <span class="real">Real</span>
         <span class="word">Change</span>
-      </div>
-      <div class="gwc-pair">
-        <span class="real">Real</span>
         <span class="word">Accountability</span>
-      </div>
-      <div class="gwc-pair">
-        <span class="real">Echte</span>
+        <!-- DE -->
         <span class="word">Stimme</span>
-      </div>
-      <div class="gwc-pair">
-        <span class="real">Echter</span>
         <span class="word">Wandel</span>
-      </div>
-      <div class="gwc-pair">
-        <span class="real">Echte</span>
         <span class="word">Verantwortung</span>
       </div>
     </div>
