@@ -44,20 +44,11 @@
     .lang-section { display: none; }
     .lang-section.active { display: block; }
 
-    /* ── Story text ─────────────────────────────────────────────────── */
     .story-para {
       font-size: 0.95rem;
       color: var(--mid);
       line-height: 1.85;
       margin-bottom: 14px;
-    }
-
-    /* ── Full-width images ──────────────────────────────────────────── */
-    .content-image {
-      width: 100%;
-      height: auto;
-      border-radius: var(--radius-lg);
-      display: block;
     }
   </style>
 </head>
@@ -75,11 +66,6 @@
   <!-- ENGLISH                                                           -->
   <!-- ══════════════════════════════════════════════════════════════════ -->
   <div class="lang-section active" id="section-en">
-
-    <div class="page-header">
-      <div class="subtitle">About us</div>
-      <h1>Who We Are</h1>
-    </div>
 
     <!-- Our Story -->
     <div class="section">
@@ -104,13 +90,85 @@
     <!-- Our List, Your World -->
     <div class="section">
       <h2 class="section-title">Our List, Your World</h2>
-      <img src="worldlist.png" alt="GWC members from around the world" class="content-image" />
+      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:20px;">
+        Members of our list come from every corner of the globe — a truly international
+        Works Council for an international workforce.
+      </p>
+      <div class="region-grid">
+        <div class="region-card">
+          <h4>Europe</h4>
+          <ul>
+            <li><img src="https://flagcdn.com/w20/de.png" alt="">Germany</li>
+            <li><img src="https://flagcdn.com/w20/pl.png" alt="">Poland</li>
+            <li><img src="https://flagcdn.com/w20/it.png" alt="">Italy</li>
+            <li><img src="https://flagcdn.com/w20/es.png" alt="">Spain</li>
+            <li><img src="https://flagcdn.com/w20/gb.png" alt="">United Kingdom</li>
+            <li><img src="https://flagcdn.com/w20/ru.png" alt="">Russia</li>
+            <li><img src="https://flagcdn.com/w20/ua.png" alt="">Ukraine</li>
+            <li><img src="https://flagcdn.com/w20/pt.png" alt="">Portugal</li>
+            <li><img src="https://flagcdn.com/w20/ie.png" alt="">Ireland</li>
+            <li class="more">…and more</li>
+          </ul>
+        </div>
+        <div class="region-card">
+          <h4>Asia</h4>
+          <ul>
+            <li><img src="https://flagcdn.com/w20/in.png" alt="">India</li>
+            <li><img src="https://flagcdn.com/w20/pk.png" alt="">Pakistan</li>
+            <li><img src="https://flagcdn.com/w20/bd.png" alt="">Bangladesh</li>
+            <li><img src="https://flagcdn.com/w20/tr.png" alt="">Turkey</li>
+            <li><img src="https://flagcdn.com/w20/cn.png" alt="">China</li>
+            <li><img src="https://flagcdn.com/w20/kr.png" alt="">South Korea</li>
+            <li><img src="https://flagcdn.com/w20/sy.png" alt="">Syria</li>
+            <li><img src="https://flagcdn.com/w20/az.png" alt="">Azerbaijan</li>
+            <li><img src="https://flagcdn.com/w20/ps.png" alt="">Palestine</li>
+            <li class="more">…and more</li>
+          </ul>
+        </div>
+        <div class="region-card">
+          <h4>Africa</h4>
+          <ul>
+            <li><img src="https://flagcdn.com/w20/eg.png" alt="">Egypt</li>
+            <li><img src="https://flagcdn.com/w20/ng.png" alt="">Nigeria</li>
+            <li><img src="https://flagcdn.com/w20/za.png" alt="">South Africa</li>
+            <li><img src="https://flagcdn.com/w20/ma.png" alt="">Morocco</li>
+            <li><img src="https://flagcdn.com/w20/tn.png" alt="">Tunisia</li>
+            <li><img src="https://flagcdn.com/w20/gm.png" alt="">Gambia</li>
+          </ul>
+        </div>
+        <div class="region-card">
+          <h4>The Americas</h4>
+          <ul>
+            <li><img src="https://flagcdn.com/w20/br.png" alt="">Brazil</li>
+            <li><img src="https://flagcdn.com/w20/ar.png" alt="">Argentina</li>
+            <li><img src="https://flagcdn.com/w20/pe.png" alt="">Peru</li>
+            <li><img src="https://flagcdn.com/w20/hn.png" alt="">Honduras</li>
+            <li><img src="https://flagcdn.com/w20/ve.png" alt="">Venezuela</li>
+            <li><img src="https://flagcdn.com/w20/cr.png" alt="">Costa Rica</li>
+            <li><img src="https://flagcdn.com/w20/pa.png" alt="">Panama</li>
+            <li><img src="https://flagcdn.com/w20/us.png" alt="">USA</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <!-- Our Roots in Employee Resource Groups -->
     <div class="section">
       <h2 class="section-title">Our Roots in Employee Resource Groups</h2>
-      <img src="ERGs.png" alt="Employee Resource Groups represented in GWC" class="content-image" />
+      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:20px;">
+        Our members are active in — and shaped by — Zalando's employee communities.
+        We carry those voices into the Works Council.
+      </p>
+      <div class="erg-grid">
+        <div class="erg-card"><span>Asia Pacific Community Circle</span></div>
+        <div class="erg-card"><span>Black Employee Connection</span></div>
+        <div class="erg-card"><span>Jewish Community &amp; Friends</span></div>
+        <div class="erg-card"><span>Muslim Community Network</span></div>
+        <div class="erg-card"><span>Pride at Zalando — LGBTQI+ ERG</span></div>
+        <div class="erg-card"><span>Women's Network</span></div>
+        <div class="erg-card"><span>Women in Tech</span></div>
+        <div class="erg-card"><span>Zalando Parents Group</span></div>
+      </div>
     </div>
 
     <!-- The Candidates -->
@@ -160,11 +218,6 @@
   <!-- ══════════════════════════════════════════════════════════════════ -->
   <div class="lang-section" id="section-de">
 
-    <div class="page-header">
-      <div class="subtitle">Über uns</div>
-      <h1>Wer wir sind</h1>
-    </div>
-
     <!-- Unsere Geschichte -->
     <div class="section">
       <h2 class="section-title">Unsere Geschichte</h2>
@@ -190,13 +243,85 @@
     <!-- Unsere Liste, Eure Welt -->
     <div class="section">
       <h2 class="section-title">Unsere Liste, Eure Welt</h2>
-      <img src="worldlist.png" alt="GWC-Mitglieder aus aller Welt" class="content-image" />
+      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:20px;">
+        Die Mitglieder unserer Liste kommen aus allen Teilen der Welt — ein wirklich
+        internationaler Betriebsrat für eine internationale Belegschaft.
+      </p>
+      <div class="region-grid">
+        <div class="region-card">
+          <h4>Europa</h4>
+          <ul>
+            <li><img src="https://flagcdn.com/w20/de.png" alt="">Deutschland</li>
+            <li><img src="https://flagcdn.com/w20/pl.png" alt="">Polen</li>
+            <li><img src="https://flagcdn.com/w20/it.png" alt="">Italien</li>
+            <li><img src="https://flagcdn.com/w20/es.png" alt="">Spanien</li>
+            <li><img src="https://flagcdn.com/w20/gb.png" alt="">Vereinigtes Königreich</li>
+            <li><img src="https://flagcdn.com/w20/ru.png" alt="">Russland</li>
+            <li><img src="https://flagcdn.com/w20/ua.png" alt="">Ukraine</li>
+            <li><img src="https://flagcdn.com/w20/pt.png" alt="">Portugal</li>
+            <li><img src="https://flagcdn.com/w20/ie.png" alt="">Irland</li>
+            <li class="more">…und mehr</li>
+          </ul>
+        </div>
+        <div class="region-card">
+          <h4>Asien</h4>
+          <ul>
+            <li><img src="https://flagcdn.com/w20/in.png" alt="">Indien</li>
+            <li><img src="https://flagcdn.com/w20/pk.png" alt="">Pakistan</li>
+            <li><img src="https://flagcdn.com/w20/bd.png" alt="">Bangladesch</li>
+            <li><img src="https://flagcdn.com/w20/tr.png" alt="">Türkei</li>
+            <li><img src="https://flagcdn.com/w20/cn.png" alt="">China</li>
+            <li><img src="https://flagcdn.com/w20/kr.png" alt="">Südkorea</li>
+            <li><img src="https://flagcdn.com/w20/sy.png" alt="">Syrien</li>
+            <li><img src="https://flagcdn.com/w20/az.png" alt="">Aserbaidschan</li>
+            <li><img src="https://flagcdn.com/w20/ps.png" alt="">Palästina</li>
+            <li class="more">…und mehr</li>
+          </ul>
+        </div>
+        <div class="region-card">
+          <h4>Afrika</h4>
+          <ul>
+            <li><img src="https://flagcdn.com/w20/eg.png" alt="">Ägypten</li>
+            <li><img src="https://flagcdn.com/w20/ng.png" alt="">Nigeria</li>
+            <li><img src="https://flagcdn.com/w20/za.png" alt="">Südafrika</li>
+            <li><img src="https://flagcdn.com/w20/ma.png" alt="">Marokko</li>
+            <li><img src="https://flagcdn.com/w20/tn.png" alt="">Tunesien</li>
+            <li><img src="https://flagcdn.com/w20/gm.png" alt="">Gambia</li>
+          </ul>
+        </div>
+        <div class="region-card">
+          <h4>Amerika</h4>
+          <ul>
+            <li><img src="https://flagcdn.com/w20/br.png" alt="">Brasilien</li>
+            <li><img src="https://flagcdn.com/w20/ar.png" alt="">Argentinien</li>
+            <li><img src="https://flagcdn.com/w20/pe.png" alt="">Peru</li>
+            <li><img src="https://flagcdn.com/w20/hn.png" alt="">Honduras</li>
+            <li><img src="https://flagcdn.com/w20/ve.png" alt="">Venezuela</li>
+            <li><img src="https://flagcdn.com/w20/cr.png" alt="">Costa Rica</li>
+            <li><img src="https://flagcdn.com/w20/pa.png" alt="">Panama</li>
+            <li><img src="https://flagcdn.com/w20/us.png" alt="">USA</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <!-- Unsere Wurzeln in den Employee Resource Groups -->
     <div class="section">
       <h2 class="section-title">Unsere Wurzeln in den Employee Resource Groups</h2>
-      <img src="ERGs.png" alt="In GWC vertretene Employee Resource Groups" class="content-image" />
+      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:20px;">
+        Unsere Mitglieder sind aktiv in Zalandos Mitarbeiter-Communitys — und wurden
+        durch sie geprägt. Diese Stimmen bringen wir in den Betriebsrat ein.
+      </p>
+      <div class="erg-grid">
+        <div class="erg-card"><span>Asia Pacific Community Circle</span></div>
+        <div class="erg-card"><span>Black Employee Connection</span></div>
+        <div class="erg-card"><span>Jewish Community &amp; Friends</span></div>
+        <div class="erg-card"><span>Muslim Community Network</span></div>
+        <div class="erg-card"><span>Pride at Zalando — LGBTQI+ ERG</span></div>
+        <div class="erg-card"><span>Women's Network</span></div>
+        <div class="erg-card"><span>Women in Tech</span></div>
+        <div class="erg-card"><span>Zalando Parents Group</span></div>
+      </div>
     </div>
 
     <!-- Die Kandidatinnen und Kandidaten -->

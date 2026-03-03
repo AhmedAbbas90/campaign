@@ -415,6 +415,95 @@ body {
   font-style: italic;
 }
 
+/* ── Region / countries grid (who-we-are) ──────────────────────────── */
+.region-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.region-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 16px;
+  background: var(--bg-soft);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.region-card:hover {
+  border-color: var(--red);
+  box-shadow: 0 4px 16px var(--red-dim);
+}
+
+.region-card h4 {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--red-light);
+}
+
+.region-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.region-card li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--mid);
+  font-weight: 500;
+}
+
+.region-card li img {
+  width: 18px;
+  height: auto;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.region-card li.more {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.78rem;
+}
+
+/* ── ERG cards (who-we-are) ────────────────────────────────────────── */
+.erg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.erg-card {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.erg-card:hover {
+  border-color: var(--red);
+  box-shadow: 0 2px 10px var(--red-dim);
+}
+
+.erg-card span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.35;
+}
+
 /* ── Utility ───────────────────────────────────────────────────────── */
 .red    { color: var(--red); }
 .bold   { font-weight: 800; }
