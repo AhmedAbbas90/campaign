@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GWC — Our Mission</title>
+  <link rel="stylesheet" href="_shared.css" />
+  <style>
+    /* ── Language toggle ────────────────────────────────────────────── */
+    .lang-toggle {
+      display: flex;
+      gap: 0;
+      margin-bottom: 28px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      width: fit-content;
+    }
+
+    .lang-btn {
+      padding: 8px 20px;
+      font-family: var(--font);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .lang-btn.active {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .lang-btn:not(.active):hover {
+      background: var(--red-light);
+      color: var(--red);
+    }
+
+    /* ── Content sections ───────────────────────────────────────────── */
+    .lang-section { display: none; }
+    .lang-section.active { display: block; }
+
+    /* ── Hero tagline ───────────────────────────────────────────────── */
+    .mission-tagline {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.3;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .mission-tagline span { color: var(--red); }
+
+    /* ── Intro ──────────────────────────────────────────────────────── */
+    .mission-intro {
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .mission-lead {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.75;
+      margin-bottom: 28px;
+      padding-left: 16px;
+      border-left: 3px solid var(--red-dim);
+    }
+
+    /* ── Principle cards ────────────────────────────────────────────── */
+    .principle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .principle-card {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 18px;
+      padding: 22px 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--bg-soft);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .principle-card:hover {
+      border-color: var(--red);
+      box-shadow: 0 4px 16px var(--red-dim);
+    }
+
+    .principle-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .principle-body h3 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .principle-body p {
+      font-size: 0.88rem;
+      color: var(--mid);
+      line-height: 1.8;
+    }
+
+    /* ── Closing paragraph ──────────────────────────────────────────── */
+    .mission-close {
+      font-size: 0.92rem;
+      color: var(--mid);
+      line-height: 1.85;
+      padding: 20px 24px;
+      border-radius: var(--radius-lg);
+      background: var(--red-light);
+      border-left: 4px solid var(--red);
+    }
+
+    .mission-close strong { color: var(--dark); }
+  </style>
+</head>
+<body>
+
+  <iframe class="gwc-logo-frame" src="logo-page-mission.html" title="GWC Logo" scrolling="no"></iframe>
+
+  <!-- ── Language toggle ──────────────────────────────────────────────── -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- ENGLISH                                                           -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="lang-section active" id="section-en">
+
+    <div class="mission-tagline">
+      A Works Council That <span>Stands</span> for You
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">What We Stand For</h2>
+
+      <p class="mission-intro">
+        We believe a Works Council can only live up to its full potential when it proactively drives change and protects our rights.
+      </p>
+
+      <p class="mission-lead">
+        Works Council members should facilitate conversations. But even more so, they should drive meaningful solutions for all employees. To fulfil this purpose, we build on three active principles: Competence, Representation, Accountability.
+      </p>
+
+      <div class="principle-list">
+
+        <div class="principle-card">
+          <div class="principle-icon">⚡</div>
+          <div class="principle-body">
+            <h3>A Fighter in Your Corner</h3>
+            <p>We don't want a Works Council that is passive and reactive to the changes proposed by the employer, due to a lack of labour training. It's time to move from reacting to leading with awareness. By partnering with other Works Councils, top experts and by securing legal backing, we will transform the Works Council into a proactive, competent force that protects your interests through transparent, high-impact negotiations.</p>
+          </div>
+        </div>
+
+        <div class="principle-card">
+          <div class="principle-icon">🤝</div>
+          <div class="principle-body">
+            <h3>No One Left Behind</h3>
+            <p>Everyone deserves equal support, regardless of contract type, background, familial situation, or department. We're more than a voice. We're active advocates for the workforce community, fighting against harassment, unfair terminations, and individual concerns, ensuring everyone gets the specific support they need. We stand for you; we uphold fairness for all.</p>
+          </div>
+        </div>
+
+        <div class="principle-card">
+          <div class="principle-icon">🔎</div>
+          <div class="principle-body">
+            <h3>Radical Transparency</h3>
+            <p>We end the era of filtered information. Your representatives owe you transparency, not discretion. No more hiding the truth through "expectation management" — you deserve clarity and transparency. You'll see the process. You'll know the why. We carry your voice to negotiations and return the unfiltered truth to you. Accountability runs both ways: we'll make sure we act on your needs, give you a voice, and make your feedback actionable as company life evolves.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mission-close">
+        A Works Council is only as strong as the trust it has from those it represents. By voting for <strong>Global Workforce Community</strong>, you demand change, and you set a standard of quality for what a Works Council should be. We give voice to those who have been silenced, we commit to being the steadfast guardian who stays accountable to you, and we will be the purposeful empowered shield that protects every employee, regardless of the economic and political situation at the time.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- GERMAN                                                            -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="lang-section" id="section-de">
+
+    <div class="mission-tagline">
+      Ein Betriebsrat, der <span>für dich</span> steht
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Wofür wir stehen</h2>
+
+      <p class="mission-intro">
+        Wir glauben, dass ein Betriebsrat nur dann sein volles Potential nutzen kann, wenn er proaktiv Dinge ändert und unsere Rechte schützt.
+      </p>
+
+      <p class="mission-lead">
+        Mitglieder eines Betriebsrates sollten zu Diskussionen anregen. Aber vor allem sollten sie Lösungen für die Probleme aller Mitarbeitenden vorantreiben. Um dieser Aufgabe gerecht zu werden, bauen wir auf drei gelebte Prinzipien: Kompetenz, Repräsentation, Verantwortlichkeit.
+      </p>
+
+      <div class="principle-list">
+
+        <div class="principle-card">
+          <div class="principle-icon">⚡</div>
+          <div class="principle-body">
+            <h3>Wir kämpfen für dich</h3>
+            <p>Wir wollen keinen Betriebsrat, der aufgrund von mangelnder Schulung passiv ist und nur auf Initiativen des Arbeitgebers reagiert. Es ist Zeit bewusst Initiative zu ergreifen, anstatt nur zu reagieren. Durch die Zusammenarbeit mit anderen Betriebsräten, Experten und mit rechtlicher Absicherung werden wir den Betriebsrat in eine proaktive und kompetente Kraft verwandeln, die eure Interessen durch transparente und wirkungsvolle Verhandlungen schützt.</p>
+          </div>
+        </div>
+
+        <div class="principle-card">
+          <div class="principle-icon">🤝</div>
+          <div class="principle-body">
+            <h3>Wir lassen niemanden zurück</h3>
+            <p>Jeder verdient die gleiche Unterstützung, unabhängig von Vertragsart, Hintergrund, familiärer Situation oder Abteilung. Wir sind mehr als eine Stimme. Wir vertreten die Belegschaft, kämpfen gegen Schikanen, unfaire Kündigungen, individuelle Bedenken und bieten jedem Mitarbeitenden die spezifische Unterstützung, die er/sie braucht. Wir stehen für euch ein; wir kämpfen für Fairness für alle.</p>
+          </div>
+        </div>
+
+        <div class="principle-card">
+          <div class="principle-icon">🔎</div>
+          <div class="principle-body">
+            <h3>Absolute Transparenz</h3>
+            <p>Wir beenden die Ära von gefilterten Informationen. Eure Vertreter schulden euch Transparenz, nicht Verschwiegenheit. Kein Verstecken der Wahrheit hinter „Erwartungsmanagement" — ihr verdient Klarheit und Transparenz. Wir werden euch die Prozesse zeigen und erklären, warum wir tun, was wir tun. Wir tragen eure Stimme in Verhandlungen und bieten im Gegenzug die ungefilterte Wahrheit an. Verantwortlichkeit funktioniert in beide Richtungen: wir garantieren, dass wir eure Bedürfnisse vertreten, euch eine Stimme geben und euer Feedback umsetzbar machen, während die Firma sich entwickelt.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mission-close">
+        Ein Betriebsrat ist nur so stark wie das Vertrauen derer, die er vertritt. Mit einer Stimme für die <strong>Global Workforce Community</strong> forderst du Veränderung und einen neuen Qualitätsstandard für unseren Betriebsrat. Wir geben denen eine Stimme, die zum Schweigen gebracht wurden. Wir verpflichten uns, der unerschütterliche Verteidiger für euch und eure Anliegen zu sein und euch immer und konsequent Rechenschaft abzulegen. Wir werden alle Mitarbeitenden schützen, unabhängig von der aktuellen wirtschaftlichen oder politischen Situation.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Closing banner ────────────────────────────────────────────────── -->
+  <div class="closing-banner">
+    <div class="vote-line">Works Council Election 2026</div>
+    <div class="voice-line">Real <span>Voice.</span> Real <span>Change.</span> Real <span>Accountability.</span></div>
+    <div class="intl-line">Global Workforce Community — A Works Council That Stands for You</div>
+  </div>
+
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('section-' + lang).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
