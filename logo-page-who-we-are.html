@@ -76,17 +76,16 @@
         73→86% dissolve   (1.5s)
         86→100% pause     (1.5s, reset off-screen)
       */
-      animation: wordLoop 11s ease-in-out 0.5s infinite;
+      animation: wordLoop 11s linear 0.5s infinite;
     }
 
     @keyframes wordLoop {
-      0%   { opacity: 0; transform: translateX(-18px); }
-      10%  { opacity: 0.4; transform: translateX(-8px); }
-      27%  { opacity: 1;   transform: translateX(0);   }
-      73%  { opacity: 1;   transform: translateX(0);   }
-      86%  { opacity: 0;   transform: translateX(10px);}
-      87%  { opacity: 0;   transform: translateX(-18px);}
-      100% { opacity: 0;   transform: translateX(-18px);}
+      0%   { opacity: 0;   transform: translateX(-18px); animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+      27%  { opacity: 1;   transform: translateX(0);     animation-timing-function: linear; }
+      73%  { opacity: 1;   transform: translateX(0);     animation-timing-function: cubic-bezier(0.4, 0, 1, 1); }
+      86%  { opacity: 0;   transform: translateX(10px);  animation-timing-function: linear; }
+      87%  { opacity: 0;   transform: translateX(-18px); }
+      100% { opacity: 0;   transform: translateX(-18px); }
     }
 
     /* ── Wordmark ────────────────────────────────────────────────────── */
