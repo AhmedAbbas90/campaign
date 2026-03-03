@@ -12,7 +12,8 @@
     body {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-left: 36px;
       min-height: 100vh;
       background: #fff;
       font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
@@ -60,7 +61,7 @@
       white-space: nowrap;
     }
 
-    /* page word glides in from the left, slow and elegant */
+    /* page word loops: glides in slowly, holds, fades out, pauses, repeats */
     .gwc-word {
       font-size: 48px;
       font-weight: 900;
@@ -68,11 +69,19 @@
       white-space: nowrap;
       opacity: 0;
       transform: translateX(-36px);
-      animation: wordGlide 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+      /*
+        8s cycle: 0→25% glide in (2s), 25→75% hold (4s),
+        75→87.5% fade+slide out (1s), 87.5→100% pause (1s)
+      */
+      animation: wordLoop 8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s infinite;
     }
 
-    @keyframes wordGlide {
-      to { opacity: 1; transform: translateX(0); }
+    @keyframes wordLoop {
+      0%     { opacity: 0; transform: translateX(-36px); }
+      25%    { opacity: 1; transform: translateX(0);     }
+      75%    { opacity: 1; transform: translateX(0);     }
+      87.5%  { opacity: 0; transform: translateX(20px);  }
+      100%   { opacity: 0; transform: translateX(-36px); }
     }
 
     /* ── Wordmark ────────────────────────────────────────────────────── */
