@@ -208,9 +208,9 @@ body {
 .closing-banner {
   margin-top: 40px;
   padding: 28px 32px;
-  background: var(--dark);
+  background: #f0f0f0;
   border-radius: var(--radius-lg);
-  color: #fff;
+  color: var(--dark);
 }
 
 .closing-banner .vote-line {
@@ -218,14 +218,14 @@ body {
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  color: #999;
   margin-bottom: 8px;
 }
 
 .closing-banner .voice-line {
   font-size: 1.4rem;
   font-weight: 900;
-  color: #fff;
+  color: var(--dark);
   line-height: 1.3;
   margin-bottom: 12px;
 }
@@ -235,7 +235,7 @@ body {
 .closing-banner .intl-line {
   font-size: 0.85rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.6);
+  color: #999;
   font-style: italic;
 }
 
