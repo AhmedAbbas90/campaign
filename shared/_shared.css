@@ -148,8 +148,9 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--red);
-  color: #fff;
+  background: var(--red-light);
+  border: 2px solid var(--red);
+  color: var(--dark);
   font-size: 0.85rem;
   font-weight: 900;
   display: flex;
