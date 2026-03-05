@@ -1639,22 +1639,11 @@
 
     /* Body: animated height expand */
     .card-g-body {
-      padding: 0 20px 0 120px;
-      border-top: 0px solid var(--border);
+      padding: 0 20px 20px 120px;
+      border-top: 1px solid var(--border);
       overflow: hidden;
       height: 0;
-      transition: height 0.32s cubic-bezier(0.22,1,0.36,1),
-                  border-top-width 0s 0.32s,
-                  padding-bottom 0.32s cubic-bezier(0.22,1,0.36,1);
-      padding-bottom: 0;
-    }
-
-    .card-g.open .card-g-body {
-      border-top-width: 1px;
-      transition: height 0.32s cubic-bezier(0.22,1,0.36,1),
-                  border-top-width 0s,
-                  padding-bottom 0.32s cubic-bezier(0.22,1,0.36,1);
-      padding-bottom: 20px;
+      transition: height 0.32s cubic-bezier(0.22,1,0.36,1);
     }
 
     .card-g-body p {
@@ -1785,22 +1774,35 @@
       const summary = details.querySelector('summary');
       const body    = details.querySelector('.card-g-body');
 
-      // Prevent native toggle; we drive it manually
+      // Measure natural height by briefly removing the height constraint
+      function getBodyHeight() {
+        body.style.height = 'auto';
+        const h = body.scrollHeight;
+        body.style.height = '0';
+        return h;
+      }
+
+      // Prime the height so the browser knows the start state
+      getBodyHeight();
+
       summary.addEventListener('click', e => {
         e.preventDefault();
         const isOpen = details.classList.contains('open');
 
         if (isOpen) {
-          // Collapse: set explicit height first, then animate to 0
+          // Pin current height, then animate to 0
           body.style.height = body.scrollHeight + 'px';
-          requestAnimationFrame(() => {
+          requestAnimationFrame(() => requestAnimationFrame(() => {
             body.style.height = '0';
-          });
+          }));
           details.classList.remove('open');
         } else {
-          // Expand: animate from 0 to scrollHeight, then clear to 'auto'
+          // Animate from 0 to natural height
+          const h = getBodyHeight();
           details.classList.add('open');
-          body.style.height = body.scrollHeight + 'px';
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            body.style.height = h + 'px';
+          }));
           body.addEventListener('transitionend', () => {
             if (details.classList.contains('open')) body.style.height = 'auto';
           }, { once: true });
