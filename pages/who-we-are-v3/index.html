@@ -124,11 +124,24 @@
     /* ── BACK ────────────────────────────────────────────────────────── */
     .card-back {
       transform: rotateY(180deg);
-      background: linear-gradient(145deg, #fefefe 0%, #f5f0f0 100%);
-      border: 1.5px solid rgba(178,34,34,0.2);
+      overflow: hidden;
+    }
+
+    /* Fixed-size content layer — always 480×720, scaled down in grid */
+    .back-content {
+      position: absolute;
+      inset: 0;
+      width: 480px;
+      height: 720px;
+      transform-origin: top left;
       display: flex;
       flex-direction: column;
+      background: linear-gradient(145deg, #fefefe 0%, #f5f0f0 100%);
+      border: 1.5px solid rgba(178,34,34,0.2);
+      border-radius: 12px;
       overflow: hidden;
+      /* Base font size for the 480px canvas */
+      font-size: 15px;
     }
 
     /* Back face hidden until flipped (JS toggles this) */
@@ -138,85 +151,96 @@
     }
 
     /* ── Design 2: Dark navy card ───────────────────────────────────── */
-    .card-back[data-design="2"] {
+    .back-content[data-design="2"] {
       background: linear-gradient(145deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
       border-color: rgba(255,255,255,0.08);
     }
 
-    .card-back[data-design="2"] .back-header {
+    .back-content[data-design="2"] .back-header {
       background: transparent;
       padding: 12px 12px 8px;
       border-bottom: 2px solid var(--red);
     }
 
-    .card-back[data-design="2"] .back-name {
-      font-size: 0.72rem;
+    .back-content[data-design="2"] .back-name {
+      font-size: 1.2em;
       font-weight: 900;
       color: #fff;
       line-height: 1.2;
     }
 
-    .card-back[data-design="2"] .back-role {
-      font-size: 0.58rem;
+    .back-content[data-design="2"] .back-role {
+      font-size: 0.85em;
       color: rgba(255,255,255,0.55);
       margin-top: 3px;
       line-height: 1.3;
     }
 
-    .card-back[data-design="2"] .back-intro {
+    .back-content[data-design="2"] .back-intro {
       color: rgba(255,255,255,0.85);
-      font-size: 0.6rem;
-      scrollbar-color: rgba(255,255,255,0.2) transparent;
     }
 
-    .card-back[data-design="2"] .back-intro::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.2);
-    }
-
-    .card-back[data-design="2"] .back-intro strong {
+    .back-content[data-design="2"] .back-intro strong {
       color: #ffd700;
       font-weight: 700;
     }
 
-    .card-back[data-design="2"] .back-intro h1,
-    .card-back[data-design="2"] .back-intro h2,
-    .card-back[data-design="2"] .back-intro h3 {
+    .back-content[data-design="2"] .back-intro h1,
+    .back-content[data-design="2"] .back-intro h2,
+    .back-content[data-design="2"] .back-intro h3 {
       color: rgba(178,34,34,0.9);
     }
 
-    .card-back[data-design="2"] .back-footer {
+    .back-content[data-design="2"] .back-nav-counter {
+      color: rgba(255,255,255,0.35);
+    }
+
+    .back-content[data-design="2"] .back-nav-btn {
+      border-color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.8);
+    }
+    .back-content[data-design="2"] .back-nav-btn:hover {
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+    .back-content[data-design="2"] .back-nav-btn:disabled:hover {
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .back-content[data-design="2"] .back-footer {
       border-top: 1px solid rgba(255,255,255,0.1);
       background: transparent;
     }
 
-    .card-back[data-design="2"] .back-link {
+    .back-content[data-design="2"] .back-link {
       color: #fff;
       font-weight: 700;
     }
 
-    .card-back[data-design="2"] .back-link:hover {
+    .back-content[data-design="2"] .back-link:hover {
       color: rgba(255,255,255,0.75);
     }
 
-    .card-back[data-design="2"] .back-no-intro {
+    .back-content[data-design="2"] .back-no-intro {
       color: rgba(255,255,255,0.35);
     }
 
     /* ── Design 3: Minimal / editorial ─────────────────────────────── */
-    .card-back[data-design="3"] {
+    .back-content[data-design="3"] {
       background: #f8f4f0;
       border: 1.5px solid rgba(178,34,34,0.15);
       border-top: 3px solid var(--red);
     }
 
-    .card-back[data-design="3"] .back-header {
+    .back-content[data-design="3"] .back-header {
       background: transparent;
       padding: 12px 12px 6px;
       border-bottom: none;
     }
 
-    .card-back[data-design="3"] .back-name {
-      font-size: 0.7rem;
+    .back-content[data-design="3"] .back-name {
+      font-size: 1.15em;
       font-weight: 900;
       color: var(--red);
       text-transform: uppercase;
@@ -224,123 +248,153 @@
       line-height: 1.2;
     }
 
-    .card-back[data-design="3"] .back-role {
-      font-size: 0.56rem;
+    .back-content[data-design="3"] .back-role {
+      font-size: 0.82em;
       color: #888;
       margin-top: 3px;
       line-height: 1.3;
     }
 
-    .card-back[data-design="3"] .back-intro {
+    .back-content[data-design="3"] .back-intro {
       color: #2a2a2a;
-      font-size: 0.62rem;
-      scrollbar-color: rgba(100,50,50,0.2) transparent;
     }
 
-    .card-back[data-design="3"] .back-intro::-webkit-scrollbar-thumb {
-      background: rgba(100,50,50,0.2);
-    }
-
-    .card-back[data-design="3"] .back-intro p {
+    .back-content[data-design="3"] .back-intro p {
       font-style: italic;
     }
 
-    .card-back[data-design="3"] .back-intro strong {
+    .back-content[data-design="3"] .back-intro strong {
       color: #111;
       font-weight: 700;
       font-style: normal;
     }
 
-    .card-back[data-design="3"] .back-intro h1,
-    .card-back[data-design="3"] .back-intro h2,
-    .card-back[data-design="3"] .back-intro h3 {
+    .back-content[data-design="3"] .back-intro h1,
+    .back-content[data-design="3"] .back-intro h2,
+    .back-content[data-design="3"] .back-intro h3 {
       color: var(--red);
       font-style: normal;
     }
 
-    .card-back[data-design="3"] .back-footer {
+    .back-content[data-design="3"] .back-footer {
       border-top: 1px solid rgba(178,34,34,0.12);
       background: transparent;
       display: flex;
       justify-content: flex-end;
     }
 
-    .card-back[data-design="3"] .back-link {
+    .back-content[data-design="3"] .back-link {
       color: var(--red);
       font-weight: 700;
     }
 
-    .card-back[data-design="3"] .back-no-intro {
+    .back-content[data-design="3"] .back-no-intro {
       color: #aaa;
     }
 
     /* ── Design 4: Bold / graphic ───────────────────────────────────── */
-    .card-back[data-design="4"] {
+    .back-content[data-design="4"] {
       background: #fff;
       border: 1.5px solid rgba(178,34,34,0.2);
       border-left: 4px solid var(--red);
     }
 
-    .card-back[data-design="4"] .back-header {
+    .back-content[data-design="4"] .back-header {
       background: transparent;
       padding: 12px 12px 8px;
       border-bottom: 1px solid rgba(178,34,34,0.12);
     }
 
-    .card-back[data-design="4"] .back-name {
-      font-size: 0.72rem;
+    .back-content[data-design="4"] .back-name {
+      font-size: 1.2em;
       font-weight: 900;
       color: #111;
       line-height: 1.2;
     }
 
-    .card-back[data-design="4"] .back-role {
-      font-size: 0.58rem;
+    .back-content[data-design="4"] .back-role {
+      font-size: 0.85em;
       color: var(--red);
       margin-top: 3px;
       line-height: 1.3;
       font-weight: 600;
     }
 
-    .card-back[data-design="4"] .back-intro {
+    .back-content[data-design="4"] .back-intro {
       color: #222;
-      font-size: 0.62rem;
-      scrollbar-color: rgba(178,34,34,0.3) transparent;
     }
 
-    .card-back[data-design="4"] .back-intro::-webkit-scrollbar-thumb {
-      background: rgba(178,34,34,0.3);
-    }
-
-    .card-back[data-design="4"] .back-intro strong {
+    .back-content[data-design="4"] .back-intro strong {
       color: #000;
       font-weight: 700;
     }
 
-    .card-back[data-design="4"] .back-intro h1,
-    .card-back[data-design="4"] .back-intro h2,
-    .card-back[data-design="4"] .back-intro h3 {
+    .back-content[data-design="4"] .back-intro h1,
+    .back-content[data-design="4"] .back-intro h2,
+    .back-content[data-design="4"] .back-intro h3 {
       color: var(--red);
     }
 
-    .card-back[data-design="4"] .back-footer {
+    .back-content[data-design="4"] .back-footer {
       background: var(--red);
       border-top: none;
       padding: 7px 10px 9px;
     }
 
-    .card-back[data-design="4"] .back-link {
+    .back-content[data-design="4"] .back-link {
       color: #fff;
       font-weight: 700;
     }
 
-    .card-back[data-design="4"] .back-link:hover {
+    .back-content[data-design="4"] .back-link:hover {
       color: rgba(255,255,255,0.8);
       text-decoration: underline;
     }
 
-    .card-back[data-design="4"] .back-no-intro {
+    .back-content[data-design="4"] .back-no-intro {
       color: #bbb;
+    }
+
+    /* ── Design 5: Faded photo background ───────────────────────────── */
+    .back-content[data-design="5"] {
+      background: #fff;
+      border: 1.5px solid rgba(178,34,34,0.15);
+      position: relative;
+    }
+
+    .back-content[data-design="5"] .back-photo-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center top;
+      opacity: 0.12;
+      border-radius: 12px;
+      pointer-events: none;
+    }
+
+    .back-content[data-design="5"] .back-header {
+      background: rgba(178,34,34,0.85);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .back-content[data-design="5"] .back-intro {
+      color: #1a1a1a;
+    }
+
+    .back-content[data-design="5"] .back-intro strong {
+      color: #000;
+      font-weight: 700;
+    }
+
+    .back-content[data-design="5"] .back-intro h1,
+    .back-content[data-design="5"] .back-intro h2,
+    .back-content[data-design="5"] .back-intro h3 {
+      color: var(--red);
+    }
+
+    .back-content[data-design="5"] .back-no-intro {
+      color: #aaa;
     }
 
     /* Back header strip */
@@ -351,44 +405,39 @@
     }
 
     .card-back .back-name {
-      font-size: 0.72rem;
+      font-size: 1.2em;
       font-weight: 900;
       color: #fff;
       line-height: 1.2;
     }
 
     .card-back .back-role {
-      font-size: 0.58rem;
+      font-size: 0.85em;
       color: rgba(255,255,255,0.75);
       margin-top: 2px;
       line-height: 1.3;
     }
 
-    /* Back intro text */
-    .card-back .back-intro {
+    /* Scrollable intro text */
+    .back-intro {
       flex: 1;
       overflow-y: auto;
-      padding: 10px 12px;
-      font-size: 0.62rem;
-      color: #333;
+      padding: 10px 14px 6px;
+      font-size: 0.9em;
       line-height: 1.6;
+      color: #333;
       word-break: break-word;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(178,34,34,0.3) transparent;
     }
-
-    .card-back .back-intro::-webkit-scrollbar { width: 3px; }
-    .card-back .back-intro::-webkit-scrollbar-thumb { background: rgba(178,34,34,0.3); border-radius: 2px; }
-    .card-back .back-intro p { margin: 0 0 0.5em; }
-    .card-back .back-intro p:last-child { margin-bottom: 0; }
-    .card-back .back-intro strong { font-weight: 700; color: #111; }
-    .card-back .back-intro em { font-style: italic; }
-    .card-back .back-intro h1, .card-back .back-intro h2, .card-back .back-intro h3 {
-      font-size: 0.68rem; font-weight: 800; color: var(--red);
+    .back-intro p { margin: 0 0 0.5em; }
+    .back-intro p:last-child { margin-bottom: 0; }
+    .back-intro strong { font-weight: 700; color: #111; }
+    .back-intro em { font-style: italic; }
+    .back-intro h1, .back-intro h2, .back-intro h3 {
+      font-size: 0.85em; font-weight: 800; color: var(--red);
       margin: 0.6em 0 0.2em; text-transform: uppercase; letter-spacing: 0.03em;
     }
-    .card-back .back-intro ul { margin: 0.2em 0 0.5em 1em; padding: 0; }
-    .card-back .back-intro li { margin-bottom: 0.2em; }
+    .back-intro ul { margin: 0.2em 0 0.5em 1em; padding: 0; }
+    .back-intro li { margin-bottom: 0.2em; }
 
     /* Back footer link */
     .card-back .back-footer {
@@ -398,7 +447,7 @@
     }
 
     .card-back .back-link {
-      font-size: 0.6rem;
+      font-size: 0.85em;
       font-weight: 700;
       color: var(--red);
       text-decoration: none;
@@ -415,7 +464,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.65rem;
+      font-size: 0.9em;
       color: var(--muted);
       font-style: italic;
       padding: 12px;
@@ -456,14 +505,6 @@
       /* transition set by JS once positioned */
     }
 
-    /* Scale up back-of-card text 50% in inspect view */
-    .card-scene.inspecting .back-name  { font-size: 1.08rem; }
-    .card-scene.inspecting .back-role  { font-size: 0.87rem; }
-    .card-scene.inspecting .back-intro { font-size: 0.93rem; }
-    .card-scene.inspecting .back-intro h1,
-    .card-scene.inspecting .back-intro h2,
-    .card-scene.inspecting .back-intro h3 { font-size: 1.02rem; }
-    .card-scene.inspecting .back-link  { font-size: 0.9rem; }
 
     /* Hint */
     .tap-hint {
@@ -678,9 +719,14 @@ const INTROS = {
       // ── BACK — hidden until card flips ──
       const back = document.createElement('div');
       back.className = 'card-back face-hidden';
-      back.dataset.design = (cardIndex % 4) + 1;
 
-      back.innerHTML = `
+      // Fixed-size content wrapper (always 480×720px, scaled down in grid)
+      const backContent = document.createElement('div');
+      backContent.className = 'back-content';
+      backContent.dataset.design = (cardIndex % 4 === 3) ? 5 : (cardIndex % 4) + 1;
+
+      backContent.innerHTML = `
+        ${docId && backContent.dataset.design === '5' ? `<div class="back-photo-bg" style="background-image:url('${BASE_IMG}${docId}?type=XL')"></div>` : ''}
         <div class="back-header">
           <div class="back-name">${escHtml(name)}</div>
           <div class="back-role">${escHtml(role)}</div>
@@ -691,25 +737,37 @@ const INTROS = {
         const introEl = document.createElement('div');
         introEl.className = 'back-intro';
         introEl.innerHTML = intro;
-        back.appendChild(introEl);
+        backContent.appendChild(introEl);
       } else {
         const noIntro = document.createElement('div');
         noIntro.className = 'back-no-intro';
         noIntro.textContent = 'Introduction coming soon…';
-        back.appendChild(noIntro);
+        backContent.appendChild(noIntro);
       }
 
       if (viewId) {
         const footer = document.createElement('div');
         footer.className = 'back-footer';
         footer.innerHTML = `<a class="back-link" href="${BASE_VIEW}${viewId}" target="_top">Meet me on Zlife ↗</a>`;
-        back.appendChild(footer);
+        backContent.appendChild(footer);
       }
+
+      back.appendChild(backContent);
 
       inner.appendChild(front);
       inner.appendChild(back);
       scene.appendChild(inner);
       grid.appendChild(scene);
+
+      // Scale back-content to fit grid card size; update on resize
+      function scaleBackContent() {
+        if (isInspecting && activeScene === scene) return; // don't override during inspect
+        const sceneW = scene.getBoundingClientRect().width || 155;
+        backContent.style.transform = `scale(${sceneW / 480})`;
+      }
+      // Run once after layout
+      requestAnimationFrame(scaleBackContent);
+      window.addEventListener('resize', scaleBackContent);
 
       // ── 3D tilt on hover (only when not inspecting) ──
       const MAX_TILT = 16;
@@ -729,10 +787,10 @@ const INTROS = {
         if (!isInspecting) inner.style.transform = '';
       });
 
-      // ── Click to inspect ──
+      // ── Click to inspect / flip in-place ──
       scene.addEventListener('click', () => {
-        if (isInspecting) { closeInspect(); return; }
-        openInspect(scene, inner);
+        if (isInspecting && activeScene === scene) { flipInspect(); return; }
+        if (!isInspecting) openInspect(scene, inner);
       });
     });
 
@@ -740,9 +798,10 @@ const INTROS = {
     // Strategy: physically move the real scene element into fixed position
     // (no clone = no image reload = no black frames, no font jump)
     const overlay = document.getElementById('inspect-overlay');
-    let isInspecting = false;
-    let activeScene  = null;
-    let placeholder  = null;
+    let isInspecting  = false;
+    let activeScene   = null;
+    let placeholder   = null;
+    let inspectFlipped = true; // true = showing back (default after open)
 
     // ── Inspect tilt handler (lives on window while a card is open) ──
     const MAX_INSPECT_TILT = 12;
@@ -760,7 +819,8 @@ const INTROS = {
       const cdy = Math.max(-1, Math.min(1, dy));
       const angle = (Math.atan2(cdy, cdx) * 180 / Math.PI + 180).toFixed(1) + 'deg';
 
-      inner.style.transform = `perspective(1200px) rotateX(${(-cdy * MAX_INSPECT_TILT).toFixed(2)}deg) rotateY(${(180 + cdx * MAX_INSPECT_TILT).toFixed(2)}deg) translateZ(10px)`;
+      const baseY = inspectFlipped ? 180 : 0;
+      inner.style.transform = `perspective(1200px) rotateX(${(-cdy * MAX_INSPECT_TILT).toFixed(2)}deg) rotateY(${(baseY + cdx * MAX_INSPECT_TILT).toFixed(2)}deg) translateZ(10px)`;
 
       if (front) {
         front.style.setProperty('--angle', angle);
@@ -768,8 +828,9 @@ const INTROS = {
     }
 
     function openInspect(scene, inner) {
-      isInspecting = true;
-      activeScene  = scene;
+      isInspecting   = true;
+      activeScene    = scene;
+      inspectFlipped = true;
 
       inner.style.transition = '';
       inner.style.transform  = '';
@@ -812,12 +873,17 @@ const INTROS = {
 
         inner.style.transform = 'perspective(900px) rotateY(180deg)';
 
-        // At flip midpoint: hide front, reveal back
+        // Scale back-content to full size immediately
+        const bcEl = scene.querySelector('.back-content');
+        if (bcEl) bcEl.style.transform = 'scale(1)';
+
+        // Reveal back immediately so it's ready when the flip passes 90°
         const backEl  = scene.querySelector('.card-back');
         const frontEl = scene.querySelector('.card-front');
+        if (backEl)  backEl.classList.remove('face-hidden');
+        // Hide front at flip midpoint
         setTimeout(() => {
           if (frontEl) frontEl.classList.add('face-hidden');
-          if (backEl)  backEl.classList.remove('face-hidden');
         }, 300);
 
         // Attach tilt handler after fly animation completes
@@ -828,8 +894,42 @@ const INTROS = {
       }));
     }
 
+    let isFlipping = false;
+    function flipInspect() {
+      if (!isInspecting || !activeScene || isFlipping) return;
+      isFlipping = true;
+
+      const inner   = activeScene.querySelector('.card-inner');
+      const backEl  = activeScene.querySelector('.card-back');
+      const frontEl = activeScene.querySelector('.card-front');
+
+      // Detach tilt while flipping
+      window.removeEventListener('mousemove', onInspectMouseMove);
+      inner.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.15,1)';
+
+      if (inspectFlipped) {
+        // Back → Front
+        inner.style.transform = 'perspective(900px) rotateY(0deg)';
+        if (frontEl) frontEl.classList.remove('face-hidden');
+        setTimeout(() => { if (backEl) backEl.classList.add('face-hidden'); }, 250);
+      } else {
+        // Front → Back
+        inner.style.transform = 'perspective(900px) rotateY(180deg)';
+        if (backEl) backEl.classList.remove('face-hidden');
+        setTimeout(() => { if (frontEl) frontEl.classList.add('face-hidden'); }, 250);
+      }
+      inspectFlipped = !inspectFlipped;
+
+      setTimeout(() => {
+        isFlipping = false;
+        inner.style.transition = 'transform 0.08s linear';
+        window.addEventListener('mousemove', onInspectMouseMove);
+      }, 520);
+    }
+
     function closeInspect() {
       if (!isInspecting || !activeScene) return;
+      isFlipping = false;
 
       window.removeEventListener('mousemove', onInspectMouseMove);
 
@@ -850,12 +950,13 @@ const INTROS = {
       inner.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.15,1)';
       inner.style.transform  = 'perspective(900px) rotateY(0deg)';
 
-      // At flip midpoint: hide back, reveal front
+      // Reveal front immediately so it's ready when the flip passes 90°
       const backEl  = scene.querySelector('.card-back');
       const frontEl = scene.querySelector('.card-front');
+      if (frontEl) frontEl.classList.remove('face-hidden');
+      // Hide back at flip midpoint
       setTimeout(() => {
-        if (backEl)  backEl.classList.add('face-hidden');
-        if (frontEl) frontEl.classList.remove('face-hidden');
+        if (backEl) backEl.classList.add('face-hidden');
       }, 250);
 
       overlay.classList.remove('active');
@@ -867,6 +968,12 @@ const INTROS = {
         // Ensure clean state: back hidden, front visible
         if (backEl)  backEl.classList.add('face-hidden');
         if (frontEl) frontEl.classList.remove('face-hidden');
+        // Restore back-content scale to match grid card size
+        const bcEl = scene.querySelector('.back-content');
+        if (bcEl) {
+          const sceneW = scene.getBoundingClientRect().width || 155;
+          bcEl.style.transform = `scale(${sceneW / 480})`;
+        }
         placeholder.replaceWith(scene);
         placeholder  = null;
         isInspecting = false;
