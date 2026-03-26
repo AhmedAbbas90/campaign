@@ -1,0 +1,24 @@
+{
+  "name": "gwc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build-all-intros.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gwc-betriebsrat/campaign.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gwc-betriebsrat/campaign/issues"
+  },
+  "homepage": "https://github.com/gwc-betriebsrat/campaign#readme",
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}
