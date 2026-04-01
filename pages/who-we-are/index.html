@@ -1714,10 +1714,9 @@ const CANDIDATES = [
             if (frontEl) frontEl.classList.add('face-hidden');
           }, 300);
 
-          // Attach tilt handler after fly animation completes
+          // Settle after fly animation
           setTimeout(() => {
-            inner.style.transition = 'transform 0.08s linear';
-            window.addEventListener('mousemove', onInspectMouseMove);
+            inner.style.transition = '';
           }, 650);
         }));
       }
@@ -1746,8 +1745,6 @@ const CANDIDATES = [
         return;
       }
 
-      // Detach tilt while flipping
-      window.removeEventListener('mousemove', onInspectMouseMove);
       inner.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.15,1)';
 
       if (inspectFlipped) {
@@ -1765,16 +1762,13 @@ const CANDIDATES = [
 
       setTimeout(() => {
         isFlipping = false;
-        inner.style.transition = 'transform 0.08s linear';
-        window.addEventListener('mousemove', onInspectMouseMove);
+        inner.style.transition = '';
       }, 520);
     }
 
     function closeInspect() {
       if (!isInspecting || !activeScene) return;
       isFlipping = false;
-
-      window.removeEventListener('mousemove', onInspectMouseMove);
 
       const scene = activeScene;
       const inner = scene.querySelector('.card-inner');
