@@ -5,6 +5,112 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GWC — Our Accomplishments</title>
   <link rel="stylesheet" href="../../shared/_shared.css" />
+  <style>
+    /* ── Hero intro ────────────────────────────────────────────────── */
+    .accomplishments-intro {
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.85;
+      margin-bottom: 32px;
+    }
+
+    /* ── Pillar sections ───────────────────────────────────────────── */
+    .pillar {
+      margin-bottom: 40px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .pillar-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .pillar-title {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .pillar-body {
+      padding: 0 24px 24px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
+
+    /* ── Person cards within a pillar ──────────────────────────────── */
+    .person-card {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .person-card:last-child {
+      border-bottom: none;
+    }
+
+    .person-name {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .person-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .person-card li {
+      font-size: 0.88rem;
+      color: var(--mid);
+      line-height: 1.75;
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+
+    .person-card li::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Pillar-specific accent colors */
+    .pillar--fighters .pillar-header { background: #9A9CF5; }
+    .pillar--fighters .pillar-icon { background: rgba(255,255,255,0.25); }
+    .pillar--fighters li::before { background: #9A9CF5; }
+
+    .pillar--nolb .pillar-header { background: #F5BB9A; }
+    .pillar--nolb .pillar-icon { background: rgba(255,255,255,0.25); }
+    .pillar--nolb .pillar-title { color: #1a1a1a; }
+    .pillar--nolb li::before { background: #F5BB9A; }
+
+    .pillar--transparency .pillar-header { background: #5576A4; }
+    .pillar--transparency .pillar-icon { background: rgba(255,255,255,0.25); }
+    .pillar--transparency li::before { background: #5576A4; }
+  </style>
 </head>
 <body>
 
@@ -15,44 +121,163 @@
     <h1>Our Accomplishments</h1>
   </div>
 
-  <p class="hero-intro">
-    Words are easy. Results are what matter.
-    Here is a record of what we have achieved, what we are actively working on,
-    and where we fell short — because accountability means reporting both.
+  <p class="accomplishments-intro">
+    If you've ever reached out to us for help or support, you know we are forever the fighters in your corner. We care about you all so much, sometimes it keeps us up at night. Before we joined the works council, we used to think "Who is looking out for us?". The world can be a hostile place, and sometimes even when everything seems to be going right, something goes wrong, and you just don't know where to turn.
   </p>
 
-  <!-- Timeline — add items as you accumulate results -->
-  <div class="section">
-    <h2 class="section-title">What We've Done</h2>
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- Pillar 1: The Fighters in Your Corner — Lavender #9A9CF5     -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="pillar pillar--fighters">
+    <div class="pillar-header">
+      <div class="pillar-icon">⚡</div>
+      <div class="pillar-title">The Fighters in Your Corner</div>
+    </div>
+    <div class="pillar-body">
 
-    <div class="timeline">
+      <div class="person-card">
+        <div class="person-name">Wilfredo Manrique</div>
+        <ul>
+          <li>Consistently voted against individual arbitrary dismissals and in favour of preserving jobs during restructuring and reorgs.</li>
+          <li>Initiated negotiations for a Special Leave Policy Works Agreement securing bereavement rights beyond the statutory minimum.</li>
+        </ul>
+      </div>
 
-      <div class="timeline-item">
-        <div class="timeline-date">Coming soon</div>
-        <h3>First milestone placeholder</h3>
-        <p>This section will be updated as GWC achieves concrete results for employees. Check back after the election.</p>
+      <div class="person-card">
+        <div class="person-name">Kim Ozor</div>
+        <ul>
+          <li>When a reorg threatened to move four teams to an entity with worse conditions (Saturday shifts, more office days), she successfully negotiated to keep the Monday-Friday schedule and port hybrid work charters to the new entity.</li>
+          <li>When her own job family was discontinued, fought for legal counsel, fair severance, and social funds for her colleagues.</li>
+        </ul>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Daniel Calderon</div>
+        <ul>
+          <li>Maintained a high dismissal rejection rate on the Personnel Committee, ensuring every case receives maximum scrutiny.</li>
+          <li>On the IT &amp; Data Taskforce, negotiated strict limitations on employee monitoring tools (Palo Alto Cortex XDR, hybrid attendance tracking).</li>
+          <li>Stayed the course through years of complex negotiations on the Workday Time-Tracking Works Agreement and the Compliance Works Agreement.</li>
+        </ul>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Mahmoud Gaballah</div>
+        <ul>
+          <li>A pioneer in the use of formal grievance procedures under Section 85, which had sat dormant since 2020, turning theoretical rights into a functional reality.</li>
+          <li>Leading negotiator in the 2026 reorganizations, consistently pushing for maximum legal and financial protections on dismissals and transfers.</li>
+          <li>A driver of the Internal Investigation Policy negotiations to ensure every colleague can exercise their legal rights to the fullest.</li>
+        </ul>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Veda Maas</div>
+        <ul>
+          <li>Negotiated better packages and terms for 32 employees affected by the Project Nova restructuring.</li>
+          <li>Serves as substitute assessor on the Electronic Time Tracking conciliation board.</li>
+        </ul>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Bassma Elrafie</div>
+        <ul>
+          <li>Extensive legal training on works council responsibilities and labour law brings zero-onboarding-needed expertise.</li>
+        </ul>
       </div>
 
     </div>
   </div>
 
-  <div class="section">
-    <h2 class="section-title">Active Negotiations</h2>
-    <div class="placeholder-block">
-      <p>We will publish a live list of every active negotiation with management once elected.</p>
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- Pillar 2: No One Left Behind — Peach #F5BB9A                 -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="pillar pillar--nolb">
+    <div class="pillar-header">
+      <div class="pillar-icon">🤝</div>
+      <div class="pillar-title">No One Left Behind</div>
+    </div>
+    <div class="pillar-body">
+
+      <div class="person-card">
+        <div class="person-name">Wilfredo Manrique</div>
+        <ul>
+          <li>Provided immediate individual support for parents, caregivers, LGBTQIA+, international, and disabled employees navigating Performance Support Plans (PSPs).</li>
+          <li>Served as WoCo companion during BEM (re-integration after sick leave). Prioritised employee agency and health over output pressure.</li>
+          <li>Voting member on the Corona and Program23 Social Funds, approving direct financial relief for employees in crisis.</li>
+        </ul>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Kim Ozor</div>
+        <ul>
+          <li>Secured a dog-free, allergy-safe zone on BHW 6th floor after a colleague could no longer safely come to the office.</li>
+          <li>Facilitated exception payments for employees who fell through the gap between the old and new home office furniture policy.</li>
+          <li>Secured changing cabins at the workplace gym so everyone can use the shared space safely.</li>
+          <li>As Chair of the D&amp;I Committee and Speaker of the D&amp;I Working Group, kept pressure on the Internal Investigations Policy and ensured inclusion stays a practice, not a buzzword.</li>
+        </ul>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Mahmoud Gaballah</div>
+        <ul>
+          <li>Co-founded the D&amp;I Committee, partnering with specialist organisations to build awareness, sensitivity, and a legal/psychological support network for employees facing harassment or unfair treatment.</li>
+          <li>Personally handled multiple grievances using all available legal instruments.</li>
+        </ul>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Veda Maas</div>
+        <ul>
+          <li>Project Nova: negotiated better packages specifically for the 32 affected employees, as individuals.</li>
+        </ul>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Bassma Elrafie</div>
+        <ul>
+          <li>Active in the Health Committee, supporting employee well-being initiatives; frames her candidacy explicitly around delivering better outcomes for a broader range of employees.</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 
-  <div class="section">
-    <h2 class="section-title">Where We Fell Short</h2>
-    <div class="placeholder-block">
-      <p>
-        Accountability means being honest about gaps, not just wins.
-        This section will document where we tried and did not fully succeed — and what we'll do differently.
-      </p>
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- Pillar 3: Radical Transparency — Steel Blue #5576A4          -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="pillar pillar--transparency">
+    <div class="pillar-header">
+      <div class="pillar-icon">🔎</div>
+      <div class="pillar-title">Radical Transparency</div>
+    </div>
+    <div class="pillar-body">
+
+      <div class="person-card">
+        <div class="person-name">Daniel Calderon</div>
+        <ul>
+          <li>Spoke at nearly every Employee Assembly and personally guided 100+ colleagues through complex consultation cases, making the WoCo visible and accessible.</li>
+          <li>As the driving force behind the Petitions Process, turned employee ideas into concrete, actionable outcomes on the WoCo agenda.</li>
+          <li>Explicitly frames his work around making the workplace "fairer and more transparent".</li>
+        </ul>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Kim Ozor</div>
+        <ul>
+          <li>As Vice-Chair of the Petitions Committee, acted as petition ghostwriter for colleagues who had concerns but did not know how to formalise them — lowering the barrier to having your voice heard.</li>
+        </ul>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Veda Maas</div>
+        <ul>
+          <li>Explicitly rejects obfuscation and political maneuvering and frames her entire approach around employees deserving the truth and clear rationale for decisions.</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 
+  <!-- ── Closing banner ──────────────────────────────────────────── -->
   <div class="closing-banner">
     <div class="closing-banner-text">
       <div class="vote-line">Works Council Election 2026</div>
