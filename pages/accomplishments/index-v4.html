@@ -54,27 +54,14 @@
       align-items: center;
       gap: 14px;
       padding: 18px 20px;
-      cursor: pointer;
-      user-select: none;
+      pointer-events: none;
       transition: background 0.15s;
     }
 
     summary::-webkit-details-marker { display: none; }
 
-    /* Chevron indicator */
-    summary::after {
-      content: '›';
-      margin-left: auto;
-      font-size: 1.4rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.8);
-      transition: transform 0.25s ease;
-      line-height: 1;
-    }
-
-    details[open] > summary::after {
-      transform: rotate(90deg);
-    }
+    /* Hide chevron — always expanded */
+    summary::after { display: none; }
 
     /* Fighters header */
     .pillar--fighters > summary {
@@ -181,22 +168,17 @@
       margin-bottom: 10px;
     }
 
-    .person-initial {
-      width: 30px;
-      height: 30px;
+    .person-photo {
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      font-weight: 900;
+      object-fit: cover;
       flex-shrink: 0;
     }
 
-    .pillar--fighters  .person-initial { color: #5052a8; border: 1.5px solid var(--lavender); }
-    .pillar--nolb      .person-initial { color: #a05a2c; border: 1.5px solid var(--peach); }
-    .pillar--transparency .person-initial { color: var(--steel); border: 1.5px solid var(--steel); }
+    .pillar--fighters  .person-photo { border: 2px solid var(--lavender); }
+    .pillar--nolb      .person-photo { border: 2px solid var(--peach); }
+    .pillar--transparency .person-photo { border: 2px solid var(--steel); }
 
     .person-name {
       font-size: 0.88rem;
@@ -270,16 +252,14 @@
         <div class="summary-icon">⚡</div>
         <div class="summary-body">
           <div class="summary-title">The Fighters in Your Corner</div>
-          <div class="summary-subtitle">Wilfredo · Kim · Daniel · Mahmoud · Veda · Bassma</div>
         </div>
-        <span class="summary-count">12 accomplishments</span>
       </summary>
 
       <div class="accordion-body">
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">WM</div>
+            <img class="person-photo" src="../who-we-are/photos/a7d18175-5623-4b2c-8882-bd5ebbefab00.jpg" alt="Wilfredo Manrique" />
             <div class="person-name">Wilfredo Manrique</div>
           </div>
           <ul>
@@ -290,7 +270,7 @@
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">KO</div>
+            <img class="person-photo" src="../who-we-are/photos/0dc8f072-9531-4ca9-8b91-7947adf7642a.jpg" alt="Kim Ozor" />
             <div class="person-name">Kim Ozor</div>
           </div>
           <ul>
@@ -301,7 +281,7 @@
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">DC</div>
+            <img class="person-photo" src="../who-we-are/photos/76d4f49a-a96d-4ead-bf69-ab91ac2f56b4.jpg" alt="Daniel Calderon" />
             <div class="person-name">Daniel Calderon</div>
           </div>
           <ul>
@@ -313,7 +293,7 @@
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">MG</div>
+            <img class="person-photo" src="../who-we-are/photos/84aecc90-f20e-4576-a518-4569902f0a97.jpg" alt="Mahmoud Gaballah" />
             <div class="person-name">Mahmoud Gaballah</div>
           </div>
           <ul>
@@ -325,7 +305,7 @@
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">VM</div>
+            <img class="person-photo" src="../who-we-are/photos/37bfa26f-3048-4004-a581-3158fa547a03.jpg" alt="Veda Maas" />
             <div class="person-name">Veda Maas</div>
           </div>
           <ul>
@@ -336,7 +316,7 @@
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">BE</div>
+            <img class="person-photo" src="../who-we-are/photos/21e94f92-c65c-495b-83fa-61b43b24a384.jpg" alt="Bassma Elrafie" />
             <div class="person-name">Bassma Elrafie</div>
           </div>
           <ul>
@@ -350,21 +330,19 @@
     <!-- ═══════════════════════════════════════════════════════════ -->
     <!-- Pillar 2: No One Left Behind                               -->
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <details class="pillar--nolb">
+    <details class="pillar--nolb" open>
       <summary>
         <div class="summary-icon">🤝</div>
         <div class="summary-body">
           <div class="summary-title">No One Left Behind</div>
-          <div class="summary-subtitle">Wilfredo · Kim · Mahmoud · Veda · Bassma</div>
         </div>
-        <span class="summary-count">11 accomplishments</span>
       </summary>
 
       <div class="accordion-body">
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">WM</div>
+            <img class="person-photo" src="../who-we-are/photos/a7d18175-5623-4b2c-8882-bd5ebbefab00.jpg" alt="Wilfredo Manrique" />
             <div class="person-name">Wilfredo Manrique</div>
           </div>
           <ul>
@@ -376,7 +354,7 @@
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">KO</div>
+            <img class="person-photo" src="../who-we-are/photos/0dc8f072-9531-4ca9-8b91-7947adf7642a.jpg" alt="Kim Ozor" />
             <div class="person-name">Kim Ozor</div>
           </div>
           <ul>
@@ -389,7 +367,7 @@
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">MG</div>
+            <img class="person-photo" src="../who-we-are/photos/84aecc90-f20e-4576-a518-4569902f0a97.jpg" alt="Mahmoud Gaballah" />
             <div class="person-name">Mahmoud Gaballah</div>
           </div>
           <ul>
@@ -400,7 +378,7 @@
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">VM</div>
+            <img class="person-photo" src="../who-we-are/photos/37bfa26f-3048-4004-a581-3158fa547a03.jpg" alt="Veda Maas" />
             <div class="person-name">Veda Maas</div>
           </div>
           <ul>
@@ -410,7 +388,7 @@
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">BE</div>
+            <img class="person-photo" src="../who-we-are/photos/21e94f92-c65c-495b-83fa-61b43b24a384.jpg" alt="Bassma Elrafie" />
             <div class="person-name">Bassma Elrafie</div>
           </div>
           <ul>
@@ -424,21 +402,19 @@
     <!-- ═══════════════════════════════════════════════════════════ -->
     <!-- Pillar 3: Radical Transparency                             -->
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <details class="pillar--transparency">
+    <details class="pillar--transparency" open>
       <summary>
         <div class="summary-icon">🔎</div>
         <div class="summary-body">
           <div class="summary-title">Radical Transparency</div>
-          <div class="summary-subtitle">Daniel · Kim · Veda</div>
         </div>
-        <span class="summary-count">5 accomplishments</span>
       </summary>
 
       <div class="accordion-body">
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">DC</div>
+            <img class="person-photo" src="../who-we-are/photos/76d4f49a-a96d-4ead-bf69-ab91ac2f56b4.jpg" alt="Daniel Calderon" />
             <div class="person-name">Daniel Calderon</div>
           </div>
           <ul>
@@ -450,7 +426,7 @@
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">KO</div>
+            <img class="person-photo" src="../who-we-are/photos/0dc8f072-9531-4ca9-8b91-7947adf7642a.jpg" alt="Kim Ozor" />
             <div class="person-name">Kim Ozor</div>
           </div>
           <ul>
@@ -460,7 +436,7 @@
 
         <div class="person-item">
           <div class="person-name-row">
-            <div class="person-initial">VM</div>
+            <img class="person-photo" src="../who-we-are/photos/37bfa26f-3048-4004-a581-3158fa547a03.jpg" alt="Veda Maas" />
             <div class="person-name">Veda Maas</div>
           </div>
           <ul>
@@ -472,8 +448,6 @@
     </details>
 
   </div><!-- /accordion -->
-
-  <p class="accordion-hint">Tap any pillar header to expand or collapse</p>
 
   <!-- ── Closing banner ──────────────────────────────────────────── -->
   <div class="closing-banner">
