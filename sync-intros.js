@@ -55,14 +55,14 @@ function cleanHtml(raw) {
   let html = raw;
 
   // Convert bold spans to <strong> BEFORE stripping styles
-  html = html.replace(/<span\s+style="[^"]*font-weight:\s*(bold|[7-9]00)[^"]*">([\s\S]*?)<\/span>/gi, '<strong>$2</strong>');
+  // Use function replacer to avoid $-backreference issues with emoji content
+  html = html.replace(/<span\s+style="[^"]*font-weight:\s*(bold|[7-9]00)[^"]*">([\s\S]*?)<\/span>/gi, (_, _w, content) => `<strong>${content}</strong>`);
 
   // Convert italic spans to <em> BEFORE stripping styles
-  html = html.replace(/<span\s+style="[^"]*font-style:\s*italic[^"]*">([\s\S]*?)<\/span>/gi, '<em>$2</em>');
+  html = html.replace(/<span\s+style="[^"]*font-style:\s*italic[^"]*">([\s\S]*?)<\/span>/gi, (_, content) => `<em>${content}</em>`);
 
   // Convert bold+italic (nested after above, or combined in one span)
-  // Handle <strong><span style="...italic...">text</span></strong>
-  html = html.replace(/<strong><span\s+style="[^"]*font-style:\s*italic[^"]*">([\s\S]*?)<\/span><\/strong>/gi, '<strong><em>$1</em></strong>');
+  html = html.replace(/<strong><span\s+style="[^"]*font-style:\s*italic[^"]*">([\s\S]*?)<\/span><\/strong>/gi, (_, content) => `<strong><em>${content}</em></strong>`);
 
   // Strip remaining inline style attributes
   html = html.replace(/\s+style="[^"]*"/g, '');
