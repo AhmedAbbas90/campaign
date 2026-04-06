@@ -289,25 +289,7 @@
       opacity: 0.75;
     }
 
-    /* ── Countdown + date bar ──────────────────────────────────────── */
-    .countdown-bar {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-      border-radius: var(--radius-lg);
-      padding: 24px 28px;
-      margin-bottom: 24px;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .countdown-left {
-      flex: 1;
-      min-width: 200px;
-    }
-
+    /* ── Countdown elements ──────────────────────────────────────── */
     .countdown-label {
       font-size: 0.72rem;
       font-weight: 700;
@@ -342,13 +324,6 @@
       margin-top: 4px;
     }
 
-    .countdown-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 8px;
-    }
-
     .vote-date {
       font-size: 0.95rem;
       font-weight: 800;
@@ -376,11 +351,6 @@
     .save-date-link:hover {
       color: #b8b9ff;
       text-decoration: underline;
-    }
-
-    @media (max-width: 500px) {
-      .countdown-bar { flex-direction: column; align-items: flex-start; }
-      .countdown-right { align-items: flex-start; }
     }
 
     /* ── FAQ section ───────────────────────────────────────────────── */
@@ -435,43 +405,43 @@
     <div class="list-badge-name">Global Workforce Community</div>
   </div>
 
-  <!-- ── Countdown + voting dates ───────────────────────────────────── -->
-  <div class="countdown-bar">
-    <div class="countdown-left">
-      <div class="countdown-label">Election starts in</div>
-      <div class="countdown-timer" id="countdown">
-        <div class="countdown-unit">
-          <div class="countdown-value" id="cd-days">--</div>
-          <div class="countdown-unit-label">Days</div>
-        </div>
-        <div class="countdown-unit">
-          <div class="countdown-value" id="cd-hours">--</div>
-          <div class="countdown-unit-label">Hours</div>
-        </div>
-        <div class="countdown-unit">
-          <div class="countdown-value" id="cd-mins">--</div>
-          <div class="countdown-unit-label">Min</div>
-        </div>
-        <div class="countdown-unit">
-          <div class="countdown-value" id="cd-secs">--</div>
-          <div class="countdown-unit-label">Sec</div>
-        </div>
-      </div>
-    </div>
-    <div class="countdown-right">
-      <div class="vote-date">📅 Voting: <span>5 – 8 May 2026</span></div>
-      <a class="save-date-link" href="https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=N3NvYmQ2cGg0dnFjbTQ1NG9pbWVkOXN0ZzcgYWJkZWxyYWhtYW4uc2FsZWhAemFsYW5kby5kZQ&tmsrc=abdelrahman.saleh%40zalando.de" target="_blank">📌 Save the date →</a>
-    </div>
-  </div>
-
-  <!-- ── Vote CTA ─────────────────────────────────────────────────────── -->
+  <!-- ── Combined Vote CTA + Countdown ────────────────────────────────── -->
   <div class="section" style="margin-bottom:36px;">
 
-    <div style="background:var(--red);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:20px;">
+    <div id="vote-hero" style="background:var(--red);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:20px;">
       <div style="font-size:0.75rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:8px;">Works Council Election 2026</div>
       <div style="font-size:1.6rem;font-weight:900;color:#fff;line-height:1.25;margin-bottom:6px;">Your Vote is Your Voice.</div>
-      <div style="font-size:0.95rem;color:rgba(255,255,255,0.85);line-height:1.7;">
+      <div style="font-size:0.95rem;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:20px;">
         This is your chance to stop watching from the sidelines and take an active role in shaping your workplace. When election day comes — vote for <strong style="color:#fff;">GWC</strong>.
+      </div>
+
+      <!-- Countdown + date row -->
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.2);">
+        <div>
+          <div class="countdown-label" style="color:rgba(255,255,255,0.6);">Election starts in</div>
+          <div class="countdown-timer" id="countdown">
+            <div class="countdown-unit">
+              <div class="countdown-value" id="cd-days">--</div>
+              <div class="countdown-unit-label">Days</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value" id="cd-hours">--</div>
+              <div class="countdown-unit-label">Hours</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value" id="cd-mins">--</div>
+              <div class="countdown-unit-label">Min</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value" id="cd-secs">--</div>
+              <div class="countdown-unit-label">Sec</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+          <div class="vote-date">📅 Voting: <span>5 – 8 May 2026</span></div>
+          <a class="save-date-link" href="https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=N3NvYmQ2cGg0dnFjbTQ1NG9pbWVkOXN0ZzcgYWJkZWxyYWhtYW4uc2FsZWhAemFsYW5kby5kZQ&tmsrc=abdelrahman.saleh%40zalando.de" target="_blank">📌 Save the date →</a>
+        </div>
       </div>
     </div>
 
@@ -702,14 +672,22 @@
 
     /* ── Countdown timer ──────────────────────────────────────────── */
     (function countdown() {
-      const target = new Date('2026-05-05T08:00:00+02:00'); // May 5, 8am Berlin time
+      const electionStart = new Date('2026-05-05T08:00:00+02:00');
+      const electionEnd   = new Date('2026-05-08T18:00:00+02:00');
       function tick() {
         const now = new Date();
-        const diff = target - now;
-        if (diff <= 0) {
-          document.getElementById('countdown').innerHTML = '<div style="font-size:1.1rem;font-weight:900;color:#fff;">Voting is live!</div>';
+        if (now >= electionEnd) {
+          // Election is over
+          document.getElementById('countdown').innerHTML = '<div style="font-size:1.1rem;font-weight:900;color:#fff;">Voting has ended. Thank you!</div>';
           return;
         }
+        if (now >= electionStart) {
+          // Voting is live — change the hero
+          document.getElementById('countdown').innerHTML = '<div style="font-size:1.3rem;font-weight:900;color:#fff;">🗳️ Voting is LIVE — go vote for List 3!</div>';
+          document.getElementById('vote-hero').style.background = 'linear-gradient(135deg, #1a6b1a 0%, #2d8a2d 100%)';
+          return;
+        }
+        const diff = electionStart - now;
         const d = Math.floor(diff / 86400000);
         const h = Math.floor((diff % 86400000) / 3600000);
         const m = Math.floor((diff % 3600000) / 60000);
