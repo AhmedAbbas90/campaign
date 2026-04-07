@@ -373,22 +373,6 @@
     const ENTRY_NAME = 'entry.1003119880';
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vShNq7Ixvd0MKhCkszo2zVl6rFDS2vkFMZ0hN1GylKgxfLfp5YG9aWZh51VQECoRTYE0jgD41sJOmKr/pub?gid=992292506&single=true&output=csv';
 
-    // ── Mock wishes (used until CSV is wired up) ─────────────────────
-    const MOCK_WISHES = [
-      { text: "Make 'I don't know' a valid answer in performance reviews.", author: "" },
-      { text: "Mandatory mental health days that don't count against sick leave.", author: "Anon" },
-      { text: "Fix the chairs in BHW 4F. Or at least let us know who to bribe.", author: "" },
-      { text: "Real career paths for non-engineering roles, not just 'figure it out yourself'.", author: "Maria" },
-      { text: "Bring back the all-hands Q&A. The written ones feel sanitised.", author: "" },
-      { text: "Better protection against opaque PIPs.", author: "" },
-      { text: "Stop announcing reorgs on Friday afternoons.", author: "Tired Engineer" },
-      { text: "Childcare allowance for parents of kids under 6.", author: "" },
-      { text: "Quiet rooms on every floor, not just one per building.", author: "" },
-      { text: "Fairer process for promotions - documented criteria, not vibes.", author: "" },
-      { text: "Make compensation bands public. The mystery hurts trust.", author: "" },
-      { text: "I want a Works Council that calls things by their name.", author: "" },
-    ];
-
     // ── Toast ────────────────────────────────────────────────────────
     function toast(msg, type) {
       const el = document.getElementById('wow-toast');
@@ -488,11 +472,6 @@
 
     // ── Load wishes ──────────────────────────────────────────────────
     function loadWishes() {
-      if (!CSV_URL) {
-        // Fall back to mock data
-        renderWishes(MOCK_WISHES);
-        return;
-      }
       fetch(CSV_URL)
         .then(r => r.text())
         .then(csv => {
@@ -500,7 +479,8 @@
           renderWishes(wishes);
         })
         .catch(() => {
-          renderWishes(MOCK_WISHES);
+          const grid = document.getElementById('wall-grid');
+          grid.innerHTML = '<div class="wall-empty">Could not load wishes - try refreshing the page.</div>';
         });
     }
 
