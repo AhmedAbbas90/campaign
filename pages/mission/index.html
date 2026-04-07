@@ -58,6 +58,26 @@
 
     .mission-tagline span { color: var(--red); }
 
+    /* ── Intro video ────────────────────────────────────────────────── */
+    .intro-video {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 32px;
+      background: #000;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+
+    .intro-video iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
     /* ── Intro ──────────────────────────────────────────────────────── */
     .mission-intro {
       font-size: 0.95rem;
@@ -161,6 +181,10 @@
       A Works Council That <span>Stands</span> for You
     </div>
 
+    <div class="intro-video" data-vimeo="globalworkforcecommunity/intro">
+      <iframe src="about:blank" title="GWC intro video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
     <div class="section">
       <h2 class="section-title">What We Stand For</h2>
 
@@ -214,6 +238,10 @@
 
     <div class="mission-tagline">
       Ein Betriebsrat der <span>für dich</span> einsteht
+    </div>
+
+    <div class="intro-video" data-vimeo="globalworkforcecommunity/intro">
+      <iframe src="about:blank" title="GWC intro video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     </div>
 
     <div class="section">
@@ -278,6 +306,34 @@
       document.getElementById('section-' + lang).classList.add('active');
       event.target.classList.add('active');
     }
+
+    /* ── Lazy autoplay video on scroll into view ─────────────────── */
+    (function videoAutoplay() {
+      const videos = document.querySelectorAll('.intro-video');
+      if (!videos.length || !('IntersectionObserver' in window)) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const wrap = entry.target;
+          const iframe = wrap.querySelector('iframe');
+          if (!iframe) return;
+          const path = wrap.dataset.vimeo;
+          // Vimeo embed URL with autoplay, muted, looping
+          // Supports both numeric IDs (e.g. "123456789") and slugs (e.g. "globalworkforcecommunity/intro")
+          const isNumeric = /^\d+$/.test(path);
+          const src = isNumeric
+            ? `https://player.vimeo.com/video/${path}?autoplay=1&muted=1&loop=1&badge=0&autopause=0`
+            : `https://vimeo.com/${path}/embed?autoplay=1&muted=1&loop=1`;
+          if (entry.isIntersecting) {
+            if (iframe.src === 'about:blank' || !iframe.src.includes('vimeo.com')) {
+              iframe.src = src;
+            }
+          }
+        });
+      }, { threshold: 0.4 });
+
+      videos.forEach(v => observer.observe(v));
+    })();
   </script>
 
 </body>
