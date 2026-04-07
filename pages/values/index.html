@@ -5,8 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GWC — Our Values</title>
   <link rel="stylesheet" href="../../shared/_shared.css" />
+  <style>
+    /* ── List 3 badge (floating) ───────────────────────────────────── */
+    .list-badge {
+      position: fixed; top: 16px; right: 16px; z-index: 50;
+      background: var(--red); color: #fff; border-radius: 12px;
+      padding: 10px 16px; text-align: center;
+      box-shadow: 0 4px 20px rgba(178,34,34,0.3); line-height: 1.2;
+    }
+    .list-badge-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.8; }
+    .list-badge-number { font-size: 1.8rem; font-weight: 900; }
+    .list-badge-name { font-size: 0.55rem; font-weight: 600; letter-spacing: 0.5px; opacity: 0.75; }
+  </style>
 </head>
 <body>
+
+  <div class="list-badge">
+    <div class="list-badge-label">Vote for</div>
+    <div class="list-badge-number">List 3</div>
+    <div class="list-badge-name">Global Workforce Community</div>
+  </div>
 
   <iframe class="gwc-logo-frame" src="logo.html" title="GWC Logo" scrolling="no"></iframe>
 
