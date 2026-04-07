@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 400px; height: 400px;
+      display: flex; align-items: center; justify-content: center;
+      background: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+
+    /* Concept 4: Interlocking G ring — represents unity/global */
+    .logo {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: #fff;
+      border: 14px solid #b22222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* top arc label */
+    .arc-text {
+      position: absolute;
+      top: 18px;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #b22222;
+    }
+
+    .center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0px;
+    }
+
+    .big-g {
+      font-size: 100px;
+      font-weight: 900;
+      color: #b22222;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .wc-row {
+      font-size: 28px;
+      font-weight: 900;
+      color: #1a1a1a;
+      letter-spacing: 18px;
+      margin-top: -8px;
+      padding-left: 18px; /* optical centering for letter-spacing */
+    }
+
+    .bottom-line {
+      position: absolute;
+      bottom: 22px;
+      font-size: 7.5px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <div class="arc-text">Global · Workforce ·</div>
+    <div class="center">
+      <div class="big-g">G</div>
+      <div class="wc-row">WC</div>
+    </div>
+    <div class="bottom-line">Community</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GWC Logo v11 – The Stamp / Seal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #fff;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    }
+
+    /* ── Seal container ──────────────────────────────────────────── */
+    .gwc-seal {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      user-select: none;
+      /* stamp in from above */
+      animation: stampIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      transform-origin: center center;
+      opacity: 0;
+      transform: scale(1.6);
+    }
+
+    @keyframes stampIn {
+      0%   { opacity: 0; transform: scale(1.6); }
+      60%  { opacity: 1; transform: scale(0.94); }
+      80%  { transform: scale(1.03); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* ── Outer ring (SVG) ────────────────────────────────────────── */
+    .gwc-seal svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ── Center content ──────────────────────────────────────────── */
+    .gwc-seal-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .gwc-seal-letters {
+      font-size: 64px;
+      font-weight: 900;
+      color: #b22222;
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    .gwc-seal-hr {
+      width: 80px;
+      height: 3px;
+      background: #b22222;
+      border-radius: 2px;
+    }
+
+    .gwc-seal-sub {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #b22222;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* Star decorators */
+    .gwc-seal-stars {
+      display: flex;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .gwc-seal-star {
+      font-size: 8px;
+      color: #b22222;
+      opacity: 0.6;
+    }
+
+    /* ── Ink overlay — subtle texture on stamp-in ────────────────── */
+    .gwc-seal::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(
+        ellipse at 40% 40%,
+        rgba(178,34,34,0.06) 0%,
+        transparent 70%
+      );
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gwc-seal">
+
+    <!-- Circular text ring via SVG textPath -->
+    <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer decorative ring -->
+      <circle cx="120" cy="120" r="114" fill="none" stroke="#b22222" stroke-width="3"/>
+      <circle cx="120" cy="120" r="104" fill="none" stroke="#b22222" stroke-width="1" stroke-dasharray="4 3"/>
+
+      <!-- Text path along the top arc -->
+      <defs>
+        <path id="topArc"
+          d="M 18,120 A 102,102 0 1,1 222,120"
+        />
+        <path id="bottomArc"
+          d="M 222,120 A 102,102 0 1,1 18,120"
+        />
+      </defs>
+
+      <!-- Top arc text: organisation name -->
+      <text font-family="Montserrat, Segoe UI, Arial, sans-serif"
+            font-size="11" font-weight="700"
+            letter-spacing="4"
+            fill="#b22222">
+        <textPath href="#topArc" startOffset="8%">
+          GLOBAL · WORKFORCE · COMMUNITY
+        </textPath>
+      </text>
+
+      <!-- Bottom arc text: tagline -->
+      <text font-family="Montserrat, Segoe UI, Arial, sans-serif"
+            font-size="9.5" font-weight="600"
+            letter-spacing="2.5"
+            fill="#b22222">
+        <textPath href="#bottomArc" startOffset="14%">
+          A WORKS COUNCIL THAT ACTS FOR YOU
+        </textPath>
+      </text>
+
+      <!-- Small tick marks at 3, 6, 9, 12 o'clock -->
+      <line x1="120" y1="6"   x2="120" y2="16"  stroke="#b22222" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="234" y1="120" x2="224" y2="120" stroke="#b22222" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="120" y1="234" x2="120" y2="224" stroke="#b22222" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="6"   y1="120" x2="16"  y2="120" stroke="#b22222" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+
+    <!-- Centre content -->
+    <div class="gwc-seal-center">
+      <div class="gwc-seal-letters">GWC</div>
+      <div class="gwc-seal-hr"></div>
+      <div class="gwc-seal-sub">Voice · Change<br>Accountability</div>
+      <div class="gwc-seal-stars">
+        <span class="gwc-seal-star">★</span>
+        <span class="gwc-seal-star">★</span>
+        <span class="gwc-seal-star">★</span>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GWC Logo v4 – Multilingual, one word at a time</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #fff;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    }
+
+    .gwc-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      user-select: none;
+    }
+
+    .gwc-acronym {
+      font-size: 64px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: #b22222;
+      line-height: 1;
+    }
+
+    .gwc-rule {
+      width: 100%;
+      height: 3px;
+      background: #b22222;
+      border-radius: 2px;
+      margin: 6px 0;
+    }
+
+    .gwc-fullname {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    /* ── Slogan row ──────────────────────────────────────────────── */
+    .gwc-slogan {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    /* ── Shared slot styles ──────────────────────────────────────── */
+    /*
+      Both the "Real" wrap and the word wrap use the same mechanism:
+      position:absolute children, overflow:hidden parent.
+      Resting state for every child: invisible, parked below.
+    */
+    .gwc-real-wrap,
+    .gwc-word-wrap {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: middle;
+      height: 1.3em;
+    }
+
+    .gwc-real-wrap { width: 110px; }  /* covers "Справжній" etc        */
+    .gwc-word-wrap { width: 260px; }  /* covers "Verantwortung" etc     */
+
+    .gwc-real-wrap > span,
+    .gwc-word-wrap > span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      line-height: 1.3em;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    .gwc-real-wrap > span {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .gwc-word-wrap > span {
+      font-size: 22px;
+      font-weight: 700;
+      color: #b22222;
+    }
+
+    /* RTL script sizing */
+    .gwc-real-wrap > span[dir="rtl"],
+    .gwc-word-wrap > span[dir="rtl"] {
+      font-family: 'Segoe UI', 'Noto Sans Arabic', 'Noto Sans', Arial, sans-serif;
+      font-size: 19px;
+    }
+
+    /* ── Flag strip ──────────────────────────────────────────────── */
+    .gwc-flag-wrap {
+      position: relative;
+      height: 1.4em;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .gwc-flag-wrap > span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 12px;
+      line-height: 1.4em;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(100%);
+      letter-spacing: 1px;
+      color: #888;
+      font-weight: 600;
+    }
+
+    /*
+      ════════════════════════════════════════════════════════════════
+      TIMING MATHS
+      ════════════════════════════════════════════════════════════════
+      Slots  : 57  (19 languages × 3 words)
+      Per slot: 0.2 s enter + 0.4 s hold + 0.2 s exit = 0.8 s
+      Cycle  : 57 × 0.8 = 45.6 s
+
+      WORD animation (changes every slot, delay = slot_index × 0.8 s):
+        enter end   = 0.2 / 45.6 =  0.439 %
+        exit start  = 0.6 / 45.6 =  1.316 %
+        exit end    = 0.8 / 45.6 =  1.754 %
+        reset       =              1.8   %  (instant, off-screen)
+
+      REAL/FLAG animation (changes every 3 slots, delay = lang_index × 2.4 s):
+        Each "Real" word must stay visible for 2.4 s (3 × 0.8 s).
+        Its own cycle is still 45.6 s.
+        enter end   = 0.2  / 45.6 =  0.439 %
+        exit start  = 2.6  / 45.6 =  5.702 %   (0.2 + 2.4)
+        exit end    = 2.8  / 45.6 =  6.140 %   (0.2 + 2.4 + 0.2)
+        reset       =               6.2   %
+      ════════════════════════════════════════════════════════════════
+    */
+
+    /* One word at a time — 0.8 s window */
+    @keyframes wordSlot {
+      0%      { opacity: 0; transform: translateY(100%);  }
+      0.439%  { opacity: 1; transform: translateY(0);     }
+      1.316%  { opacity: 1; transform: translateY(0);     }
+      1.754%  { opacity: 0; transform: translateY(-100%); }
+      1.8%    { opacity: 0; transform: translateY(100%);  }
+      100%    { opacity: 0; transform: translateY(100%);  }
+    }
+
+    /* One language block — 2.4 s window (3 words).
+       Exit completes exactly at 2.4 s so the next slot
+       enters at 0% with zero gap and zero overlap.
+         enter end  = 0.2 / 45.6 = 0.439 %
+         hold end   = 2.2 / 45.6 = 4.825 %
+         exit end   = 2.4 / 45.6 = 5.263 %
+         reset      = 5.3 %  (instant, safely before next slot's 0 %)
+    */
+    @keyframes realSlot {
+      0%      { opacity: 0; transform: translateY(100%);  }
+      0.439%  { opacity: 1; transform: translateY(0);     }
+      4.825%  { opacity: 1; transform: translateY(0);     }
+      5.263%  { opacity: 0; transform: translateY(-100%); }
+      5.3%    { opacity: 0; transform: translateY(100%);  }
+      100%    { opacity: 0; transform: translateY(100%);  }
+    }
+
+    /* ── Word slots (57 total, delay = n × 0.8 s) ────────────────── */
+    /* EN  */ .w01 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1)  0.0s infinite; }
+    /* EN  */ .w02 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1)  0.8s infinite; }
+    /* EN  */ .w03 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1)  1.6s infinite; }
+    /* DE  */ .w04 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1)  2.4s infinite; }
+    /* DE  */ .w05 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1)  3.2s infinite; }
+    /* DE  */ .w06 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1)  4.0s infinite; }
+    /* PL  */ .w07 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1)  4.8s infinite; }
+    /* PL  */ .w08 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1)  5.6s infinite; }
+    /* PL  */ .w09 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1)  6.4s infinite; }
+    /* HI  */ .w10 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1)  7.2s infinite; }
+    /* HI  */ .w11 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1)  8.0s infinite; }
+    /* HI  */ .w12 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1)  8.8s infinite; }
+    /* UR  */ .w13 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1)  9.6s infinite; }
+    /* UR  */ .w14 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 10.4s infinite; }
+    /* UR  */ .w15 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 11.2s infinite; }
+    /* IT  */ .w16 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 12.0s infinite; }
+    /* IT  */ .w17 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 12.8s infinite; }
+    /* IT  */ .w18 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 13.6s infinite; }
+    /* FR  */ .w19 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 14.4s infinite; }
+    /* FR  */ .w20 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 15.2s infinite; }
+    /* FR  */ .w21 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 16.0s infinite; }
+    /* RO  */ .w22 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 16.8s infinite; }
+    /* RO  */ .w23 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 17.6s infinite; }
+    /* RO  */ .w24 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 18.4s infinite; }
+    /* TR  */ .w25 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 19.2s infinite; }
+    /* TR  */ .w26 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 20.0s infinite; }
+    /* TR  */ .w27 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 20.8s infinite; }
+    /* RU  */ .w28 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 21.6s infinite; }
+    /* RU  */ .w29 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 22.4s infinite; }
+    /* RU  */ .w30 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 23.2s infinite; }
+    /* UA  */ .w31 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 24.0s infinite; }
+    /* UA  */ .w32 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 24.8s infinite; }
+    /* UA  */ .w33 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 25.6s infinite; }
+    /* ES  */ .w34 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 26.4s infinite; }
+    /* ES  */ .w35 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 27.2s infinite; }
+    /* ES  */ .w36 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 28.0s infinite; }
+    /* AR  */ .w37 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 28.8s infinite; }
+    /* AR  */ .w38 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 29.6s infinite; }
+    /* AR  */ .w39 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 30.4s infinite; }
+    /* PT  */ .w40 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 31.2s infinite; }
+    /* PT  */ .w41 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 32.0s infinite; }
+    /* PT  */ .w42 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 32.8s infinite; }
+    /* BR  */ .w43 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 33.6s infinite; }
+    /* BR  */ .w44 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 34.4s infinite; }
+    /* BR  */ .w45 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 35.2s infinite; }
+    /* FA  */ .w46 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 36.0s infinite; }
+    /* FA  */ .w47 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 36.8s infinite; }
+    /* FA  */ .w48 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 37.6s infinite; }
+    /* SQ  */ .w49 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 38.4s infinite; }
+    /* SQ  */ .w50 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 39.2s infinite; }
+    /* SQ  */ .w51 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 40.0s infinite; }
+    /* GA  */ .w52 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 40.8s infinite; }
+    /* GA  */ .w53 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 41.6s infinite; }
+    /* GA  */ .w54 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 42.4s infinite; }
+    /* KO  */ .w55 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 43.2s infinite; }
+    /* KO  */ .w56 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 44.0s infinite; }
+    /* KO  */ .w57 { animation: wordSlot 45.6s cubic-bezier(0.22,1,0.36,1) 44.8s infinite; }
+
+    /* ── Real/Flag slots (19 total, delay = n × 2.4 s) ──────────── */
+    .r01 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1)  0.0s infinite; }
+    .r02 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1)  2.4s infinite; }
+    .r03 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1)  4.8s infinite; }
+    .r04 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1)  7.2s infinite; }
+    .r05 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1)  9.6s infinite; }
+    .r06 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 12.0s infinite; }
+    .r07 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 14.4s infinite; }
+    .r08 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 16.8s infinite; }
+    .r09 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 19.2s infinite; }
+    .r10 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 21.6s infinite; }
+    .r11 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 24.0s infinite; }
+    .r12 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 26.4s infinite; }
+    .r13 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 28.8s infinite; }
+    .r14 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 31.2s infinite; }
+    .r15 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 33.6s infinite; }
+    .r16 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 36.0s infinite; }
+    .r17 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 38.4s infinite; }
+    .r18 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 40.8s infinite; }
+    .r19 { animation: realSlot 45.6s cubic-bezier(0.22,1,0.36,1) 43.2s infinite; }
+  </style>
+</head>
+<body>
+
+  <div class="gwc-logo">
+
+    <div class="gwc-acronym">GWC</div>
+    <div class="gwc-rule"></div>
+    <div class="gwc-fullname">Global Workforce Community</div>
+
+    <div class="gwc-slogan">
+
+      <!-- ── "Real" equivalent (19 slots, one per language) ──────── -->
+      <div class="gwc-real-wrap">
+        <span class="r01">Real</span>                   <!-- 🇬🇧 EN -->
+        <span class="r02">Echte</span>                  <!-- 🇩🇪 DE -->
+        <span class="r03">Prawdziwy</span>              <!-- 🇵🇱 PL -->
+        <span class="r04">असली</span>                   <!-- 🇮🇳 HI -->
+        <span class="r05" dir="rtl">اصلی</span>        <!-- 🇵🇰 UR -->
+        <span class="r06">Vera</span>                   <!-- 🇮🇹 IT -->
+        <span class="r07">Vraie</span>                  <!-- 🇫🇷 FR -->
+        <span class="r08">Adevărată</span>              <!-- 🇷🇴 RO -->
+        <span class="r09">Gerçek</span>                 <!-- 🇹🇷 TR -->
+        <span class="r10">Настоящий</span>              <!-- 🇷🇺 RU -->
+        <span class="r11">Справжній</span>              <!-- 🇺🇦 UA -->
+        <span class="r12">Real</span>                   <!-- 🇪🇸 ES -->
+        <span class="r13" dir="rtl">حقيقي</span>       <!-- 🇦🇷 AR -->
+        <span class="r14">Real</span>                   <!-- 🇵🇹 PT -->
+        <span class="r15">Real</span>                   <!-- 🇧🇷 BR -->
+        <span class="r16" dir="rtl">واقعی</span>       <!-- 🇮🇷 FA -->
+        <span class="r17">I vërtetë</span>              <!-- 🇦🇱 SQ -->
+        <span class="r18">Fíor</span>                   <!-- 🇮🇪 GA -->
+        <span class="r19">진짜</span>                   <!-- 🇰🇷 KO -->
+      </div>
+
+      <!-- ── Animated words (57 slots) ───────────────────────────── -->
+      <div class="gwc-word-wrap">
+        <!-- 🇬🇧 English -->
+        <span class="w01">Voice</span>
+        <span class="w02">Change</span>
+        <span class="w03">Accountability</span>
+        <!-- 🇩🇪 German -->
+        <span class="w04">Stimme</span>
+        <span class="w05">Wandel</span>
+        <span class="w06">Verantwortung</span>
+        <!-- 🇵🇱 Polish -->
+        <span class="w07">Głos</span>
+        <span class="w08">Zmiana</span>
+        <span class="w09">Odpowiedzialność</span>
+        <!-- 🇮🇳 Hindi -->
+        <span class="w10">आवाज़</span>
+        <span class="w11">बदलाव</span>
+        <span class="w12">जवाबदेही</span>
+        <!-- 🇵🇰 Urdu -->
+        <span class="w13" dir="rtl">آواز</span>
+        <span class="w14" dir="rtl">تبدیلی</span>
+        <span class="w15" dir="rtl">جوابدہی</span>
+        <!-- 🇮🇹 Italian -->
+        <span class="w16">Voce</span>
+        <span class="w17">Cambiamento</span>
+        <span class="w18">Responsabilità</span>
+        <!-- 🇫🇷 French -->
+        <span class="w19">Voix</span>
+        <span class="w20">Changement</span>
+        <span class="w21">Responsabilité</span>
+        <!-- 🇷🇴 Romanian -->
+        <span class="w22">Glas</span>
+        <span class="w23">Schimbare</span>
+        <span class="w24">Responsabilitate</span>
+        <!-- 🇹🇷 Turkish -->
+        <span class="w25">Ses</span>
+        <span class="w26">Değişim</span>
+        <span class="w27">Hesap Verebilirlik</span>
+        <!-- 🇷🇺 Russian -->
+        <span class="w28">Голос</span>
+        <span class="w29">Перемены</span>
+        <span class="w30">Ответственность</span>
+        <!-- 🇺🇦 Ukrainian -->
+        <span class="w31">Голос</span>
+        <span class="w32">Зміна</span>
+        <span class="w33">Відповідальність</span>
+        <!-- 🇪🇸 Spanish -->
+        <span class="w34">Voz</span>
+        <span class="w35">Cambio</span>
+        <span class="w36">Responsabilidad</span>
+        <!-- 🇪🇬🇸🇾🇱🇧🇹🇳 Arabic -->
+        <span class="w37" dir="rtl">صوت</span>
+        <span class="w38" dir="rtl">تغيير</span>
+        <span class="w39" dir="rtl">محاسبة</span>
+        <!-- 🇵🇹 Portuguese (EU) -->
+        <span class="w40">Voz</span>
+        <span class="w41">Mudança</span>
+        <span class="w42">Responsabilidade</span>
+        <!-- 🇧🇷 Portuguese (BR) -->
+        <span class="w43">Voz</span>
+        <span class="w44">Mudança</span>
+        <span class="w45">Responsabilidade</span>
+        <!-- 🇮🇷 Persian / Farsi -->
+        <span class="w46" dir="rtl">صدا</span>
+        <span class="w47" dir="rtl">تغییر</span>
+        <span class="w48" dir="rtl">پاسخگویی</span>
+        <!-- 🇦🇱 Albanian -->
+        <span class="w49">Zë</span>
+        <span class="w50">Ndryshim</span>
+        <span class="w51">Përgjegjësi</span>
+        <!-- 🇮🇪 Irish -->
+        <span class="w52">Guth</span>
+        <span class="w53">Athrú</span>
+        <span class="w54">Freagrúcháin</span>
+        <!-- 🇰🇷 Korean -->
+        <span class="w55">목소리</span>
+        <span class="w56">변화</span>
+        <span class="w57">책임</span>
+      </div>
+
+    </div>
+
+    <!-- ── Flag strip (19 slots, one per language) ──────────────── -->
+    <div class="gwc-flag-wrap">
+      <span class="r01">🇬🇧 English</span>
+      <span class="r02">🇩🇪 Deutsch</span>
+      <span class="r03">🇵🇱 Polski</span>
+      <span class="r04">🇮🇳 हिन्दी</span>
+      <span class="r05">🇵🇰 اردو</span>
+      <span class="r06">🇮🇹 Italiano</span>
+      <span class="r07">🇫🇷 Français</span>
+      <span class="r08">🇷🇴 Română</span>
+      <span class="r09">🇹🇷 Türkçe</span>
+      <span class="r10">🇷🇺 Русский</span>
+      <span class="r11">🇺🇦 Українська</span>
+      <span class="r12">🇪🇸 Español</span>
+      <span class="r13">🇪🇬🇸🇾🇱🇧🇹🇳 العربية</span>
+      <span class="r14">🇵🇹 Português</span>
+      <span class="r15">🇧🇷 Português (BR)</span>
+      <span class="r16">🇮🇷 فارسی</span>
+      <span class="r17">🇦🇱 Shqip</span>
+      <span class="r18">🇮🇪 Gaeilge</span>
+      <span class="r19">🇰🇷 한국어</span>
+    </div>
+
+  </div>
+
+</body>
+</html>

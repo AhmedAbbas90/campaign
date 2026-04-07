@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GWC Logo v3 – Multilingual</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #fff;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    }
+
+    .gwc-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      user-select: none;
+    }
+
+    /* ── GWC acronym ─────────────────────────────────────────────── */
+    .gwc-acronym {
+      font-size: 64px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: #b22222;
+      line-height: 1;
+    }
+
+    /* ── Rule ────────────────────────────────────────────────────── */
+    .gwc-rule {
+      width: 100%;
+      height: 3px;
+      background: #b22222;
+      border-radius: 2px;
+      margin: 6px 0;
+    }
+
+    /* ── Full name ───────────────────────────────────────────────── */
+    .gwc-fullname {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    /* ── Slogan row ──────────────────────────────────────────────── */
+    .gwc-slogan {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    .gwc-static {
+      color: #1a1a1a;
+      flex-shrink: 0;
+    }
+
+    /* ── Rotating word container ─────────────────────────────────── */
+    /*
+      Fixed width covers the longest word across all languages.
+      overflow:hidden is the only clipping mechanism — zero bleed.
+    */
+    .gwc-rotate-wrap {
+      position: relative;
+      display: inline-block;
+      /* tall enough for word + small romanization line underneath */
+      height: 2em;
+      width: 340px;
+      overflow: hidden;
+      vertical-align: middle;
+    }
+
+    /* ── Each language slot ──────────────────────────────────────── */
+    .gwc-lang {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      opacity: 0;
+      transform: translateY(100%);
+      white-space: nowrap;
+    }
+
+    /* Main word */
+    .gwc-lang .word {
+      font-size: 22px;
+      font-weight: 700;
+      color: #b22222;
+      line-height: 1;
+    }
+
+    /* RTL word */
+    .gwc-lang .word[dir="rtl"] {
+      font-family: 'Segoe UI', 'Noto Sans Arabic', 'Noto Sans', Arial, sans-serif;
+      font-size: 20px;
+    }
+
+    /* Romanization / transliteration shown below native script */
+    .gwc-lang .roman {
+      font-size: 10px;
+      font-weight: 600;
+      color: #b22222;
+      opacity: 0.7;
+      letter-spacing: 0.5px;
+      font-style: italic;
+      line-height: 1;
+    }
+
+    /* Flag + language label — sits to the right of the word */
+    .gwc-lang .label {
+      position: absolute;
+      left: 0;
+      bottom: -1.1em;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #aaa;
+      white-space: nowrap;
+      display: none; /* shown via the outer container below */
+    }
+
+    /*
+      Total cycle: 19 languages × 1.6 s each = 30.4 s
+      Per-slot: 0.4 s enter, 0.8 s hold, 0.4 s exit
+      As % of 30.4 s:
+        enter duration = 0.4/30.4 = 1.316%
+        exit start     = (0.4+0.8)/30.4 = 3.947%  (1.2/30.4)
+        exit end       = 1.6/30.4 = 5.263%
+    */
+    @keyframes langIn {
+      0%      { opacity: 0; transform: translateY(100%); }
+      1.316%  { opacity: 1; transform: translateY(0); }
+      3.947%  { opacity: 1; transform: translateY(0); }
+      5.263%  { opacity: 0; transform: translateY(-100%); }
+      5.4%    { opacity: 0; transform: translateY(100%); }
+      100%    { opacity: 0; transform: translateY(100%); }
+    }
+
+    /*
+      Each language gets animation-delay = index × 1.6 s
+      All share the same 30.4 s total duration.
+    */
+    .gwc-lang:nth-child(1)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  0.0s  infinite; }
+    .gwc-lang:nth-child(2)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  1.6s  infinite; }
+    .gwc-lang:nth-child(3)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  3.2s  infinite; }
+    .gwc-lang:nth-child(4)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  4.8s  infinite; }
+    .gwc-lang:nth-child(5)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  6.4s  infinite; }
+    .gwc-lang:nth-child(6)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  8.0s  infinite; }
+    .gwc-lang:nth-child(7)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  9.6s  infinite; }
+    .gwc-lang:nth-child(8)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 11.2s  infinite; }
+    .gwc-lang:nth-child(9)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 12.8s  infinite; }
+    .gwc-lang:nth-child(10) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 14.4s  infinite; }
+    .gwc-lang:nth-child(11) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 16.0s  infinite; }
+    .gwc-lang:nth-child(12) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 17.6s  infinite; }
+    .gwc-lang:nth-child(13) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 19.2s  infinite; }
+    .gwc-lang:nth-child(14) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 20.8s  infinite; }
+    .gwc-lang:nth-child(15) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 22.4s  infinite; }
+    .gwc-lang:nth-child(16) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 24.0s  infinite; }
+    .gwc-lang:nth-child(17) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 25.6s  infinite; }
+    .gwc-lang:nth-child(18) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 27.2s  infinite; }
+    .gwc-lang:nth-child(19) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 28.8s  infinite; }
+
+    /* ── "Real" equivalent — also cycles in sync ─────────────────── */
+    /*
+      Same animation, same delays — applied to a separate strip
+      next to the word container.
+    */
+    .gwc-real-wrap {
+      position: relative;
+      display: inline-block;
+      height: 2em;
+      /* wide enough for "Відповідальність" etc — static word is short */
+      width: 80px;
+      overflow: hidden;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    .gwc-real-wrap > span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    /* RTL real words */
+    .gwc-real-wrap > span[dir="rtl"] {
+      font-family: 'Segoe UI', 'Noto Sans Arabic', 'Noto Sans', Arial, sans-serif;
+      font-size: 18px;
+    }
+
+    .gwc-real-wrap > span:nth-child(1)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  0.0s  infinite; }
+    .gwc-real-wrap > span:nth-child(2)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  1.6s  infinite; }
+    .gwc-real-wrap > span:nth-child(3)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  3.2s  infinite; }
+    .gwc-real-wrap > span:nth-child(4)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  4.8s  infinite; }
+    .gwc-real-wrap > span:nth-child(5)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  6.4s  infinite; }
+    .gwc-real-wrap > span:nth-child(6)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  8.0s  infinite; }
+    .gwc-real-wrap > span:nth-child(7)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  9.6s  infinite; }
+    .gwc-real-wrap > span:nth-child(8)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 11.2s  infinite; }
+    .gwc-real-wrap > span:nth-child(9)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 12.8s  infinite; }
+    .gwc-real-wrap > span:nth-child(10) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 14.4s  infinite; }
+    .gwc-real-wrap > span:nth-child(11) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 16.0s  infinite; }
+    .gwc-real-wrap > span:nth-child(12) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 17.6s  infinite; }
+    .gwc-real-wrap > span:nth-child(13) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 19.2s  infinite; }
+    .gwc-real-wrap > span:nth-child(14) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 20.8s  infinite; }
+    .gwc-real-wrap > span:nth-child(15) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 22.4s  infinite; }
+    .gwc-real-wrap > span:nth-child(16) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 24.0s  infinite; }
+    .gwc-real-wrap > span:nth-child(17) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 25.6s  infinite; }
+    .gwc-real-wrap > span:nth-child(18) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 27.2s  infinite; }
+    .gwc-real-wrap > span:nth-child(19) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 28.8s  infinite; }
+
+    /* ── Flag strip — syncs with words ──────────────────────────── */
+    .gwc-flag-wrap {
+      position: relative;
+      height: 1.4em;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .gwc-flag-wrap > span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 13px;
+      line-height: 1.4em;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(100%);
+      letter-spacing: 1px;
+      color: #888;
+      font-weight: 600;
+    }
+
+    .gwc-flag-wrap > span:nth-child(1)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  0.0s  infinite; }
+    .gwc-flag-wrap > span:nth-child(2)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  1.6s  infinite; }
+    .gwc-flag-wrap > span:nth-child(3)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  3.2s  infinite; }
+    .gwc-flag-wrap > span:nth-child(4)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  4.8s  infinite; }
+    .gwc-flag-wrap > span:nth-child(5)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  6.4s  infinite; }
+    .gwc-flag-wrap > span:nth-child(6)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  8.0s  infinite; }
+    .gwc-flag-wrap > span:nth-child(7)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1)  9.6s  infinite; }
+    .gwc-flag-wrap > span:nth-child(8)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 11.2s  infinite; }
+    .gwc-flag-wrap > span:nth-child(9)  { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 12.8s  infinite; }
+    .gwc-flag-wrap > span:nth-child(10) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 14.4s  infinite; }
+    .gwc-flag-wrap > span:nth-child(11) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 16.0s  infinite; }
+    .gwc-flag-wrap > span:nth-child(12) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 17.6s  infinite; }
+    .gwc-flag-wrap > span:nth-child(13) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 19.2s  infinite; }
+    .gwc-flag-wrap > span:nth-child(14) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 20.8s  infinite; }
+    .gwc-flag-wrap > span:nth-child(15) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 22.4s  infinite; }
+    .gwc-flag-wrap > span:nth-child(16) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 24.0s  infinite; }
+    .gwc-flag-wrap > span:nth-child(17) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 25.6s  infinite; }
+    .gwc-flag-wrap > span:nth-child(18) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 27.2s  infinite; }
+    .gwc-flag-wrap > span:nth-child(19) { animation: langIn 30.4s cubic-bezier(0.22, 1, 0.36, 1) 28.8s  infinite; }
+  </style>
+</head>
+<body>
+
+  <div class="gwc-logo">
+
+    <div class="gwc-acronym">GWC</div>
+    <div class="gwc-rule"></div>
+    <div class="gwc-fullname">Global Workforce Community</div>
+
+    <div class="gwc-slogan">
+
+      <!-- "Real" equivalent, cycling in sync -->
+      <div class="gwc-real-wrap">
+        <span>Real</span>                        <!-- 🇬🇧 EN -->
+        <span>Echte</span>                        <!-- 🇩🇪 DE -->
+        <span>Prawdziwy</span>                    <!-- 🇵🇱 PL -->
+        <span>असली</span>                         <!-- 🇮🇳 HI -->
+        <span>اصلی</span>                         <!-- 🇵🇰 UR -->
+        <span>Vero</span>                          <!-- 🇮🇹 IT -->
+        <span>Vrai</span>                          <!-- 🇫🇷 FR -->
+        <span>Adevărat</span>                      <!-- 🇷🇴 RO -->
+        <span>Gerçek</span>                        <!-- 🇹🇷 TR -->
+        <span>Настоящий</span>                     <!-- 🇷🇺 RU -->
+        <span>Справжній</span>                     <!-- 🇺🇦 UA -->
+        <span>Real</span>                          <!-- 🇪🇸 ES -->
+        <span dir="rtl">حقيقي</span>              <!-- 🇪🇬 AR -->
+        <span>Real</span>                          <!-- 🇵🇹 PT -->
+        <span>Real</span>                          <!-- 🇧🇷 PT-BR -->
+        <span dir="rtl">واقعی</span>              <!-- 🇮🇷 FA -->
+        <span>I vërtetë</span>                     <!-- 🇦🇱 SQ -->
+        <span>Fíor</span>                          <!-- 🇮🇪 GA -->
+        <span>진짜</span>                          <!-- 🇰🇷 KO -->
+      </div>
+
+      <!-- Animated words (Voice / Change / Accountability) per language -->
+      <div class="gwc-rotate-wrap">
+
+        <!-- 1 🇬🇧 English -->
+        <div class="gwc-lang">
+          <span class="word">Voice · Change · Accountability</span>
+        </div>
+
+        <!-- 2 🇩🇪 German -->
+        <div class="gwc-lang">
+          <span class="word">Stimme · Wandel · Verantwortung</span>
+        </div>
+
+        <!-- 3 🇵🇱 Polish -->
+        <div class="gwc-lang">
+          <span class="word">Głos · Zmiana · Odpowiedzialność</span>
+        </div>
+
+        <!-- 4 🇮🇳 Hindi -->
+        <div class="gwc-lang">
+          <span class="word">आवाज़ · बदलाव · जवाबदेही</span>
+          <span class="roman">Aavaaz · Badlaav · Javabdehi</span>
+        </div>
+
+        <!-- 5 🇵🇰 Urdu -->
+        <div class="gwc-lang">
+          <span class="word" dir="rtl">آواز · تبدیلی · جوابدہی</span>
+          <span class="roman">Awaaz · Tabdeeli · Jawabdehi</span>
+        </div>
+
+        <!-- 6 🇮🇹 Italian -->
+        <div class="gwc-lang">
+          <span class="word">Voce · Cambiamento · Responsabilità</span>
+        </div>
+
+        <!-- 7 🇫🇷 French -->
+        <div class="gwc-lang">
+          <span class="word">Voix · Changement · Responsabilité</span>
+        </div>
+
+        <!-- 8 🇷🇴 Romanian -->
+        <div class="gwc-lang">
+          <span class="word">Glas · Schimbare · Responsabilitate</span>
+        </div>
+
+        <!-- 9 🇹🇷 Turkish -->
+        <div class="gwc-lang">
+          <span class="word">Ses · Değişim · Hesap Verebilirlik</span>
+        </div>
+
+        <!-- 10 🇷🇺 Russian -->
+        <div class="gwc-lang">
+          <span class="word">Голос · Перемены · Ответственность</span>
+          <span class="roman">Golos · Peremeny · Otvetstvennost'</span>
+        </div>
+
+        <!-- 11 🇺🇦 Ukrainian -->
+        <div class="gwc-lang">
+          <span class="word">Голос · Зміна · Відповідальність</span>
+          <span class="roman">Holos · Zmina · Vidpovidalnist'</span>
+        </div>
+
+        <!-- 12 🇪🇸 Spanish -->
+        <div class="gwc-lang">
+          <span class="word">Voz · Cambio · Responsabilidad</span>
+        </div>
+
+        <!-- 13 🇪🇬🇸🇾🇱🇧🇹🇳 Arabic -->
+        <div class="gwc-lang">
+          <span class="word" dir="rtl">صوت · تغيير · محاسبة</span>
+          <span class="roman">Sawt · Tagheeer · Mohasaba</span>
+        </div>
+
+        <!-- 14 🇵🇹 Portuguese (EU) -->
+        <div class="gwc-lang">
+          <span class="word">Voz · Mudança · Responsabilidade</span>
+        </div>
+
+        <!-- 15 🇧🇷 Portuguese (BR) -->
+        <div class="gwc-lang">
+          <span class="word">Voz · Mudança · Responsabilidade</span>
+        </div>
+
+        <!-- 16 🇮🇷 Persian / Farsi -->
+        <div class="gwc-lang">
+          <span class="word" dir="rtl">صدا · تغییر · پاسخگویی</span>
+          <span class="roman">Seda · Taghyir · Pasokh-guyi</span>
+        </div>
+
+        <!-- 17 🇦🇱 Albanian -->
+        <div class="gwc-lang">
+          <span class="word">Zë · Ndryshim · Përgjegjësi</span>
+        </div>
+
+        <!-- 18 🇮🇪 Irish / Gaeilge -->
+        <div class="gwc-lang">
+          <span class="word">Guth · Athrú · Freagrúcháin</span>
+        </div>
+
+        <!-- 19 🇰🇷 Korean -->
+        <div class="gwc-lang">
+          <span class="word">목소리 · 변화 · 책임</span>
+          <span class="roman">Moksori · Byeonhwa · Chaegim</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Flag indicator synced to words -->
+    <div class="gwc-flag-wrap">
+      <span>🇬🇧 English</span>
+      <span>🇩🇪 Deutsch</span>
+      <span>🇵🇱 Polski</span>
+      <span>🇮🇳 हिन्दी</span>
+      <span>🇵🇰 اردو</span>
+      <span>🇮🇹 Italiano</span>
+      <span>🇫🇷 Français</span>
+      <span>🇷🇴 Română</span>
+      <span>🇹🇷 Türkçe</span>
+      <span>🇷🇺 Русский</span>
+      <span>🇺🇦 Українська</span>
+      <span>🇪🇸 Español</span>
+      <span>🇪🇬🇸🇾🇱🇧🇹🇳 العربية</span>
+      <span>🇵🇹 Português</span>
+      <span>🇧🇷 Português (BR)</span>
+      <span>🇮🇷 فارسی</span>
+      <span>🇦🇱 Shqip</span>
+      <span>🇮🇪 Gaeilge</span>
+      <span>🇰🇷 한국어</span>
+    </div>
+
+  </div>
+
+</body>
+</html>

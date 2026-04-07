@@ -1,4 +1,4 @@
-# Mission Page v2 — Component Breakdown
+# Mission Page v2 - Component Breakdown
 
 Split into separate Haiilo widgets to eliminate double-scrollbar issues on mobile.
 Rich text widgets use inline styles (Haiilo preserves these via Froala editor).
@@ -6,10 +6,10 @@ Only interactive components use iframes.
 
 ## Files
 
-- `rich-text-widgets.html` — Copy-paste HTML blocks for each rich text widget (EN + DE versions)
-- `lang-toggle.html` — Language toggle iframe (writes to localStorage)
-- `principles.html` — Principle cards iframe (reads language from localStorage)
-- `closing.html` — Closing paragraph iframe (reads language from localStorage)
+- `rich-text-widgets.html` - Copy-paste HTML blocks for each rich text widget (EN + DE versions)
+- `lang-toggle.html` - Language toggle iframe (writes to localStorage)
+- `principles.html` - Principle cards iframe (reads language from localStorage)
+- `closing.html` - Closing paragraph iframe (reads language from localStorage)
 
 ## Haiilo Widget Setup (top to bottom)
 

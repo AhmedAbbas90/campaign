@@ -1,6 +1,6 @@
 # Page: Accomplishments
 
-This page will track what GWC has delivered once the Works Council term begins — milestones, active negotiations, and honest acknowledgement of shortcomings. It is currently a placeholder with "Coming soon" timeline items.
+This page will track what GWC has delivered once the Works Council term begins - milestones, active negotiations, and honest acknowledgement of shortcomings. It is currently a placeholder with "Coming soon" timeline items.
 
 ---
 

@@ -49,7 +49,7 @@ Find the `<select id="joinDept">` block:
 ```
 Add or remove `<option>` lines to change the list of departments.
 
-> **Important:** Do not change `id="joinDept"` or the `name="entry.XXXXXXX"` attribute — these are tied to the Google Form.
+> **Important:** Do not change `id="joinDept"` or the `name="entry.XXXXXXX"` attribute - these are tied to the Google Form.
 
 ---
 
@@ -82,7 +82,7 @@ Add or remove `<option>` lines as needed.
 
 ## How the forms submit
 
-Both forms post directly to Google Forms using a hidden request — no page reload happens. If the submission succeeds, a green success message appears. If something goes wrong (network error, timeout after 8 seconds), a red error toast appears.
+Both forms post directly to Google Forms using a hidden request - no page reload happens. If the submission succeeds, a green success message appears. If something goes wrong (network error, timeout after 8 seconds), a red error toast appears.
 
 **To change the Google Form endpoint**, you'd need to update the `fetch` URL in the `<script>` section at the bottom of the file. This requires access to the Google Form and is best done by the team admin.
 

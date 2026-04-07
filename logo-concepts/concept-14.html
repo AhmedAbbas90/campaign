@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 400px; height: 400px;
+      display: flex; align-items: center; justify-content: center;
+      background: #f5f5f5;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+
+    /* Concept 14: Raised hand / vote hand — clean geometric version */
+    .logo {
+      width: 280px;
+      height: 280px;
+      background: #fff;
+      border-radius: 50%;
+      border: 3px solid #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 90px;
+      background: #b22222;
+    }
+
+    /* geometric raised hand using rectangles */
+    .hand {
+      position: relative;
+      width: 68px;
+      height: 72px;
+      z-index: 2;
+    }
+
+    /* palm */
+    .palm {
+      position: absolute;
+      bottom: 0;
+      left: 10px;
+      width: 48px;
+      height: 42px;
+      background: #b22222;
+      border-radius: 4px 4px 6px 6px;
+    }
+
+    /* fingers */
+    .finger {
+      position: absolute;
+      width: 10px;
+      background: #b22222;
+      border-radius: 5px 5px 0 0;
+      bottom: 36px;
+    }
+
+    .f1 { left: 10px;  height: 38px; }
+    .f2 { left: 22px; height: 44px; }
+    .f3 { left: 34px; height: 40px; }
+    .f4 { left: 46px; height: 32px; }
+
+    /* thumb */
+    .thumb {
+      position: absolute;
+      width: 10px;
+      height: 26px;
+      background: #b22222;
+      border-radius: 5px;
+      bottom: 20px;
+      left: 0;
+      transform: rotate(-15deg);
+      transform-origin: bottom center;
+    }
+
+    .gwc {
+      font-size: 52px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -2px;
+      line-height: 1;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sub {
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      position: relative;
+      z-index: 2;
+      margin-top: -8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <div class="hand">
+      <div class="thumb"></div>
+      <div class="finger f1"></div>
+      <div class="finger f2"></div>
+      <div class="finger f3"></div>
+      <div class="finger f4"></div>
+      <div class="palm"></div>
+    </div>
+    <div class="gwc">GWC</div>
+    <div class="sub">Your Voice · Your Vote</div>
+  </div>
+</body>
+</html>

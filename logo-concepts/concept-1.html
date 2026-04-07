@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 400px; height: 400px;
+      display: flex; align-items: center; justify-content: center;
+      background: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+
+    /* Concept 1: Bold shield with GWC monogram */
+    .logo {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shield {
+      width: 240px;
+      height: 260px;
+      background: #b22222;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 65%, 50% 100%, 0% 65%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .shield-inner {
+      width: 200px;
+      height: 220px;
+      background: #fff;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 65%, 50% 100%, 0% 65%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 10px;
+    }
+
+    .monogram {
+      font-size: 72px;
+      font-weight: 900;
+      color: #b22222;
+      letter-spacing: -4px;
+      line-height: 1;
+      position: relative;
+      z-index: 2;
+      padding-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <div class="shield">
+      <div class="shield-inner">
+        <div class="monogram">GWC</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

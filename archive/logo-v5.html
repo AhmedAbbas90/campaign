@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GWC Logo v5 – The Shield</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #f5f5f5;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    }
+
+    /* ── Outer wrapper ───────────────────────────────────────────── */
+    .gwc-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      user-select: none;
+    }
+
+    /* ── Shield ──────────────────────────────────────────────────── */
+    /*
+      Built with a single div + clip-path — no SVG file needed.
+      Shape: flat top, straight sides tapering to a point at the bottom.
+    */
+    .gwc-shield {
+      position: relative;
+      width: 180px;
+      height: 210px;
+      background: #b22222;
+      clip-path: polygon(
+        0%   0%,      /* top-left  */
+        100% 0%,      /* top-right */
+        100% 60%,     /* mid-right */
+        50%  100%,    /* bottom point */
+        0%   60%      /* mid-left  */
+      );
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      /* subtle drop shadow */
+      filter: drop-shadow(0 8px 24px rgba(178,34,34,0.35));
+      animation: shieldPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes shieldPulse {
+      0%, 100% { filter: drop-shadow(0 8px 24px rgba(178,34,34,0.35)); }
+      50%       { filter: drop-shadow(0 12px 32px rgba(178,34,34,0.55)); }
+    }
+
+    /* ── Three stripe bands inside the shield ────────────────────── */
+    /*
+      Thin horizontal dividers — represent Voice, Change, Accountability.
+      Positioned absolutely so they don't affect the GWC text layout.
+    */
+    .gwc-shield::before,
+    .gwc-shield::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(255,255,255,0.2);
+    }
+    .gwc-shield::before { top: 36%; }
+    .gwc-shield::after  { top: 58%; }
+
+    /* ── GWC letters ─────────────────────────────────────────────── */
+    .gwc-letters {
+      font-size: 72px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -3px;
+      line-height: 1;
+      /* nudge up slightly — the point of the shield is below centre */
+      margin-top: -16px;
+    }
+
+    /* ── Pillars row ─────────────────────────────────────────────── */
+    .gwc-pillars {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .gwc-pillar {
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      white-space: nowrap;
+    }
+
+    .gwc-pillar-dot {
+      font-size: 7px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ── Wordmark below shield ───────────────────────────────────── */
+    .gwc-wordmark {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .gwc-fullname {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #1a1a1a;
+    }
+
+    .gwc-rule {
+      width: 100%;
+      height: 2px;
+      background: #b22222;
+      border-radius: 2px;
+    }
+
+    .gwc-tagline {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gwc-logo">
+
+    <div class="gwc-shield">
+      <div class="gwc-letters">GWC</div>
+      <div class="gwc-pillars">
+        <span class="gwc-pillar">Voice</span>
+        <span class="gwc-pillar-dot">·</span>
+        <span class="gwc-pillar">Change</span>
+        <span class="gwc-pillar-dot">·</span>
+        <span class="gwc-pillar">Accountability</span>
+      </div>
+    </div>
+
+    <div class="gwc-wordmark">
+      <div class="gwc-fullname">Global Workforce Community</div>
+      <div class="gwc-rule"></div>
+      <div class="gwc-tagline">A Works Council That Acts for You</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

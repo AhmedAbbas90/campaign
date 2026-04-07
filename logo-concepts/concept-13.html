@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 400px; height: 400px;
+      display: flex; align-items: center; justify-content: center;
+      background: #f5f5f5;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+
+    /* Concept 13: Ballot box with slot + GWC
+       Classic election icon: a box with a paper being fed into the top */
+    .logo {
+      width: 280px;
+      height: 280px;
+      background: #b22222;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* Ballot box icon */
+    .ballot {
+      position: relative;
+      width: 88px;
+    }
+
+    /* ballot paper slipping in */
+    .paper {
+      width: 48px;
+      height: 30px;
+      background: #fff;
+      border-radius: 4px 4px 0 0;
+      margin: 0 auto;
+      margin-bottom: -2px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 5px 7px;
+      gap: 4px;
+    }
+
+    .paper-line {
+      height: 2px;
+      background: #ddd;
+      border-radius: 1px;
+    }
+
+    .paper-line.checked {
+      background: #b22222;
+      width: 60%;
+      position: relative;
+    }
+
+    .paper-line.checked::before {
+      content: '';
+      position: absolute;
+      left: -1px;
+      top: -3px;
+      width: 7px;
+      height: 7px;
+      border: 2px solid #b22222;
+      border-radius: 1px;
+      background: #fff;
+    }
+
+    .paper-line.checked::after {
+      content: '';
+      position: absolute;
+      left: 0px;
+      top: -2px;
+      width: 4px;
+      height: 7px;
+      border-right: 2px solid #b22222;
+      border-bottom: 2px solid #b22222;
+      transform: rotate(45deg) scale(0.5);
+    }
+
+    .paper-line:not(.checked) { width: 100%; }
+
+    .box {
+      width: 88px;
+      height: 52px;
+      background: #fff;
+      border-radius: 6px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* slot */
+    .box::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 28px;
+      height: 5px;
+      background: #b22222;
+      border-radius: 0 0 3px 3px;
+    }
+
+    /* legs */
+    .box::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 12px;
+      right: 12px;
+      height: 10px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 0 0 4px 4px;
+    }
+
+    .gwc {
+      font-size: 58px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .sub {
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-top: -10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <div class="ballot">
+      <div class="paper">
+        <div class="paper-line checked"></div>
+        <div class="paper-line" style="width:100%"></div>
+        <div class="paper-line" style="width:75%"></div>
+      </div>
+      <div class="box"></div>
+    </div>
+    <div class="gwc">GWC</div>
+    <div class="sub">Global Workforce Community</div>
+  </div>
+</body>
+</html>

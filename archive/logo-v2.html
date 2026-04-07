@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GWC Logo v2</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #fff;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    }
+
+    .gwc-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      user-select: none;
+    }
+
+    /* ── Wordmark block: GWC in one row ─────────────────────────── */
+    .gwc-wordmark {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end; /* align all groups to the same baseline */
+      gap: 0;
+      line-height: 1;
+    }
+
+    /* Each letter + completion pair */
+    .gwc-word-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 0;
+    }
+
+    /* Big initial letter */
+    .gwc-initial {
+      font-size: 64px;
+      font-weight: 900;
+      color: #b22222;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    /* Tiny completion word — sits at the bottom of the capital */
+    .gwc-rest {
+      font-size: 10px;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: 0.5px;
+      /* nudge up slightly off the baseline so it doesn't crowd the rule */
+      padding-bottom: 7px;
+      line-height: 1;
+    }
+
+    /* ── Divider ─────────────────────────────────────────────────── */
+    .gwc-rule {
+      width: 100%;
+      height: 3px;
+      background: #b22222;
+      border-radius: 2px;
+      margin: 8px 0;
+    }
+
+    /* ── Sub-slogan ──────────────────────────────────────────────── */
+    .gwc-sub {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    /* ── Animated slogan row ─────────────────────────────────────── */
+    .gwc-slogan {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    .gwc-static {
+      color: #1a1a1a;
+    }
+
+    /* ── Rotating word container ─────────────────────────────────── */
+    .gwc-rotate-wrap {
+      position: relative;
+      display: inline-block;
+      height: 1.2em;
+      width: 230px;
+      overflow: hidden;
+      vertical-align: middle;
+    }
+
+    .gwc-rotate-wrap > span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      line-height: 1.2em;
+      color: #b22222;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    /*
+      4.8 s cycle — each word owns 1.6 s: 0.4 s in, 0.8 s hold, 0.4 s out.
+    */
+    @keyframes wordIn {
+      0%     { opacity: 0; transform: translateY(100%); }
+      8.3%   { opacity: 1; transform: translateY(0); }
+      25.0%  { opacity: 1; transform: translateY(0); }
+      33.3%  { opacity: 0; transform: translateY(-100%); }
+      33.4%  { opacity: 0; transform: translateY(100%); }
+      100%   { opacity: 0; transform: translateY(100%); }
+    }
+
+    .gwc-word-1 { animation: wordIn 4.8s cubic-bezier(0.22, 1, 0.36, 1) 0s   infinite; }
+    .gwc-word-2 { animation: wordIn 4.8s cubic-bezier(0.22, 1, 0.36, 1) 1.6s infinite; }
+    .gwc-word-3 { animation: wordIn 4.8s cubic-bezier(0.22, 1, 0.36, 1) 3.2s infinite; }
+  </style>
+</head>
+<body>
+
+  <div class="gwc-logo">
+
+    <!-- Wordmark: one row -->
+    <div class="gwc-wordmark">
+      <div class="gwc-word-row">
+        <span class="gwc-initial">G</span><span class="gwc-rest">lobal</span>
+      </div>
+      <div class="gwc-word-row">
+        <span class="gwc-initial">W</span><span class="gwc-rest">orkforce</span>
+      </div>
+      <div class="gwc-word-row">
+        <span class="gwc-initial">C</span><span class="gwc-rest">ommunity</span>
+      </div>
+    </div>
+
+    <div class="gwc-rule"></div>
+
+    <!-- Sub-slogan -->
+    <div class="gwc-sub">A Works Council That Acts for You</div>
+
+    <!-- Animated slogan -->
+    <div class="gwc-slogan">
+      <span class="gwc-static">Real</span>
+      <div class="gwc-rotate-wrap">
+        <span class="gwc-word-1">Voice</span>
+        <span class="gwc-word-2">Change</span>
+        <span class="gwc-word-3">Accountability</span>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 # Page: Who We Are
 
-This is the most content-rich page. It covers the team story, geographic representation, ERG connections, and the full candidate roster. It exists in **both English and German** — edits need to be made in both language sections.
+This is the most content-rich page. It covers the team story, geographic representation, ERG connections, and the full candidate roster. It exists in **both English and German** - edits need to be made in both language sections.
 
 ---
 
@@ -55,7 +55,7 @@ Find the relevant region card, e.g.:
 ```
 
 To **add** a country, copy an existing `<li>` line and:
-- Change the 2-letter country code in the flag URL (`de`, `fr`, `es`, etc. — see [flagcdn.com](https://flagcdn.com))
+- Change the 2-letter country code in the flag URL (`de`, `fr`, `es`, etc. - see [flagcdn.com](https://flagcdn.com))
 - Change the country name
 
 To **remove** a country, delete the entire `<li>...</li>` line.
@@ -87,7 +87,7 @@ The candidate list is driven by the **v3 CSV** file (`archive/Candidates Details
 | `Zlife published` | Must be **YES** + link filled to show a clickable article card |
 | `Link to the introduction` | The article URL used for the card link |
 
-### Candidate card — no article yet (initials avatar, not clickable)
+### Candidate card - no article yet (initials avatar, not clickable)
 ```html
 <div class="team-card">
   <div class="team-avatar">AB</div>
@@ -98,7 +98,7 @@ The candidate list is driven by the **v3 CSV** file (`archive/Candidates Details
 - Replace `AB` with the person's initials (first + last name initial)
 - Replace the name and role
 
-### Candidate card — article published on zLife (photo, clickable)
+### Candidate card - article published on zLife (photo, clickable)
 ```html
 <a class="team-card" href="ARTICLE_URL" target="_top">
   <div class="team-avatar"><img src="PHOTO_URL" alt="Full Name" /></div>
@@ -108,17 +108,17 @@ The candidate list is driven by the **v3 CSV** file (`archive/Candidates Details
 </a>
 ```
 - `ARTICLE_URL`: the zLife article link from the CSV (`Link to the introduction` column)
-- `PHOTO_URL`: the Haiilo thumbnail URL — ask the team admin to extract this from the article's HTML source
+- `PHOTO_URL`: the Haiilo thumbnail URL - ask the team admin to extract this from the article's HTML source
 - Keep `target="_top"` so the link opens in the full browser tab, not inside the iframe
 
-### Candidate card — article exists but no photo
+### Candidate card - article exists but no photo
 Same as above but replace the `<img>` with initials:
 ```html
 <div class="team-avatar">AB</div>
 ```
 
 ### Important: edit BOTH language sections
-The candidate grid appears twice — once in the English section and once in the German section. They are identical. Make the same change in both places.
+The candidate grid appears twice - once in the English section and once in the German section. They are identical. Make the same change in both places.
 
 Search for `<!-- The Candidates -->` and `<!-- Die Kandidatinnen und Kandidaten -->` to find each one quickly.
 
@@ -129,7 +129,7 @@ Search for `<!-- The Candidates -->` and `<!-- Die Kandidatinnen und Kandidaten 
 The photo URLs come from the Haiilo/zLife platform and require a login to display. To find the URL for a new candidate's article:
 1. Open the article on zLife in your browser
 2. Right-click on the candidate's photo → "Inspect" or "Inspect Element"
-3. Find the `<img>` tag — the `src` attribute is the photo URL
+3. Find the `<img>` tag - the `src` attribute is the photo URL
 4. It will look like: `https://zlife.zalando.net/web/senders/56266ee2-.../documents/XXXXXXXX-...?type=XL`
 
-Alternatively, ask the team admin — they can extract it from the HTML source of the listing page.
+Alternatively, ask the team admin - they can extract it from the HTML source of the listing page.

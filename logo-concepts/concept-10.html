@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 400px; height: 400px;
+      display: flex; align-items: center; justify-content: center;
+      background: #f5f5f5;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+
+    /* Concept 10: Raised fist made of negative space in a solid G.
+       Abstract, powerful, union-inspired. */
+    .logo {
+      width: 280px;
+      height: 280px;
+      background: #b22222;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      position: relative;
+    }
+
+    /* Horizontal bars suggesting a ballot / list */
+    .bars {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      position: absolute;
+      top: 72px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+    }
+
+    .bar {
+      height: 9px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 4px;
+    }
+
+    .bar.active {
+      background: #fff;
+      width: 100%;
+    }
+
+    .bar:nth-child(2) { width: 80%; }
+    .bar:nth-child(3) { width: 65%; }
+    .bar:nth-child(4) { width: 80%; }
+
+    /* tick mark on first bar */
+    .bar.active::before {
+      content: '✓';
+      display: inline-block;
+      color: #b22222;
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 9px;
+      margin-left: 4px;
+    }
+
+    .bottom-label {
+      position: absolute;
+      bottom: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .gwc-big {
+      font-size: 60px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .tiny {
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <div class="bars">
+      <div class="bar active"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <div class="bottom-label">
+      <div class="gwc-big">GWC</div>
+      <div class="tiny">Your Vote · Your Voice</div>
+    </div>
+  </div>
+</body>
+</html>

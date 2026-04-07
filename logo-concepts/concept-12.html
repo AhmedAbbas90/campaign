@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 400px; height: 400px;
+      display: flex; align-items: center; justify-content: center;
+      background: #f5f5f5;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+
+    /* Concept 12: Negative space — dark square, white cutout letters,
+       very minimal / modern. The red only appears as a thin underline accent. */
+    .logo {
+      width: 280px;
+      height: 280px;
+      background: #1a1a1a;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      position: relative;
+    }
+
+    .top-rule {
+      width: 200px;
+      height: 3px;
+      background: #b22222;
+      margin-bottom: 16px;
+    }
+
+    .gwc {
+      font-size: 100px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -5px;
+      line-height: 1;
+    }
+
+    .bottom-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #b22222;
+    }
+
+    .sub {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <div class="top-rule"></div>
+    <div class="gwc">GWC</div>
+    <div class="bottom-row">
+      <div class="dot"></div>
+      <div class="sub">Global Workforce</div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</body>
+</html>

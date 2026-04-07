@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GWC Logo v9 – The Redaction Reveal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #fff;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    }
+
+    .gwc-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      user-select: none;
+    }
+
+    /* ── GWC acronym ─────────────────────────────────────────────── */
+    .gwc-acronym {
+      font-size: 64px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: #b22222;
+      line-height: 1;
+    }
+
+    .gwc-rule {
+      width: 100%;
+      height: 3px;
+      background: #b22222;
+      border-radius: 2px;
+      margin-bottom: 2px;
+    }
+
+    .gwc-fullname {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    /* ── Slogan lines ────────────────────────────────────────────── */
+    .gwc-lines {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Each line: text sits underneath, redaction bar slides away */
+    .gwc-line {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .gwc-line-text {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    .gwc-line-text .accent { color: #b22222; }
+
+    /* The redaction bar — covers the text, slides right to reveal */
+    .gwc-redact {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: #1a1a1a;
+      border-radius: 2px;
+      /* width matches parent — set per-line in HTML via inline style */
+      width: 100%;
+      transform-origin: left center;
+    }
+
+    /*
+      3 lines stagger: line 1 reveals at 0.3 s, line 2 at 0.9 s, line 3 at 1.6 s.
+      Each reveal: scaleX 1 → 0 over 0.5 s.
+      After reveal, bar stays gone (no loop — this is a one-shot on-load animation).
+      Then after a 4 s pause, the bars slam back and reveal again (loop).
+    */
+
+    /* Line 1 — "Real Voice." */
+    .gwc-line:nth-child(1) .gwc-redact {
+      animation: revealBar 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      animation-delay: 0.3s;
+    }
+
+    /* Line 2 — "Real Change." */
+    .gwc-line:nth-child(2) .gwc-redact {
+      animation: revealBar 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      animation-delay: 0.9s;
+    }
+
+    /* Line 3 — "Real Accountability." */
+    .gwc-line:nth-child(3) .gwc-redact {
+      animation: revealBar 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      animation-delay: 1.6s;
+    }
+
+    /*
+      Timeline per bar (6 s total cycle):
+        0 %      → covering (scaleX 1)
+        8.33 %   → revealed (scaleX 0)   — 0.5 s slide
+        75 %     → still revealed        — hold
+        83.33 %  → slam back (scaleX 1)  — 0.1 s snap
+        100 %    → covering, waiting
+    */
+    @keyframes revealBar {
+      0%      { transform: scaleX(1); }
+      8.33%   { transform: scaleX(0); }
+      75%     { transform: scaleX(0); }
+      76%     { transform: scaleX(1); }
+      100%    { transform: scaleX(1); }
+    }
+
+    /* ── Tagline ─────────────────────────────────────────────────── */
+    .gwc-tagline {
+      margin-top: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gwc-logo">
+
+    <div class="gwc-acronym">GWC</div>
+    <div class="gwc-rule"></div>
+    <div class="gwc-fullname">Global Workforce Community</div>
+
+    <div class="gwc-lines">
+
+      <div class="gwc-line">
+        <div class="gwc-line-text">
+          <span class="accent">Real</span> Voice.
+        </div>
+        <div class="gwc-redact"></div>
+      </div>
+
+      <div class="gwc-line">
+        <div class="gwc-line-text">
+          <span class="accent">Real</span> Change.
+        </div>
+        <div class="gwc-redact"></div>
+      </div>
+
+      <div class="gwc-line">
+        <div class="gwc-line-text">
+          <span class="accent">Real</span> Accountability.
+        </div>
+        <div class="gwc-redact"></div>
+      </div>
+
+    </div>
+
+    <div class="gwc-tagline">A Works Council That Acts for You</div>
+
+  </div>
+
+</body>
+</html>

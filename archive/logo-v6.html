@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GWC Logo v6 – The Bracket</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #fff;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    }
+
+    .gwc-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      user-select: none;
+    }
+
+    /* ── Bracket mark ────────────────────────────────────────────── */
+    /*
+      [GWC] — the brackets are drawn with borders, not characters,
+      so weight and size are fully controlled.
+    */
+    .gwc-mark {
+      display: flex;
+      align-items: stretch;
+      gap: 10px;
+    }
+
+    .gwc-bracket {
+      width: 14px;
+      border-top: 5px solid #b22222;
+      border-bottom: 5px solid #b22222;
+      flex-shrink: 0;
+    }
+
+    .gwc-bracket-left  { border-left:  5px solid #b22222; border-radius: 3px 0 0 3px; }
+    .gwc-bracket-right { border-right: 5px solid #b22222; border-radius: 0 3px 3px 0; }
+
+    .gwc-initials {
+      font-size: 80px;
+      font-weight: 900;
+      color: #1a1a1a;
+      letter-spacing: -4px;
+      line-height: 1;
+      /* The G gets a red accent — it's the anchor letter */
+    }
+
+    .gwc-initials .g { color: #b22222; }
+
+    /* ── Tagline sits flush left, under the bracket ──────────────── */
+    .gwc-sub {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding-left: 24px; /* aligns with inner edge of bracket */
+    }
+
+    .gwc-fullname {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: #1a1a1a;
+    }
+
+    .gwc-rule {
+      width: 48px;
+      height: 3px;
+      background: #b22222;
+      border-radius: 2px;
+    }
+
+    .gwc-tagline {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #777;
+    }
+
+    /* ── Bracket animation: breathe open/closed slightly ─────────── */
+    .gwc-bracket-left {
+      animation: bracketLeft 4s ease-in-out infinite;
+      transform-origin: right center;
+    }
+    .gwc-bracket-right {
+      animation: bracketRight 4s ease-in-out infinite;
+      transform-origin: left center;
+    }
+
+    @keyframes bracketLeft {
+      0%, 100% { transform: translateX(0);  }
+      50%       { transform: translateX(-4px); }
+    }
+    @keyframes bracketRight {
+      0%, 100% { transform: translateX(0); }
+      50%       { transform: translateX(4px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gwc-logo">
+
+    <div class="gwc-mark">
+      <div class="gwc-bracket gwc-bracket-left"></div>
+      <div class="gwc-initials">
+        <span class="g">G</span>WC
+      </div>
+      <div class="gwc-bracket gwc-bracket-right"></div>
+    </div>
+
+    <div class="gwc-sub">
+      <div class="gwc-fullname">Global Workforce Community</div>
+      <div class="gwc-rule"></div>
+      <div class="gwc-tagline">A Works Council That Acts for You</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!--
+  GWC Campaign Logo — Bilingual DE/EN CSS-only version
+  German:  "Echte Stimme. Echter Wandel. Echte Verantwortung."
+  English: "Real Voice.  Real Change.  Real Accountability."
+
+  The two languages alternate — EN shown first, DE shown second,
+  keeping the total cycle at 12 s (2 s per word per language).
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GWC Logo – Bilingual</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #fff;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    }
+
+    .gwc-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      user-select: none;
+    }
+
+    /* ── Acronym ─────────────────────────────────────────────────── */
+    .gwc-acronym {
+      font-size: 64px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: #b22222;
+      line-height: 1;
+    }
+
+    .gwc-rule {
+      width: 100%;
+      height: 3px;
+      background: #b22222;
+      border-radius: 2px;
+      margin-bottom: 4px;
+    }
+
+    .gwc-fullname {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    /* ── Slogan row ─────────────────────────────────────────────── */
+    .gwc-slogan {
+      margin-top: 12px;
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    /* ── Static prefix: both "Real" and "Echte" swap via their own strip ── */
+    /*
+      The static word itself also changes between languages, so we animate
+      it the same way — just a 2-word strip instead of 6.
+      Words: [Real, Echte, Real, Echte …] cycling in sync with the suffix strip.
+    */
+    .gwc-prefix-wrap {
+      display: inline-block;
+      overflow: hidden;
+      height: 1.2em;
+      vertical-align: bottom;
+      margin-right: 8px;
+    }
+
+    /*
+      Total cycle: 12 s
+      Slots (each 2 s visible + 0.4 s slide):
+        0   – Voice / Stimme  (EN)
+        1   – Change / Wandel (EN→DE transition)
+        2   – Accountability / Verantwortung (DE)
+        back…
+
+      Simplified model — 6 slots × 2 s = 12 s cycle
+      translateY steps: 0, -1.2em, -2.4em, -3.6em, -4.8em, -6em
+    */
+
+    /* Prefix strip: Real | Echte | Real | Echte | Real | Echte | (clone) */
+    .gwc-prefix-strip {
+      display: flex;
+      flex-direction: column;
+      animation: cyclePrefix 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .gwc-prefix-strip span {
+      display: block;
+      line-height: 1.2em;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    /* Suffix strip: Voice|Stimme|Change|Wandel|Accountability|Verantwortung */
+    .gwc-rotate-wrap {
+      display: inline-block;
+      overflow: hidden;
+      height: 1.2em;
+      vertical-align: bottom;
+    }
+
+    .gwc-rotate-strip {
+      display: flex;
+      flex-direction: column;
+      animation: cycleWords 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .gwc-rotate-strip span {
+      display: block;
+      line-height: 1.2em;
+      color: #b22222;
+      white-space: nowrap;
+    }
+
+    /*
+      12 s / 6 slots = 2 s per slot
+      Each slide takes 0.4 s → visible window = 1.6 s
+
+      Keyframe %:
+        slot 0 start : 0 %
+        slot 0 end   : 13.3%   (1.6/12)
+        slide 0→1    : 13.3–16.6%
+        slot 1 start : 16.7%
+        slot 1 end   : 30%
+        slide 1→2    : 30–33.3%
+        slot 2 start : 33.4%
+        slot 2 end   : 46.6%
+        slide 2→3    : 46.6–50%
+        slot 3 start : 50%
+        slot 3 end   : 63.3%
+        slide 3→4    : 63.3–66.6%
+        slot 4 start : 66.7%
+        slot 4 end   : 80%
+        slide 4→5    : 80–83.3%
+        slot 5 start : 83.4%
+        slot 5 end   : 96.6%
+        snap back    : 96.6–97%
+        back at 0    : 97–100%
+    */
+
+    @keyframes cycleWords {
+      0%,    13.3%  { transform: translateY(0); }
+      16.6%          { transform: translateY(-1.2em); }
+      16.7%, 30%    { transform: translateY(-1.2em); }
+      33.3%          { transform: translateY(-2.4em); }
+      33.4%, 46.6%  { transform: translateY(-2.4em); }
+      50%            { transform: translateY(-3.6em); }
+      50%,   63.3%  { transform: translateY(-3.6em); }
+      66.6%          { transform: translateY(-4.8em); }
+      66.7%, 80%    { transform: translateY(-4.8em); }
+      83.3%          { transform: translateY(-6em); }
+      83.4%, 96.6%  { transform: translateY(-6em); }
+      97%            { transform: translateY(-7.2em); }
+      97.1%          { transform: translateY(0); }
+      100%           { transform: translateY(0); }
+    }
+
+    /* Prefix cycles half as fast — only 3 distinct values (Real, Echte) */
+    @keyframes cyclePrefix {
+      /* Slots 0,1,2 → Real; Slots 3,4,5 → Echte; then back */
+      0%,    46.6%  { transform: translateY(0); }       /* Real */
+      50%            { transform: translateY(-1.2em); }  /* → Echte */
+      50%,   96.6%  { transform: translateY(-1.2em); }  /* Echte */
+      97%            { transform: translateY(-2.4em); }
+      97.1%          { transform: translateY(0); }
+      100%           { transform: translateY(0); }
+    }
+
+    /* ── Language badge ─────────────────────────────────────────── */
+    /*
+      Small pill that shows "EN" or "DE" in sync with the content.
+    */
+    .gwc-lang-badge {
+      margin-top: 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      overflow: hidden;
+      height: 1.4em;
+    }
+
+    .gwc-lang-strip {
+      display: flex;
+      flex-direction: column;
+      animation: cycleLang 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .gwc-lang-strip span {
+      display: block;
+      line-height: 1.4em;
+      white-space: nowrap;
+    }
+
+    .gwc-lang-en { color: #b22222; }
+    .gwc-lang-de { color: #555; }
+
+    @keyframes cycleLang {
+      0%,    46.6%  { transform: translateY(0); }
+      50%            { transform: translateY(-1.4em); }
+      50%,   96.6%  { transform: translateY(-1.4em); }
+      97%            { transform: translateY(-2.8em); }
+      97.1%          { transform: translateY(0); }
+      100%           { transform: translateY(0); }
+    }
+
+    /* ── Dot accent ─────────────────────────────────────────────── */
+    .gwc-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background: #b22222;
+      border-radius: 50%;
+      margin-left: 3px;
+      vertical-align: middle;
+      position: relative;
+      top: -2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gwc-logo">
+
+    <div class="gwc-acronym">GWC</div>
+    <div class="gwc-rule"></div>
+    <div class="gwc-fullname">Global Workforce Unity</div>
+
+    <div class="gwc-slogan">
+
+      <!-- Prefix: Real / Echte -->
+      <div class="gwc-prefix-wrap">
+        <div class="gwc-prefix-strip">
+          <span>Real</span>    <!-- slots 0-2: EN -->
+          <span>Echte</span>   <!-- slots 3-5: DE -->
+          <span>Real</span>    <!-- clone for snap-back -->
+        </div>
+      </div>
+
+      <!-- Suffix: 6 words + 1 clone -->
+      <div class="gwc-rotate-wrap">
+        <div class="gwc-rotate-strip">
+          <span>Voice<span class="gwc-dot"></span></span>
+          <span>Change<span class="gwc-dot"></span></span>
+          <span>Accountability<span class="gwc-dot"></span></span>
+          <span>Stimme<span class="gwc-dot"></span></span>
+          <span>Wandel<span class="gwc-dot"></span></span>
+          <span>Verantwortung<span class="gwc-dot"></span></span>
+          <!-- clone of slot 0 for invisible snap-back -->
+          <span>Voice<span class="gwc-dot"></span></span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Language indicator -->
+    <div class="gwc-lang-badge">
+      <div class="gwc-lang-strip">
+        <span class="gwc-lang-en">EN</span>
+        <span class="gwc-lang-de">DE</span>
+        <span class="gwc-lang-en">EN</span>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

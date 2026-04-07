@@ -42,7 +42,7 @@ There are **6 value cards** total. They display in a 3-column grid on desktop an
 
 Copy an existing card block and paste it after the last `</div>` before `</div> <!-- end values-grid -->`. Edit the emoji, title, and description.
 
-> Note: The grid adjusts automatically — no CSS changes needed to add a 7th card.
+> Note: The grid adjusts automatically - no CSS changes needed to add a 7th card.
 
 ---
 

@@ -1,6 +1,6 @@
 # Page: Our Mission
 
-This page explains the three core principles of GWC. It is **fully bilingual** — the English and German versions are shown or hidden based on which language button the user clicks.
+This page explains the three core principles of GWC. It is **fully bilingual** - the English and German versions are shown or hidden based on which language button the user clicks.
 
 ---
 

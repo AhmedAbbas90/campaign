@@ -1,0 +1,161 @@
+<!--
+  GWC Campaign Logo — CSS-only version
+  Paste the contents of <style> + <div> directly into Haiilo's HTML widget.
+  No JavaScript, no external dependencies.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GWC Logo</title>
+  <style>
+    /* ── Reset & canvas ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #fff;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    }
+
+    /* ── Logo container ─────────────────────────────────────────── */
+    .gwc-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      user-select: none;
+    }
+
+    /* ── GWC acronym ────────────────────────────────────────────── */
+    .gwc-acronym {
+      font-size: 64px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: #b22222;
+      line-height: 1;
+    }
+
+    /* ── Thin red rule under GWC ────────────────────────────────── */
+    .gwc-rule {
+      width: 100%;
+      height: 3px;
+      background: #b22222;
+      border-radius: 2px;
+      margin-bottom: 6px;
+    }
+
+    /* ── Full name subtitle ─────────────────────────────────────── */
+    .gwc-fullname {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    /* ── Slogan row ─────────────────────────────────────────────── */
+    .gwc-slogan {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    .gwc-static {
+      color: #1a1a1a;
+    }
+
+    /* ── Rotating word container ────────────────────────────────── */
+    /*
+      Words are absolutely stacked in the same slot.
+      overflow:hidden clips the entry/exit travel — zero bleed.
+      Fixed width = longest word so layout never shifts.
+    */
+    .gwc-rotate-wrap {
+      position: relative;
+      display: inline-block;
+      height: 1.2em;
+      width: 230px; /* wide enough for "Accountability" in Montserrat 22px */
+      overflow: hidden;
+      vertical-align: middle;
+    }
+
+    .gwc-rotate-wrap > span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      line-height: 1.2em;
+      color: #b22222;
+      white-space: nowrap;
+      /* resting state: invisible, parked below the clip window */
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    /*
+      Total cycle: 4.8 s — each word owns a strict 1.6 s window.
+
+      Per-word timeline (percentages of 4.8 s):
+        0.0 %  → parked below  (translateY 100%, opacity 0)
+        8.3 %  → fully in      (translateY 0,    opacity 1)  — 0.4 s enter
+       25.0 %  → still in      (translateY 0,    opacity 1)  — 0.8 s hold
+       33.3 %  → fully out     (translateY -100%,opacity 0)  — 0.4 s exit
+       33.4 %  → reset below   (translateY 100%, opacity 0)  — instant, off-screen
+      100.0 %  → waiting below
+
+      Word 2 starts at delay 1.6 s, word 3 at 3.2 s.
+      Each word is completely out before the next starts entering.
+    */
+    @keyframes wordIn {
+      0%     { opacity: 0; transform: translateY(100%); }
+      8.3%   { opacity: 1; transform: translateY(0); }
+      25.0%  { opacity: 1; transform: translateY(0); }
+      33.3%  { opacity: 0; transform: translateY(-100%); }
+      33.4%  { opacity: 0; transform: translateY(100%); }
+      100%   { opacity: 0; transform: translateY(100%); }
+    }
+
+    /* snappy deceleration on entry, smooth acceleration on exit */
+    .gwc-word-1 { animation: wordIn 4.8s cubic-bezier(0.22, 1, 0.36, 1) 0s   infinite; }
+    .gwc-word-2 { animation: wordIn 4.8s cubic-bezier(0.22, 1, 0.36, 1) 1.6s infinite; }
+    .gwc-word-3 { animation: wordIn 4.8s cubic-bezier(0.22, 1, 0.36, 1) 3.2s infinite; }
+  </style>
+
+  <!-- Montserrat from Google Fonts — remove if not allowed in Haiilo HTML widget -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+
+  <div class="gwc-logo">
+
+    <div class="gwc-acronym">GWC</div>
+    <div class="gwc-rule"></div>
+    <div class="gwc-fullname">Global Workforce Unity</div>
+
+    <div class="gwc-slogan">
+      <span class="gwc-static">Real</span>
+
+      <div class="gwc-rotate-wrap">
+        <span class="gwc-word-1">Voice</span>
+        <span class="gwc-word-2">Change</span>
+        <span class="gwc-word-3">Accountability</span>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

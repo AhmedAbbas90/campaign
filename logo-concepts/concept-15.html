@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 400px; height: 400px;
+      display: flex; align-items: center; justify-content: center;
+      background: #f5f5f5;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+
+    /* Concept 15: Megaphone / loudspeaker — amplifying voices.
+       Geometric: trapezoid body + cone + sound waves */
+    .logo {
+      width: 280px;
+      height: 280px;
+      background: #1a1a1a;
+      border-radius: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(178,34,34,0.15);
+    }
+
+    .megaphone {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* handle */
+    .handle {
+      width: 8px;
+      height: 22px;
+      background: #b22222;
+      border-radius: 3px;
+      margin-right: 2px;
+      align-self: flex-end;
+      margin-bottom: 6px;
+    }
+
+    /* body of megaphone — trapezoid via clip-path */
+    .body {
+      width: 36px;
+      height: 40px;
+      background: #b22222;
+      clip-path: polygon(0% 15%, 100% 0%, 100% 100%, 0% 85%);
+    }
+
+    /* cone — wider trapezoid */
+    .cone {
+      width: 48px;
+      height: 56px;
+      background: #b22222;
+      clip-path: polygon(0% 20%, 100% 0%, 100% 100%, 0% 80%);
+      opacity: 0.85;
+    }
+
+    /* sound waves — arcs using border */
+    .waves {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-left: 6px;
+      justify-content: center;
+    }
+
+    .wave {
+      border: 2.5px solid #b22222;
+      border-left: none;
+      border-radius: 0 50px 50px 0;
+      background: transparent;
+    }
+
+    .wave1 { width: 10px; height: 18px; opacity: 0.5; }
+    .wave2 { width: 16px; height: 30px; opacity: 0.75; }
+    .wave3 { width: 22px; height: 42px; opacity: 1; }
+
+    .bottom {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .gwc {
+      font-size: 60px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    .sub {
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <div class="megaphone">
+      <div class="handle"></div>
+      <div class="body"></div>
+      <div class="cone"></div>
+      <div class="waves">
+        <div class="wave wave3"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave1"></div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="gwc">GWC</div>
+      <div class="sub">Real Voice · Real Change</div>
+    </div>
+  </div>
+</body>
+</html>

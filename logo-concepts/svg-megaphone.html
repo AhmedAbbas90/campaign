@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 400px; height: 400px;
+      display: flex; align-items: center; justify-content: center;
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+<svg width="320" height="320" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Background: dark rounded square -->
+  <rect x="0" y="0" width="320" height="320" rx="48" ry="48" fill="#1a1a1a"/>
+
+  <!-- subtle red glow circle top-right -->
+  <circle cx="270" cy="60" r="90" fill="#b22222" opacity="0.12"/>
+
+  <!-- ── Megaphone ── -->
+  <!-- mouthpiece / handle on left -->
+  <rect x="62" y="112" width="20" height="36" rx="5" ry="5" fill="#b22222"/>
+
+  <!-- main body — trapezoid -->
+  <path d="M82,104 L130,92 L130,172 L82,160 Z" fill="#b22222"/>
+
+  <!-- cone / bell — wide trapezoid -->
+  <path d="M130,88 L210,64 L210,200 L130,176 Z" fill="#b22222" opacity="0.9"/>
+
+  <!-- cone highlight edge -->
+  <line x1="210" y1="64" x2="210" y2="200" stroke="white" stroke-width="3"
+    stroke-linecap="round" opacity="0.3"/>
+
+  <!-- sound waves — arcs using bezier -->
+  <!-- wave 1 — closest -->
+  <path d="M220,118 Q238,132 220,146" fill="none" stroke="#b22222"
+    stroke-width="4" stroke-linecap="round"/>
+  <!-- wave 2 — middle -->
+  <path d="M230,106 Q258,132 230,158" fill="none" stroke="#b22222"
+    stroke-width="3.5" stroke-linecap="round" opacity="0.75"/>
+  <!-- wave 3 — far -->
+  <path d="M242,94 Q280,132 242,170" fill="none" stroke="#b22222"
+    stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- speaker dots on body -->
+  <circle cx="106" cy="126" r="3" fill="white" opacity="0.3"/>
+  <circle cx="106" cy="138" r="3" fill="white" opacity="0.3"/>
+  <circle cx="106" cy="150" r="3" fill="white" opacity="0.3"/>
+
+  <!-- ── GWC text ── -->
+  <text x="160" y="260" font-family="Montserrat, Arial, sans-serif" font-weight="900"
+    font-size="64" fill="white" text-anchor="middle" letter-spacing="-3">GWC</text>
+
+  <!-- tagline -->
+  <text x="160" y="284" font-family="Montserrat, Arial, sans-serif" font-weight="700"
+    font-size="9" fill="rgba(255,255,255,0.38)" text-anchor="middle" letter-spacing="4">
+    REAL VOICE · REAL CHANGE
+  </text>
+</svg>
+</body>
+</html>

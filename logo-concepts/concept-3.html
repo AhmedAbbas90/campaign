@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 400px; height: 400px;
+      display: flex; align-items: center; justify-content: center;
+      background: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+
+    /* Concept 3: Square tile, stacked initials with a bold red bar */
+    .logo {
+      width: 280px;
+      height: 280px;
+      background: #1a1a1a;
+      border-radius: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 28px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* red accent bar left */
+    .logo::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 10px;
+      background: #b22222;
+    }
+
+    .gwc-text {
+      font-size: 96px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 0.9;
+      letter-spacing: -4px;
+    }
+
+    .gwc-text .red { color: #b22222; }
+
+    .sub {
+      margin-top: 10px;
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <div class="gwc-text"><span class="red">G</span>W<span class="red">C</span></div>
+    <div class="sub">Global Workforce<br>Community</div>
+  </div>
+</body>
+</html>

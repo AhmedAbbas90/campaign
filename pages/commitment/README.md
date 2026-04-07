@@ -40,7 +40,7 @@ Each card looks like this:
   </div>
 </div>
 ```
-- The number is purely visual — don't change it unless reordering
+- The number is purely visual - don't change it unless reordering
 - Edit the `<h3>` for the title and `<p>` for the description
 
 There are **4 commitment cards** in total.
