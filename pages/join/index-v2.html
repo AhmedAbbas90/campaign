@@ -687,11 +687,8 @@
 
     /* ── Countdown timer ──────────────────────────────────────────── */
     (function countdown() {
-      // DEBUG: 10 seconds from now for testing. Revert to real dates before go-live.
-      const electionStart = new Date(Date.now() + 10000);
-      const electionEnd   = new Date(Date.now() + 20000);
-      // const electionStart = new Date('2026-05-05T08:00:00+02:00');
-      // const electionEnd   = new Date('2026-05-08T18:00:00+02:00');
+      const electionStart = new Date('2026-05-05T08:00:00+02:00');
+      const electionEnd   = new Date('2026-05-08T18:00:00+02:00');
       function tick() {
         const now = new Date();
         if (now >= electionEnd) {
