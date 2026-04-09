@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GWC — Vote List 3 (Flyer A5)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ════════════════════════════════════════════════════════════════
+       GWC FLYER — A5 portrait (148mm × 210mm)
+       Editorial broadsheet, refined edition
+       ════════════════════════════════════════════════════════════════ */
+
+    @page { size: A5 portrait; margin: 0; }
+
+    :root {
+      --ink:        #2a221c;
+      --ink-soft:   #5a4d44;
+      --ink-faint:  #998a7e;
+      --rule:       #2a221c;
+      --paper:      #fbf6ee;
+      --paper-deep: #f3ece0;
+      --red:        #c1272d;
+      --red-deep:   #8a1a1f;
+      --red-tint:   #f4dadb;
+      --lavender:   #8f91e8;
+      --peach:      #ec9670;
+      --green:      #5cb83f;
+      --gold:       #e8b932;
+      --blue:       #4a6a99;
+      --brown:      #755648;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: #d4ccc0;
+      font-family: 'IBM Plex Sans Condensed', sans-serif;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ── A5 sheet ────────────────────────────────────────────────── */
+    .flyer {
+      width: 148mm;
+      height: 210mm;
+      margin: 24px auto;
+      background: var(--paper);
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.1),
+        0 12px 32px rgba(0,0,0,0.18),
+        0 32px 64px rgba(0,0,0,0.12);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Paper grain texture */
+    .flyer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(193,39,45,0.025) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(74,106,153,0.02) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      opacity: 0.55;
+      z-index: 10;
+    }
+
+    /* ── Top edition strip ──────────────────────────────────────── */
+    .top-strip {
+      padding: 3.5mm 9mm 3mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1.2px solid var(--rule);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7pt;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+
+    .top-strip .edition .star {
+      color: var(--red);
+      margin: 0 4px;
+    }
+
+    .top-strip .date {
+      font-weight: 700;
+    }
+
+    /* ── Hero band ──────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      padding: 5mm 9mm 4mm;
+      border-bottom: 0.4px solid var(--ink);
+      flex-shrink: 0;
+    }
+
+    /* Compound "LIST 3" mark on the right */
+    .list-mark {
+      position: absolute;
+      top: 4mm;
+      right: 8mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      pointer-events: none;
+    }
+
+    .list-mark .label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: -1.5mm;
+      padding-left: 4px;
+    }
+
+    .list-mark .three {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: "opsz" 144, "wght" 900;
+      font-size: 44mm;
+      line-height: 0.82;
+      color: var(--red);
+      letter-spacing: -0.05em;
+      text-shadow:
+        1.5px 1.5px 0 var(--paper),
+        -1.5px -1.5px 0 var(--paper),
+        1.5px -1.5px 0 var(--paper),
+        -1.5px 1.5px 0 var(--paper);
+    }
+
+    .hero-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7pt;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 2mm;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 12mm;
+      height: 0.5mm;
+      background: var(--red);
+    }
+
+    .hero-title {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: "opsz" 144, "wght" 900;
+      font-size: 24pt;
+      line-height: 0.94;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      max-width: 90mm;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-variation-settings: "opsz" 144, "wght" 600;
+      color: var(--red);
+    }
+
+    .hero-sub {
+      margin-top: 2.5mm;
+      font-family: 'Fraunces', serif;
+      font-variation-settings: "opsz" 9, "wght" 400;
+      font-style: italic;
+      font-size: 8.5pt;
+      line-height: 1.4;
+      color: var(--ink-soft);
+      max-width: 100mm;
+    }
+
+    /* ── Manifest section ───────────────────────────────────────── */
+    .manifest {
+      position: relative;
+      padding: 4mm 9mm 4mm;
+      flex: 1;
+      border-bottom: 1.2px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .manifest-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding-bottom: 2mm;
+      border-bottom: 0.4px solid var(--ink-faint);
+      margin-bottom: 3mm;
+      flex-shrink: 0;
+    }
+
+    .manifest-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 6.5pt;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .manifest-title {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: "opsz" 9, "wght" 600;
+      font-style: italic;
+      font-size: 10pt;
+      color: var(--ink);
+    }
+
+    /* Grid: 3 rows × (left | center logo | right) */
+    .manifest-grid {
+      display: grid;
+      grid-template-columns: 1fr 38mm 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      column-gap: 4mm;
+      row-gap: 3mm;
+      align-items: center;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .center-mark {
+      grid-column: 2;
+      grid-row: 1 / span 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2mm;
+      position: relative;
+    }
+
+    .center-mark::before {
+      content: '';
+      position: absolute;
+      inset: -3mm;
+      background: radial-gradient(circle, rgba(193,39,45,0.07) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .center-mark img {
+      width: 100%;
+      max-width: 38mm;
+      height: auto;
+      display: block;
+      position: relative;
+      z-index: 1;
+      mix-blend-mode: multiply;
+    }
+
+    .center-caption {
+      font-family: 'Caveat', cursive;
+      font-size: 12pt;
+      font-weight: 700;
+      color: var(--red);
+      text-align: center;
+      line-height: 1;
+      transform: rotate(-2deg);
+      position: relative;
+      z-index: 1;
+      margin-top: -1mm;
+    }
+
+    /* Commitment items - colored tick + title + desc */
+    .commit {
+      display: flex;
+      align-items: flex-start;
+      gap: 2.5mm;
+      position: relative;
+    }
+
+    .commit::before {
+      content: '';
+      flex-shrink: 0;
+      width: 2.5mm;
+      height: 2.5mm;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 1.2mm;
+      box-shadow: 0 0 0 1mm var(--accent-glow);
+    }
+
+    .commit-text { flex: 1; min-width: 0; }
+
+    .commit-title {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: "opsz" 9, "wght" 700;
+      font-size: 9pt;
+      line-height: 1.1;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6mm;
+    }
+
+    .commit-desc {
+      font-size: 6.5pt;
+      line-height: 1.35;
+      color: var(--ink-soft);
+      font-weight: 400;
+    }
+
+    /* Right column: tick on the right, text right-aligned */
+    .commit.right {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+
+    /* Per-commitment accent colors */
+    .c-1 { --accent: var(--lavender); --accent-glow: rgba(143,145,232,0.18); }
+    .c-2 { --accent: var(--peach);    --accent-glow: rgba(236,150,112,0.2); }
+    .c-3 { --accent: var(--green);    --accent-glow: rgba(92,184,63,0.16); }
+    .c-4 { --accent: var(--blue);     --accent-glow: rgba(74,106,153,0.16); }
+    .c-5 { --accent: var(--gold);     --accent-glow: rgba(232,185,50,0.2); }
+    .c-6 { --accent: var(--brown);    --accent-glow: rgba(117,86,72,0.18); }
+
+    /* Position commitments */
+    .c-1 { grid-column: 1; grid-row: 1; }
+    .c-2 { grid-column: 3; grid-row: 1; }
+    .c-3 { grid-column: 1; grid-row: 2; }
+    .c-4 { grid-column: 3; grid-row: 2; }
+    .c-5 { grid-column: 1; grid-row: 3; }
+    .c-6 { grid-column: 3; grid-row: 3; }
+
+    /* ── Pull quote: warm red, not aggressive black ────────────── */
+    .pull {
+      padding: 4.5mm 9mm 4.5mm;
+      background: var(--red);
+      color: var(--paper);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Hand-cut top edge (deckled, decorative) */
+    .pull::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1mm;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--paper) 0,
+        var(--paper) 5mm,
+        var(--gold) 5mm,
+        var(--gold) 10mm
+      );
+    }
+
+    .pull-headline {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: "opsz" 144, "wght" 900;
+      font-size: 19pt;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 2mm;
+      padding-bottom: 0.5mm;
+    }
+
+    .pull-headline em {
+      font-style: italic;
+      color: var(--gold);
+      font-variation-settings: "opsz" 144, "wght" 900;
+    }
+
+    .pull-sub {
+      font-family: 'IBM Plex Sans Condensed', sans-serif;
+      font-size: 7.5pt;
+      line-height: 1.4;
+      font-weight: 400;
+      color: rgba(251,246,238,0.92);
+      max-width: 115mm;
+    }
+
+    .pull-sub strong {
+      color: var(--paper);
+      font-weight: 700;
+    }
+
+    /* ── Colophon: brand + QR ───────────────────────────────────── */
+    .colophon {
+      padding: 4mm 9mm 4mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 4mm;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .brand-block { flex: 1; min-width: 0; }
+
+    .brand-mark {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 6pt;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 1mm;
+    }
+
+    .brand-name {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: "opsz" 9, "wght" 900;
+      font-size: 12pt;
+      line-height: 0.95;
+      color: var(--red);
+      letter-spacing: -0.018em;
+      margin-bottom: 1.5mm;
+    }
+
+    .brand-email {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 6.5pt;
+      color: var(--ink);
+      letter-spacing: 0.1px;
+      word-break: break-all;
+    }
+
+    .brand-tagline {
+      font-family: 'Caveat', cursive;
+      font-size: 12pt;
+      font-weight: 700;
+      color: var(--red);
+      margin-top: 1.5mm;
+      transform: rotate(-1.2deg) translateX(2mm);
+      transform-origin: left;
+      line-height: 1;
+    }
+
+    .qr-block {
+      flex-shrink: 0;
+      display: flex;
+      align-items: flex-end;
+      gap: 2mm;
+    }
+
+    .qr-block .arrow {
+      font-family: 'Caveat', cursive;
+      font-size: 10pt;
+      color: var(--ink-soft);
+      transform: rotate(-8deg);
+      align-self: center;
+      max-width: 16mm;
+      line-height: 1.05;
+      text-align: right;
+    }
+
+    .qr-block .frame {
+      width: 24mm;
+      height: 24mm;
+      padding: 1.2mm;
+      background: var(--paper);
+      border: 0.4mm solid var(--ink);
+      box-shadow: 1.2mm 1.2mm 0 var(--red);
+    }
+
+    .qr-block .frame img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* ── Print rules ────────────────────────────────────────────── */
+    @media print {
+      html, body { background: #fff; }
+      .flyer {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="flyer">
+
+    <!-- ── Edition strip ─────────────────────────────────────────── -->
+    <div class="top-strip">
+      <span class="edition">Vol. I <span class="star">★</span> Issue 01</span>
+      <span class="date">Berlin · May 5–8, 2026</span>
+    </div>
+
+    <!-- ── Hero ──────────────────────────────────────────────────── -->
+    <div class="hero">
+      <div class="list-mark">
+        <span class="label">List</span>
+        <span class="three">3</span>
+      </div>
+      <div class="hero-eyebrow">Works Council Election · Vote</div>
+      <h1 class="hero-title">We share <em>your</em><br>needs, hopes &amp;<br>concerns.</h1>
+      <p class="hero-sub">Six commitments for a stronger, fairer, more inclusive Works Council — one that actually shows up for the people it represents.</p>
+    </div>
+
+    <!-- ── Manifest ──────────────────────────────────────────────── -->
+    <div class="manifest">
+      <div class="manifest-header">
+        <span class="manifest-label">§ The Six Commitments</span>
+        <span class="manifest-title">A practical manifesto</span>
+      </div>
+
+      <div class="manifest-grid">
+
+        <div class="commit c-1">
+          <div class="commit-text">
+            <div class="commit-title">Job Protection</div>
+            <div class="commit-desc">Fair process, real defence against unjust dismissals.</div>
+          </div>
+        </div>
+
+        <div class="commit c-2 right">
+          <div class="commit-text">
+            <div class="commit-title">Active Support</div>
+            <div class="commit-desc">Standing with you — parents, expats, ERGs, everyone.</div>
+          </div>
+        </div>
+
+        <div class="center-mark">
+          <img src="logo.png" alt="Global Workforce Community logo" />
+          <div class="center-caption">we are<br>one.</div>
+        </div>
+
+        <div class="commit c-3">
+          <div class="commit-text">
+            <div class="commit-title">Fair Compensation</div>
+            <div class="commit-desc">Transparent salary bands, equal pay for equal work.</div>
+          </div>
+        </div>
+
+        <div class="commit c-4 right">
+          <div class="commit-text">
+            <div class="commit-title">Transparent Growth</div>
+            <div class="commit-desc">Clear career paths, documented promotion criteria.</div>
+          </div>
+        </div>
+
+        <div class="commit c-5">
+          <div class="commit-text">
+            <div class="commit-title">Stable Flexibility</div>
+            <div class="commit-desc">Hybrid work that lasts — protected, not negotiated away.</div>
+          </div>
+        </div>
+
+        <div class="commit c-6 right">
+          <div class="commit-text">
+            <div class="commit-title">Wellbeing &amp; Care</div>
+            <div class="commit-desc">Mental health and dignity before KPIs.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Pull quote ────────────────────────────────────────────── -->
+    <div class="pull">
+      <div class="pull-headline">We are <em>you.</em></div>
+      <div class="pull-sub">
+        We speak <strong>over 30 languages</strong>. Tech and non-tech, expats and locals, every team and every job family — we represent the full Zalando, not a slice of it.
+      </div>
+    </div>
+
+    <!-- ── Colophon / footer ─────────────────────────────────────── -->
+    <div class="colophon">
+      <div class="brand-block">
+        <div class="brand-mark">→ Brought to you by</div>
+        <div class="brand-name">Global Workforce<br>Community</div>
+        <div class="brand-email">global-workforce-community@zalando.de</div>
+        <div class="brand-tagline">stand with us · vote list 3</div>
+      </div>
+
+      <div class="qr-block">
+        <div class="arrow">scan for our<br>full programme</div>
+        <div class="frame">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=0&data=https%3A%2F%2Fzlife.zalando.net%2Fworkspaces%2Fglobal-workforce-community" alt="QR code" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

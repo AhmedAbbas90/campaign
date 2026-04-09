@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's at Stake? — GWC Live</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   THEME TOKENS
+   ============================================================ */
+.gwc-hub {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F7F6F3;
+  --bg-tertiary: #EEECEA;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F7F6F3;
+  --bg-topbar: #C41E1E;
+  --bg-quote: #F7F6F3;
+  --bg-stat: rgba(196,30,30,0.04);
+  --bg-breaking: #FFFBF0;
+  --border-primary: #E5E3DF;
+  --border-subtle: #F0EEEB;
+  --border-card: #E5E3DF;
+  --border-breaking: rgba(196,154,46,0.25);
+  --border-stat: rgba(196,30,30,0.12);
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #888;
+  --text-inverse: #FFFFFF;
+  --text-on-topbar: #FFFFFF;
+  --red: #C41E1E;
+  --red-dark: #9B1818;
+  --red-glow: rgba(196,30,30,0.04);
+  --accent-gold: #A07D1C;
+  --accent-gold-bg: rgba(196,154,46,0.08);
+  --green: #16873A;
+  --green-bg: rgba(22,135,58,0.06);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-card: 0 1px 4px rgba(0,0,0,0.04), 0 0 0 1px var(--border-card);
+}
+
+/* ============================================================
+   SCOPED RESET
+   ============================================================ */
+.gwc-hub *, .gwc-hub *::before, .gwc-hub *::after { margin: 0; padding: 0; box-sizing: border-box; }
+.gwc-hub {
+  font-family: 'Teka', 'DM Sans', -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.gwc-hub .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+.gwc-hub .label { font-family: 'Teka', 'DM Sans', sans-serif; font-size: 13px; letter-spacing: 0.5px; color: var(--text-tertiary); font-weight: 500; }
+.gwc-hub .label--red { color: var(--red); }
+.gwc-hub .divider { width: 48px; height: 3px; background: var(--red); border: none; margin: 16px 0; }
+
+/* ============================================================
+   COUNTDOWN
+   ============================================================ */
+.gwc-hub .countdown { display: flex; align-items: center; gap: 10px; }
+.gwc-hub .countdown__label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); font-weight: 500; }
+.gwc-hub .countdown__unit { text-align: center; background: rgba(0,0,0,0.2); border-radius: 4px; padding: 5px 14px; min-width: 58px; white-space: nowrap; }
+.gwc-hub .countdown__number { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; color: #fff; display: inline; line-height: 1.2; }
+.gwc-hub .countdown__suffix { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.6); margin-left: 4px; }
+.gwc-hub .countdown--open .countdown__label { color: #fff; font-weight: 600; }
+.gwc-hub .countdown--open .countdown__unit { background: rgba(34,197,94,0.25); }
+.gwc-hub .countdown--open .countdown__number { color: #A3F5BC; }
+.gwc-hub .cal-link { font-size: 11px; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; transition: color 0.2s; white-space: nowrap; background: none; border: none; font-family: 'Teka', 'DM Sans', sans-serif; }
+.gwc-hub .cal-link:hover { color: #fff; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.gwc-hub .hero { padding: 80px 0 48px; position: relative; }
+.gwc-hub .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 400px; background: radial-gradient(ellipse at 30% 0%, var(--red-glow) 0%, transparent 60%); pointer-events: none; }
+.gwc-hub .hero__eyebrow { margin-bottom: 24px; }
+.gwc-hub .hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(32px, 6vw, 52px); line-height: 1.15; color: var(--text-primary); margin-bottom: 8px; }
+.gwc-hub .hero h1 em { font-style: italic; color: var(--red); }
+.gwc-hub .hero__sub { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(20px, 3.5vw, 28px); color: var(--text-primary); line-height: 1.3; margin-bottom: 32px; }
+.gwc-hub .hero__sub strong { color: var(--red); }
+.gwc-hub .hero__body { font-size: 17px; color: var(--text-secondary); max-width: 620px; margin-bottom: 40px; }
+.gwc-hub .hero__body strong { color: var(--text-primary); font-weight: 600; }
+.gwc-hub .hero__scroll { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+.gwc-hub .hero__scroll:hover { color: var(--red); }
+.gwc-hub .hero__scroll .arrow-down { display: inline-block; animation: gwc-bobDown 2s ease-in-out infinite; }
+@keyframes gwc-bobDown { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+/* ============================================================
+   OPTION C: PILL STRIP (inside hero)
+   ============================================================ */
+.gwc-hub .pill-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 4px 0 8px;
+  margin-bottom: 24px;
+}
+.gwc-hub .pill-strip__item {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-card);
+  border-radius: 20px;
+  padding: 9px 18px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.gwc-hub .pill-strip__item:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: rgba(196,30,30,0.04);
+}
+.gwc-hub .pill-strip__intro {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+/* ============================================================
+   VOTE CARD (Tier 0 — engagement pinnacle)
+   ============================================================ */
+.gwc-hub .vote-card {
+  background: var(--red);
+  border-radius: 12px;
+  padding: 36px 32px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.gwc-hub .vote-card h3 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(24px, 4vw, 32px);
+  color: #fff;
+  margin-bottom: 8px;
+}
+.gwc-hub .vote-card p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+}
+
+/* ============================================================
+   BEFORE YOU VOTE (collapsible)
+   ============================================================ */
+.gwc-hub .before-vote {
+  padding: 24px 0 16px;
+}
+.gwc-hub .before-vote__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  padding: 16px 24px;
+  width: 100%;
+  cursor: pointer;
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 18px;
+  color: var(--text-primary);
+  transition: all 0.2s;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.gwc-hub .before-vote__toggle:hover {
+  border-color: var(--red);
+  background: var(--bg-card-hover);
+}
+.gwc-hub .before-vote__toggle--open {
+  border-radius: 10px 10px 0 0;
+  border-bottom-color: transparent;
+}
+.gwc-hub .before-vote__hint {
+  font-family: 'Teka', 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-style: normal;
+  margin-left: auto;
+}
+.gwc-hub .before-vote__arrow {
+  transition: transform 0.3s;
+  font-size: 14px;
+  color: var(--text-tertiary);
+}
+.gwc-hub .before-vote__arrow--open {
+  transform: rotate(180deg);
+}
+.gwc-hub .before-vote__content {
+  display: none;
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  box-shadow: var(--shadow-sm);
+}
+.gwc-hub .before-vote__content--open {
+  display: block;
+}
+.gwc-hub .before-vote__content p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  line-height: 1.75;
+}
+.gwc-hub .before-vote__content p:last-child { margin-bottom: 0; }
+.gwc-hub .before-vote__content strong {
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.gwc-hub .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Teka', 'DM Sans', sans-serif; font-weight: 600; font-size: 14px; text-decoration: none; border-radius: 6px; padding: 14px 28px; transition: all 0.25s ease; cursor: pointer; border: none; }
+.gwc-hub .btn--primary { background: var(--red); color: #fff; }
+.gwc-hub .btn--primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(196,30,30,0.2); }
+.gwc-hub .btn--ghost { background: transparent; color: var(--text-secondary); border: 1px solid var(--border-primary); }
+.gwc-hub .btn--ghost:hover { border-color: var(--red); color: var(--red); }
+.gwc-hub .btn--small { padding: 10px 20px; font-size: 13px; }
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+.gwc-hub section { padding: 48px 0; }
+.gwc-hub .section-header { margin-bottom: 40px; }
+.gwc-hub .section-header h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(24px, 4vw, 36px); color: var(--text-primary); line-height: 1.2; margin-top: 8px; }
+.gwc-hub .section-header p { margin-top: 16px; font-size: 16px; color: var(--text-secondary); max-width: 600px; }
+
+/* ============================================================
+   GAP BLOCKS
+   ============================================================ */
+.gwc-hub .gap-section { }
+.gwc-hub .gap-block { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px; padding: 40px 36px; margin-bottom: 24px; position: relative; overflow: hidden; box-shadow: var(--shadow-card); }
+.gwc-hub .gap-block::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--border-primary); }
+.gwc-hub .gap-block h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; color: var(--text-primary); margin-bottom: 16px; }
+.gwc-hub .gap-block p { font-size: 15px; color: var(--text-secondary); margin-bottom: 14px; }
+.gwc-hub .gap-block p:last-of-type { margin-bottom: 0; }
+.gwc-hub .gap-block strong { color: var(--text-primary); font-weight: 600; }
+
+.gwc-hub .pull-quote { background: var(--bg-quote); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 24px 28px; margin: 20px 0; font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 17px; color: var(--text-primary); line-height: 1.55; }
+.gwc-hub .pull-quote__attr { display: block; font-family: 'Teka', 'DM Sans', sans-serif; font-style: normal; font-size: 12px; color: var(--text-tertiary); margin-top: 12px; letter-spacing: 0.5px; }
+
+.gwc-hub .stat-callout { background: var(--bg-stat); border: 1px solid var(--border-stat); border-radius: 10px; padding: 24px 28px; margin: 20px 0; display: flex; align-items: baseline; gap: 16px; }
+.gwc-hub .stat-callout__number { font-family: 'JetBrains Mono', monospace; font-size: 36px; font-weight: 700; color: var(--red); line-height: 1; flex-shrink: 0; }
+.gwc-hub .stat-callout__text { font-size: 14px; color: var(--text-secondary); }
+.gwc-hub .stat-callout__text strong { color: var(--text-primary); }
+
+.gwc-hub .early-cta { background: var(--bg-secondary); border: 1px solid var(--border-card); border-radius: 12px; padding: 24px 28px; margin: 28px 0; box-shadow: var(--shadow-sm); }
+.gwc-hub .early-cta__top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 10px; }
+.gwc-hub .early-cta__text h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 18px; color: var(--text-primary); margin-bottom: 4px; }
+.gwc-hub .early-cta__text p { font-size: 14px; color: var(--text-tertiary); }
+.gwc-hub .early-cta__secondary { font-size: 13px; color: var(--text-tertiary); border-top: 1px solid var(--border-subtle); padding-top: 12px; }
+.gwc-hub .early-cta__secondary a { color: var(--red); text-decoration: underline; text-underline-offset: 2px; font-weight: 500; }
+
+/* ============================================================
+   BRIDGE + SOCIAL PROOF
+   ============================================================ */
+.gwc-hub .bridge { padding: 48px 0 0; text-align: center; }
+.gwc-hub .bridge__statement { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: clamp(18px, 3vw, 22px); color: var(--text-primary); line-height: 1.55; max-width: 600px; margin: 0 auto; }
+.gwc-hub .bridge__statement strong { color: var(--red); font-style: normal; }
+
+/* ============================================================
+   IMPACT ZONES
+   ============================================================ */
+.gwc-hub .impact-section { }
+.gwc-hub .impact-intro { font-style: italic; font-size: 17px; color: var(--text-primary); line-height: 1.75; border-left: 3px solid var(--red); padding-left: 24px; margin-bottom: 40px; max-width: 620px; }
+.gwc-hub .impact-grid { display: grid; gap: 20px; }
+.gwc-hub .impact-card { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px; padding: 32px; transition: border-color 0.3s ease, box-shadow 0.3s ease; box-shadow: var(--shadow-card); }
+.gwc-hub .impact-card:hover { border-color: var(--red); box-shadow: var(--shadow-md); }
+.gwc-hub .impact-card h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 20px; color: var(--text-primary); margin-bottom: 12px; }
+.gwc-hub .impact-card__pain { font-size: 15px; color: var(--text-tertiary); font-style: italic; margin-bottom: 14px; padding-left: 12px; border-left: 2px solid var(--border-primary); }
+.gwc-hub .impact-card__fix { font-size: 15px; color: var(--text-secondary); display: none; }
+.gwc-hub .impact-card__fix--open { display: block; }
+.gwc-hub .impact-card__fix strong { color: var(--text-primary); }
+.gwc-hub .impact-card__toggle {
+  font-family: 'Teka', 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--red);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-top: 6px;
+  display: inline-block;
+  transition: opacity 0.2s;
+}
+.gwc-hub .impact-card__toggle:hover { opacity: 0.7; }
+
+/* ============================================================
+   BREAKING
+   ============================================================ */
+.gwc-hub .breaking { }
+.gwc-hub .breaking-card { background: var(--bg-breaking); border: 1px solid var(--border-breaking); border-radius: 12px; padding: 36px; position: relative; overflow: hidden; box-shadow: var(--shadow-sm); }
+.gwc-hub .breaking-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent-gold); }
+.gwc-hub .breaking-badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); background: var(--accent-gold-bg); padding: 4px 12px; border-radius: 4px; margin-bottom: 16px; }
+.gwc-hub .breaking-card h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; color: var(--text-primary); margin-bottom: 12px; }
+.gwc-hub .breaking-card p { font-size: 15px; color: var(--text-secondary); margin-bottom: 16px; }
+
+/* ============================================================
+   TEAM
+   ============================================================ */
+.gwc-hub .team-section { }
+.gwc-hub .team-philosophy { background: var(--bg-card); border-radius: 12px; padding: 40px 36px; border: 1px solid var(--border-card); margin-bottom: 24px; box-shadow: var(--shadow-card); }
+.gwc-hub .team-philosophy blockquote { font-size: 17px; font-style: italic; color: var(--text-primary); line-height: 1.75; border-left: 3px solid var(--red); padding-left: 24px; margin-bottom: 16px; }
+.gwc-hub .team-philosophy p { font-size: 15px; color: var(--text-secondary); }
+.gwc-hub .team-video { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px; padding: 28px 32px; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.gwc-hub .team-video__info { flex: 1; min-width: 200px; }
+.gwc-hub .team-video__tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+.gwc-hub .team-video__tag--coming { color: var(--accent-gold); }
+.gwc-hub .team-video h4 { font-family: 'DM Serif Display', Georgia, serif; font-size: 17px; color: var(--text-primary); margin-bottom: 4px; }
+.gwc-hub .team-video p { font-size: 13px; color: var(--text-tertiary); }
+
+/* ============================================================
+   CAMPAIGN SERIES
+   ============================================================ */
+.gwc-hub .series-section { }
+.gwc-hub .series-grid { display: grid; gap: 16px; }
+.gwc-hub .series-card { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px; padding: 28px 32px; transition: border-color 0.3s, box-shadow 0.3s; box-shadow: var(--shadow-card); }
+.gwc-hub .series-card:hover { border-color: var(--text-tertiary); box-shadow: var(--shadow-md); }
+.gwc-hub .series-card__top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.gwc-hub .series-card__status { flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%; }
+.gwc-hub .series-card__status--live { background: var(--green); box-shadow: 0 0 8px rgba(34,197,94,0.3); animation: gwc-pulse-live 2s infinite; }
+.gwc-hub .series-card__status--soon { background: var(--accent-gold); opacity: 0.7; }
+.gwc-hub .series-card__status--coming { background: var(--text-tertiary); opacity: 0.4; }
+@keyframes gwc-pulse-live { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.gwc-hub .series-card__type { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; flex-shrink: 0; }
+.gwc-hub .series-card__type--video { color: var(--red); background: rgba(196,30,30,0.08); }
+.gwc-hub .series-card__type--article { color: var(--accent-gold); background: var(--accent-gold-bg); }
+.gwc-hub .series-card__tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-tertiary); }
+.gwc-hub .series-card__tag--live { color: var(--green); }
+.gwc-hub .series-card h4 { font-family: 'DM Serif Display', Georgia, serif; font-size: 17px; color: var(--text-primary); margin-bottom: 6px; }
+.gwc-hub .series-card p { font-size: 13px; color: var(--text-tertiary); margin-bottom: 4px; }
+.gwc-hub .series-card__date { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-tertiary); opacity: 0.7; margin-bottom: 8px; display: block; }
+.gwc-hub .series-card .btn { margin-top: 8px; }
+.gwc-hub .notify-link { font-size: 13px; color: var(--red); text-decoration: underline; text-underline-offset: 2px; font-weight: 500; margin-top: 8px; display: inline-block; transition: opacity 0.2s; }
+.gwc-hub .notify-link:hover { opacity: 0.7; }
+
+/* Series status pill */
+.gwc-hub .series-card__status-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 2px 8px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+
+/* Video thumbnail */
+.gwc-hub .video-thumb {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 16px;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+.gwc-hub .video-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.gwc-hub .video-thumb:hover img {
+  transform: scale(1.02);
+  filter: brightness(0.85);
+}
+.gwc-hub .video-thumb__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  background: rgba(0,0,0,0.65);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.gwc-hub .video-thumb:hover .video-thumb__play {
+  background: var(--red);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.gwc-hub .video-thumb__play::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 0 10px 18px;
+  border-color: transparent transparent transparent #fff;
+  margin-left: 3px;
+}
+.gwc-hub .video-thumb__label {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0,0,0,0.6);
+  padding: 4px 10px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+/*
+  IFRAME EMBED (hidden by default)
+  To use instead of thumbnail: 
+  1. Remove the <a class="video-thumb"> block from the card
+  2. Replace with the .video-embed div (see HTML comment in series section)
+  3. Remove display:none below
+*/
+.gwc-hub .video-embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-top: 16px;
+  background: var(--bg-tertiary);
+  display: none; /* HIDDEN — remove this line to activate iframe embed */
+}
+.gwc-hub .video-embed--active {
+  display: block;
+}
+.gwc-hub .video-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+}
+.gwc-hub .series-subscribe { background: var(--bg-secondary); border: 1px solid var(--border-card); border-radius: 12px; padding: 32px 36px; margin-top: 24px; text-align: center; }
+.gwc-hub .series-subscribe h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 20px; color: var(--text-primary); margin-bottom: 8px; }
+.gwc-hub .series-subscribe p { font-size: 14px; color: var(--text-tertiary); margin-bottom: 20px; }
+
+/* ============================================================
+   DIALOGUE
+   ============================================================ */
+.gwc-hub .dialogue-section { }
+.gwc-hub .dialogue-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.gwc-hub .dialogue-card { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px; padding: 32px; display: flex; flex-direction: column; box-shadow: var(--shadow-card); }
+.gwc-hub .dialogue-card__duration { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--red); letter-spacing: 1px; margin-bottom: 12px; }
+.gwc-hub .dialogue-card h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 20px; color: var(--text-primary); margin-bottom: 12px; }
+.gwc-hub .dialogue-card p { font-size: 14px; color: var(--text-secondary); flex: 1; margin-bottom: 20px; }
+.gwc-hub .dialogue-note { text-align: center; font-size: 14px; color: var(--text-tertiary); font-style: italic; margin-top: 24px; }
+
+/* ============================================================
+   ENGAGEMENT
+   ============================================================ */
+.gwc-hub .engage-section { }
+.gwc-hub .engage-tiers { display: grid; gap: 2px; }
+.gwc-hub .engage-tier { background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 28px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; transition: background 0.2s; }
+.gwc-hub .engage-tier:first-child { border-radius: 12px 12px 0 0; }
+.gwc-hub .engage-tier:last-child { border-radius: 0 0 12px 12px; }
+.gwc-hub .engage-tier:hover { background: var(--bg-card-hover); }
+.gwc-hub .engage-tier__info h4 { font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+.gwc-hub .engage-tier__info p { font-size: 13px; color: var(--text-tertiary); }
+
+/* Collapsible engagement tiers */
+.gwc-hub .engage-more__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  padding: 14px 24px;
+  width: 100%;
+  cursor: pointer;
+  font-family: 'Teka', 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+  margin-top: 16px;
+}
+.gwc-hub .engage-more__toggle:hover { border-color: var(--red); color: var(--red); }
+.gwc-hub .engage-more__content { display: none; margin-top: 12px; }
+.gwc-hub .engage-more__content--open { display: block; }
+
+/* ============================================================
+   CAPTURE MODAL
+   ============================================================ */
+.gwc-hub .modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(4px);
+}
+.gwc-hub .modal-overlay--open { display: flex; }
+.gwc-hub .modal {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+.gwc-hub .modal__close {
+  position: absolute;
+  top: 12px; right: 16px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+.gwc-hub .modal__close:hover { color: var(--text-primary); }
+.gwc-hub .modal__context {
+  font-size: 15px;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+.gwc-hub .modal__field { margin-bottom: 16px; }
+.gwc-hub .modal__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+.gwc-hub .modal__input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-card);
+  border-radius: 6px;
+  font-family: 'Teka', 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  transition: border-color 0.2s;
+}
+.gwc-hub .modal__input:focus {
+  outline: none;
+  border-color: var(--red);
+}
+.gwc-hub .modal__input--textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+.gwc-hub .modal__submit {
+  width: 100%;
+  padding: 12px;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Teka', 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.gwc-hub .modal__submit:hover { background: var(--red-dark); }
+.gwc-hub .modal__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.gwc-hub .modal__success {
+  text-align: center;
+  padding: 24px 0;
+}
+.gwc-hub .modal__success h3 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 20px;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.gwc-hub .modal__success p {
+  font-size: 14px;
+  color: var(--text-tertiary);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.gwc-hub .site-footer { padding: 48px 0 32px; text-align: center; }
+.gwc-hub .footer-brand { font-weight: 700; font-size: 20px; color: var(--text-primary); letter-spacing: 1px; margin-bottom: 4px; }
+.gwc-hub .footer-tagline { font-size: 13px; color: var(--text-tertiary); margin-bottom: 24px; }
+.gwc-hub .footer-date { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 18px; color: var(--red); margin-bottom: 24px; }
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes gwc-fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.gwc-hub .animate-in { opacity: 0; animation: gwc-fadeUp 0.6s ease forwards; }
+.gwc-hub .delay-1 { animation-delay: 0.1s; }
+.gwc-hub .delay-2 { animation-delay: 0.2s; }
+.gwc-hub .delay-3 { animation-delay: 0.3s; }
+
+/* ============================================================
+   CLICKABILITY ENHANCEMENTS
+   ============================================================ */
+.gwc-hub .compact-row:hover { background: var(--bg-secondary) !important; }
+.gwc-hub .table-link:hover { color: var(--red) !important; text-decoration: underline !important; text-underline-offset: 3px; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 600px) {
+  .gwc-hub .hero { padding: 48px 0 36px; }
+  .gwc-hub section { padding: 48px 0; }
+  .gwc-hub .gap-block, .gwc-hub .team-philosophy { padding: 20px 20px; }
+  .gwc-hub .early-cta { padding: 24px; }
+  .gwc-hub .early-cta__top { flex-direction: column; align-items: flex-start; }
+  .gwc-hub .impact-card { padding: 24px; }
+  .gwc-hub .stat-callout { flex-direction: column; gap: 8px; }
+  .gwc-hub .countdown__label { font-size: 10px; }
+  .gwc-hub .dialogue-grid { grid-template-columns: 1fr; }
+  .gwc-hub .series-card { padding: 22px 24px; }
+}
+</style>
+</head>
+<body>
+<div class="gwc-hub" id="gwc-hub">
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="hero__eyebrow">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-tertiary); letter-spacing: 0.5px;">7 min read · or pick a topic below and jump straight in</span>
+    </div>
+    <h1 class="animate-in">The Rules of Your Work Life<br>are Being Written <em>Without You.</em></h1>
+    <p class="hero__sub animate-in delay-1">Close the Power Gap. Agreements <strong>with</strong> you in the loop, not decisions <strong>to</strong> you.</p>
+    <p class="hero__body animate-in delay-2" style="margin-bottom: 16px;">
+      Management cannot simply dictate your compensation structure, your flexibility, or your performance criteria. Unless you let them.
+    </p>
+    <p class="pill-strip__intro animate-in delay-3">The Works Council, the <strong>only employee-led body</strong> with the legal power to act on this, is given real power to improve your work life. The question is whether it's being used. Here are some of the systemic gaps we see in how employee rights are represented:</p>
+
+    <!-- FORMAT TOGGLE — hidden -->
+    <div style="text-align: right; margin-bottom: 8px; display: none;">
+      <span style="font-size: 11px; color: var(--text-tertiary); margin-right: 4px;">format:</span>
+      <button id="fmt-toggle" style="font-size: 11px; color: var(--text-tertiary); background: none; border: 1px solid var(--border-card); border-radius: 4px; padding: 2px 8px; cursor: pointer; font-family: 'Teka', 'DM Sans', sans-serif;">switch view</button>
+    </div>
+
+    <!-- OPTION C: Pills -->
+    <div id="fmt-pills">
+      <div class="pill-strip animate-in delay-3">
+        <a href="#perf-eval" class="pill-strip__item" onclick="document.getElementById('perf-eval').scrollIntoView({behavior:'smooth'});return false;">Your performance rating: who really decides?</a>
+        <a href="#reorg" class="pill-strip__item" onclick="document.getElementById('reorg').scrollIntoView({behavior:'smooth'});return false;">Your restructuring protections</a>
+        <a href="#fair-pay" class="pill-strip__item" onclick="document.getElementById('fair-pay').scrollIntoView({behavior:'smooth'});return false;">Pay gaps & unofficial quotas</a>
+        <a href="#flexibility" class="pill-strip__item" onclick="document.getElementById('flexibility').scrollIntoView({behavior:'smooth'});return false;">Protecting your work-life flexibility</a>
+      </div>
+      <p class="pill-strip__intro" style="margin-top: 8px; font-size: 14px;">Go deeper:</p>
+      <div class="pill-strip">
+        <!-- Hidden: <a href="#breaking" class="pill-strip__item" onclick="document.getElementById('breaking').scrollIntoView({behavior:'smooth'});return false;">A Bundestag member is watching</a> -->
+        <a href="#series" class="pill-strip__item" onclick="document.getElementById('series').scrollIntoView({behavior:'smooth'});return false;">Videos that confront uncomfortable truths</a>
+        <a href="#team" class="pill-strip__item" onclick="document.getElementById('team').scrollIntoView({behavior:'smooth'});return false;">70+ colleagues stood up</a>
+        <a href="#dialogue" class="pill-strip__item" onclick="document.getElementById('dialogue').scrollIntoView({behavior:'smooth'});return false;">Book a conversation</a>
+        <a href="#before-vote" class="pill-strip__item" onclick="document.getElementById('before-vote').scrollIntoView({behavior:'smooth'});return false;">Before you vote — or decide not to</a>
+      </div>
+    </div>
+
+    <!-- OPTION D: Two-column structured layout -->
+    <div id="fmt-table" style="display: none;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; font-size: 14px;">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--red); margin-bottom: 12px; text-transform: uppercase;">Where we see gaps</div>
+          <a href="#perf-eval" onclick="document.getElementById('perf-eval').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-primary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Your performance rating: who really decides?</a>
+          <a href="#reorg" onclick="document.getElementById('reorg').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-primary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Your restructuring protections</a>
+          <a href="#fair-pay" onclick="document.getElementById('fair-pay').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-primary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Pay gaps & unofficial quotas</a>
+          <a href="#flexibility" onclick="document.getElementById('flexibility').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; color: var(--text-primary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Protecting your work-life flexibility</a>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--text-tertiary); margin-bottom: 12px; text-transform: uppercase;">Go deeper</div>
+          <!-- Hidden: A Bundestag member is watching -->
+          <a href="#series" onclick="document.getElementById('series').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-secondary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Videos that confront uncomfortable truths</a>
+          <a href="#team" onclick="document.getElementById('team').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-secondary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">70+ colleagues stood up</a>
+          <a href="#dialogue" onclick="document.getElementById('dialogue').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-secondary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Book a conversation</a>
+          <a href="#before-vote" onclick="document.getElementById('before-vote').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; color: var(--text-secondary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Before you vote — or decide not to</a>
+        </div>
+      </div>
+    </div>
+
+    <a href="#gap" class="hero__scroll animate-in delay-3" onclick="document.getElementById('gap').scrollIntoView({behavior:'smooth'});return false;" style="margin-top: 24px;">
+      Read the full case <span class="arrow-down">↓</span>
+    </a>
+  </div>
+</header>
+
+<!-- ===== FEATURED VIDEO ===== -->
+<section style="padding: 0 0 48px;" id="featured-video">
+  <div class="container" style="text-align: center;">
+    <h3 style="font-family: 'DM Serif Display', Georgia, serif; font-size: 20px; color: var(--text-primary); margin-bottom: 8px;">The Case for Change <span style="font-weight: 400; color: var(--text-tertiary); font-size: 16px;">| Global Workforce Community</span></h3>
+    <!-- Vimeo embed (active) -->
+    <div class="video-embed video-embed--active">
+      <iframe src="https://player.vimeo.com/video/1180571084?h=1b23f4799b&amp;autoplay=1&amp;loop=1&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen title="The Case for Change"></iframe>
+    </div>
+    <!-- Thumbnail fallback -->
+    <a href="https://vimeo.com/1180571084/1b23f4799b" target="_blank" class="video-thumb" title="Watch: The Case for Change" style="display:none">
+      <img src="https://img.youtube.com/vi/tP95teov1Mc/maxresdefault.jpg" alt="The Case for Change — video thumbnail" loading="lazy">
+      <div class="video-thumb__play"></div>
+      <span class="video-thumb__label">▶ Watch on Vimeo</span>
+    </a>
+    <p style="margin-top: 12px; font-size: 14px; color: var(--text-tertiary);">Three principles. One question: who is actually using the tools the law gives them to fight for your rights?</p>
+  </div>
+</section>
+
+<!-- ===== THE GAP ===== -->
+<section class="gap-section" id="gap">
+  <div class="container">
+    <div class="section-header">
+      <h2>The Power Gap Is Costing You. Right Now.</h2>
+      <p>When the legal tools exist but nobody uses them, you lose. We see this pattern in critical issues which affect employees, including two playing out right now.</p>
+    </div>
+
+    <div class="gap-block" id="perf-eval">
+      <h3>The Performance Framework: Built Without Transparency, Input, or Guardrails</h3>
+      <p>Your performance rating may not reflect your work. It may reflect a distribution target the performance framework never officially intended to apply.</p>
+      <p>On paper, you are evaluated against three official criteria: Role Expectations, OFM & Focus Areas. In practice, unofficial distribution targets can override all three, working their way down through management. The top outcomes (Leading Ahead & Delivering Breakthrough) become quotas with limited seats, regardless of how many people actually earned them. In some cases, if a manager's team has no one flagged as underperforming, the manager risks being told they aren't evaluating rigorously enough. And there's no mechanism for you or your lead to challenge this.</p>
+      <p>And for some, the imposed effects ripple beyond your rating into your compensation and growth opportunities. And when roles are filled without transparent and fair evaluation of internal candidates, growth starts being a dead end.</p>
+      <div class="pull-quote">
+        "When you feed a system with top-down distribution targets and cap the number of people who can be rated as excelling, you get systemic unfairness and unaddressed pay gaps as a result. This process is working for leadership, but it is failing our teams."
+        <span class="pull-quote__attr">— A first-line Engineering Manager</span>
+      </div>
+      <button onclick="var c=this.nextElementSibling;c.style.display=c.style.display==='none'?'block':'none';this.textContent=c.style.display==='none'?'What the law requires ▾':'Show less ▴';" style="background: none; border: none; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--red); padding: 8px 0; margin-top: 6px; font-family: 'Teka', 'DM Sans', sans-serif;">What the law requires ▾</button>
+      <div style="display: none; margin-top: 14px;">
+        <p>Under German law, an employer cannot implement or change a performance framework without the Works Council's explicit consent. You would have been asked for input. Your perspective would have shaped the terms. That didn't happen.</p>
+        <p>An official Works Agreement should set guardrails to protect against this kind of misuse with unofficial quotas to undermine your rating, give you a way to challenge unfair outcomes, and ensure that PSPs cannot be used as termination pipelines. <strong>Legal leverage for this has barely been touched.</strong></p>
+      </div>
+      <p style="margin-top: 14px;">The fundamental question remains: <strong>where is the official Works Agreement that should govern this process? And why were employees only informed by the employer after the terms were set?</strong></p>
+    </div>
+
+    <div class="gap-block" id="reorg">
+      <h3>Reorganizations: What You Don't Know Is Costing You</h3>
+      <p>You've lived through restructurings. But do you know what happens on the other side of the table?</p>
+      <p>When some colleagues describe a culture of fear and instability around restructurings, there's a story behind that emotion.</p>
+      <div class="stat-callout">
+        <span class="stat-callout__number">110</span>
+        <span class="stat-callout__text">reorganizations processed last year. <strong>Over 2 per week</strong>.</span>
+      </div>
+      <p>Weekly restructurings don't allow rigorous case-by-case review, codetermination of transfers, or independent arbitration. The legal standard is <strong>structurally impossible to meet</strong>.</p>
+      <p>Passively or actively: how the Works Council handles a restructuring directly determines whether alternative opportunities were genuinely explored, whether affected colleagues were given a fair chance at other roles, and what severance terms are negotiated for those who leave. The legal tools exist. <strong>The question is whether anyone at the table is using them.</strong></p>
+      <p>For colleagues whose residency depends on their employment, or who are supporting families in one of Europe's most expensive cities, the cost of that question going unanswered is <strong>existential</strong>.</p>
+      <button onclick="var c=this.nextElementSibling;c.style.display=c.style.display==='none'?'block':'none';this.textContent=c.style.display==='none'?'What happened this time ▾':'Show less ▴';" style="background: none; border: none; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--red); padding: 8px 0; margin-top: 6px; font-family: 'Teka', 'DM Sans', sans-serif;">What happened this time ▾</button>
+      <div style="display: none; margin-top: 14px;">
+        <p>As this term comes to an end, the reorganization pattern is being disrupted. Where previous rounds followed the standard process, the negotiating team behind this reorg connected the dots between these rolling restructurings. And by insisting on binding standards for severance and job security, the process has been escalated to an independent conciliation committee.</p>
+        <p>It matters who sits at the negotiating table. <strong>Legal leverage works when representatives are willing to use the tools provided by the law.</strong> Imagine what becomes possible when that willingness has the backing of your vote.</p>
+        <p>Why this restructuring could have gone worse, and how it got here. <a href="#series" style="color: var(--red); font-weight: 600; text-decoration: none;" onclick="document.getElementById('series').scrollIntoView({behavior:'smooth'});return false;">Read the full account, dropping April 12 →</a></p>
+      </div>
+    </div>
+
+    <p style="margin-top: 24px; font-size: 15px; color: var(--text-secondary);">Ready to talk about what this means for you? <a href="#" style="color: var(--red); font-weight: 600; text-decoration: none;" onclick="openCapture('Book 1o1');return false;">Book a slot →</a>. No prior knowledge of labor law required. Or <a href="#" style="color: var(--red); font-weight: 500; text-decoration: underline; text-underline-offset: 2px;" onclick="openCapture('Subscribe to All Drops');return false;">stay informed when new content drops</a>.</p>
+  </div>
+</section>
+
+<!-- ===== IMPACT ZONES ===== -->
+<section class="impact-section" id="impact">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">When the legal tools close the gap</span>
+      <hr class="divider">
+      <h2>What Changes for the Workforce</h2>
+    </div>
+
+    <p class="impact-intro">
+      <strong>Competence. Transparency. Legal standard.</strong> Balanced with diplomatic skill and the conviction to prioritize your protection over management comfort.
+    </p>
+
+    <div style="text-align: right; margin-bottom: 4px;">
+      <button id="impact-toggle-all" style="font-size: 11px; color: var(--text-tertiary); background: none; border: 1px solid var(--border-card); border-radius: 4px; padding: 2px 8px; cursor: pointer; font-family: 'Teka', 'DM Sans', sans-serif;">show all details</button>
+    </div>
+
+    <div class="impact-grid">
+      <div class="impact-card">
+        <h3>Job Protection & Radical Support</h3>
+        <p class="impact-card__pain">"When I got the PSP, I didn't know who to turn to. My manager said it was their decision. HR said it was a standard process. Nobody mentioned I had rights and that a Works Council could be involved at all."</p>
+        <button class="impact-card__toggle" onclick="var f=this.nextElementSibling;f.classList.toggle('impact-card__fix--open');this.textContent=f.classList.contains('impact-card__fix--open')?'Show less ▴':'What changes ▾';">What changes ▾</button>
+        <p class="impact-card__fix">Unshakeable support in the era of AI, automation, and platform shifts. No employee should face a PSP, a termination, or discrimination without us in their corner. We use legal tools to end dismissals that lack proper justification and process and provide <strong>unwavering defense</strong>, regardless of your contract type, background, or department.</p>
+      </div>
+
+      <div class="impact-card" id="fair-pay">
+        <h3>Fair Compensation & Transparent Growth</h3>
+        <p class="impact-card__pain">"I've been told my salary is 'competitive,' but my experience and my peers suggest different. Even high performers stay stuck below their midpoint after years of excellence."</p>
+        <button class="impact-card__toggle" onclick="var f=this.nextElementSibling;f.classList.toggle('impact-card__fix--open');this.textContent=f.classList.contains('impact-card__fix--open')?'Show less ▴':'What changes ▾';">What changes ▾</button>
+        <p class="impact-card__fix">With salary bands, levels, and midpoints, on paper the system looks objective. In practice, quotas distort your ratings in ways that have nothing to do with your work. There is no meaningful appeal when the system fails you. Binding Works Agreements need to establish <strong>guaranteed appeal rights</strong>, guardrail criteria and transparency on how rating decisions are made. When evaluation rounds don't reward excellence, <strong>the framework has failed you, not the other way around.</strong> A binding Internal Mobility Agreement would ensure that internal talent is genuinely invested in before looking outward, and that growth paths don't quietly close while new roles open for others.</p>
+      </div>
+
+      <div class="impact-card" id="flexibility">
+        <h3>Stable Flexibility</h3>
+        <p class="impact-card__pain">"Our remote work policy changed overnight with a Google Chat message. No consultation, no discussion."</p>
+        <button class="impact-card__toggle" onclick="var f=this.nextElementSibling;f.classList.toggle('impact-card__fix--open');this.textContent=f.classList.contains('impact-card__fix--open')?'Show less ▴':'What changes ▾';">What changes ▾</button>
+        <p class="impact-card__fix">Your flexibility isn't a perk; it allows you to be a parent, a caregiver, a person with a life beyond the office. There's a Works Agreement for mobile work, the only one delivered by the previous Works Council. Most employees don't even know it exists. And "Work from abroad"? No such formal agreement exists at all. Both need to be strengthened, made visible, and protected, alongside flexible hours, so your arrangements can't be revoked with a policy update. <strong>Your flexibility deserves favourable and binding agreements, not a revocable favour.</strong></p>
+      </div>
+
+      <div class="impact-card">
+        <h3>Workload & Sustainability</h3>
+        <p class="impact-card__pain">"After each round of restructuring, the people who stay inherit the work of those who left. Teams shrink but expectations don't. And when we have inputs, somehow we are 'lacking resilience.'"</p>
+        <button class="impact-card__toggle" onclick="var f=this.nextElementSibling;f.classList.toggle('impact-card__fix--open');this.textContent=f.classList.contains('impact-card__fix--open')?'Show less ▴':'What changes ▾';">What changes ▾</button>
+        <p class="impact-card__fix">When teams are understaffed and the workload doubles overnight, that's not growth opportunity and team efficiency. It's a system failing the people who stayed. We will advocate for workload protections, meaningful support during transitions, and the right to raise concerns without being labeled as lacking resilience. <strong>Sustainable performance requires sustainable conditions</strong>, and the Council has the right and the duty to address them.</p>
+      </div>
+
+      <div class="impact-card">
+        <h3>Accountability & Transparency</h3>
+        <p class="impact-card__pain">"Every quarter, zBeat results confirm what we already know, but nothing structurally changes. It feels like shouting into a system designed to listen but not to act. Is anyone with the power even willing to be accountable to fix problems beyond managing us?"</p>
+        <button class="impact-card__toggle" onclick="var f=this.nextElementSibling;f.classList.toggle('impact-card__fix--open');this.textContent=f.classList.contains('impact-card__fix--open')?'Show less ▴':'What changes ▾';">What changes ▾</button>
+        <p class="impact-card__fix">This is exactly where Works Council members with the will to use the full legal leverage can make a change. The council has the legal right to access employee data like zBeat results, hold management accountable for acting on systemic issues, and ensure that transparency isn't optional. When feedback leads to binding agreements instead of internal presentations, the cycle of "acknowledge and move on" ends. <strong>Your voice stops being a data point and starts becoming a mandate.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BREAKING — HIDDEN until ready =====
+<section class="breaking" id="breaking" style="padding: 24px 0;">
+  <div class="container">
+    <div style="background: var(--bg-breaking); border: 1px solid var(--border-breaking); border-radius: 10px; overflow: hidden;">
+      <div style="padding: 14px 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <div onclick="var c=document.getElementById('bk-details');c.style.display=c.style.display==='none'?'block':'none';this.querySelector('.bk-arrow').textContent=c.style.display==='none'?'▾':'▴';" style="display: flex; align-items: center; gap: 10px; flex: 1; min-width: 200px; cursor: pointer; flex-wrap: wrap;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); background: rgba(196,30,30,0.08); padding: 3px 8px; border-radius: 3px; flex-shrink: 0;">External</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; color: #8B6914; background: rgba(139,105,20,0.12); padding: 4px 10px; border-radius: 3px; border-left: 2px solid #8B6914; flex-shrink: 0;">Bundestag</span>
+          <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px; font-size: 14px;">"Zalando Inside" — Bodo Ramelow, MdB</span>
+          <span class="bk-arrow" style="font-size: 12px; color: var(--text-tertiary);">▾</span>
+        </div>
+        <a href="https://www.bodo-ramelow.de/2026/04/zalando-inside/" target="_blank" style="font-size: 11px; color: var(--red); text-decoration: none; font-weight: 600; flex-shrink: 0; background: rgba(196,30,30,0.06); padding: 4px 12px; border-radius: 4px; border: 1px solid rgba(196,30,30,0.15);">Read →</a>
+      </div>
+      <div id="bk-details" style="display: none; padding: 0 20px 14px;">
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.6;">Bodo Ramelow, member of the German Bundestag and former Minister-President of Thüringen, shares his perspective on the restructuring dynamics at Zalando.</p>
+        <p style="font-size: 12px; color: var(--text-primary); font-weight: 500;">GWC official statement in response dropping soon. <a href="#series" style="color: var(--red); text-decoration: none;" onclick="document.getElementById('series').scrollIntoView({behavior:'smooth'});return false;">Stay notified in the drop section below ↓</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- ===== TEAM ===== -->
+<section class="team-section" id="team">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Who we are</span>
+      <hr class="divider">
+      <h2>The Face of the Movement</h2>
+      <p>We are your colleagues, supported by legal counsel and industry experience, with the will to stand eye-to-eye with management.</p>
+    </div>
+
+    <button onclick="var c=document.getElementById('team-details');c.style.display=c.style.display==='none'?'block':'none';this.querySelector('span').textContent=c.style.display==='none'?'▾':'▴';" style="background: none; border: none; padding: 8px 0; width: 100%; cursor: pointer; font-family: 'Teka', 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--red); text-align: left; transition: all 0.2s;">Our philosophy & team <span style="color: var(--text-tertiary); margin-left: 4px;">▾</span></button>
+
+    <div id="team-details" style="display: none; margin-top: 12px;">
+      <blockquote style="font-size: 15px; font-style: italic; color: var(--text-primary); line-height: 1.75; border-left: 3px solid var(--red); padding-left: 24px; margin-bottom: 16px;">We aren't just mediating between you and management or passing concerns up the chain. We are high-impact negotiators who ground every solution in your legal rights. We have the diplomatic skill to sit at the table, and the will to hold the line when your rights are at stake.</blockquote>
+      <p style="font-size: 15px; color: var(--text-secondary);">Colleagues from across the company, who decided that passive representation isn't enough. 25+ nations represented. We combine the professional discipline to negotiate constructively with the courage to say no when it matters.</p>
+      <p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">Read more about our <a href="https://zlife.zalando.net/workspaces/global-workforce-community/apps/content/our-mission" style="color: var(--red); text-decoration: underline; text-underline-offset: 2px;">mission</a>, our <a href="https://zlife.zalando.net/workspaces/global-workforce-community/apps/content/our-commitment" style="color: var(--red); text-decoration: underline; text-underline-offset: 2px;">commitments</a>, and the <a href="https://zlife.zalando.net/workspaces/global-workforce-community/apps/content/who-we-are" style="color: var(--red); text-decoration: underline; text-underline-offset: 2px;">people behind this movement</a> on our zLife pages.</p>
+    </div>
+
+    <!-- Voices video — LIVE VERSION (hidden — unhide when published, hide Coming version) -->
+    <div style="display: none; margin-top: 12px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 14px 20px;">
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <div class="series-card__status series-card__status--live" style="flex-shrink: 0;"></div>
+        <span class="series-card__type series-card__type--video" style="flex-shrink: 0;">Video</span>
+        <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px;">Voices of 25+ Nations</span>
+        <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;">Watch →</a>
+      </div>
+    </div>
+
+    <!-- Voices video — Coming April 11 -->
+    <div style="margin-top: 12px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 14px 20px;">
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <div class="series-card__status series-card__status--soon" style="flex-shrink: 0;"></div>
+        <span class="series-card__type series-card__type--video" style="flex-shrink: 0;">Video</span>
+        <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px;">Voices of 25+ Nations</span>
+        <span style="font-size: 11px; color: var(--text-tertiary);">April 11</span>
+        <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;" onclick="openCapture('Notify Video Drops','Voices of 25+ Nations');return false;">Notify me →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAMPAIGN SERIES ===== -->
+<section class="series-section" id="series">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">The GWC lens</span>
+      <hr class="divider">
+      <h2>What's Dropping This Month</h2>
+      <p>Each piece confronts uncomfortable truths and asks the questions that haven't been asked.</p>
+    </div>
+
+    <div style="margin-top: 8px;">
+
+      <!-- The Case for Change -->
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0; border-bottom: 1px solid var(--border-subtle);">
+        <div class="series-card__status series-card__status--live" style="flex-shrink: 0;"></div>
+        <span class="series-card__type series-card__type--video" style="flex-shrink: 0;">Video</span>
+        <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px; font-size: 14px;">The Case for Change</span>
+        <span style="font-size: 11px; color: var(--green); font-weight: 600;">April 7</span>
+        <a href="#featured-video" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;" onclick="document.getElementById('featured-video').scrollIntoView({behavior:'smooth'});return false;">Watch ↑</a>
+      </div>
+
+      <!-- The Accountability Gap -->
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0; border-bottom: 1px solid var(--border-subtle);">
+        <div class="series-card__status series-card__status--soon" style="flex-shrink: 0;"></div>
+        <span class="series-card__type series-card__type--video" style="flex-shrink: 0;">Video</span>
+        <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px; font-size: 14px;">The Accountability Gap</span>
+        <span style="font-size: 11px; color: var(--text-tertiary);">April 9–10</span>
+        <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;" onclick="openCapture('Notify Video Drops','The Accountability Gap');return false;">Notify me →</a>
+      </div>
+
+      <!-- Standardized Reorgs Article -->
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0; border-bottom: 1px solid var(--border-subtle);">
+        <div class="series-card__status series-card__status--soon" style="flex-shrink: 0;"></div>
+        <span class="series-card__type series-card__type--article" style="flex-shrink: 0;">Article</span>
+        <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px; font-size: 14px;">Standardized Reorganizations</span>
+        <span style="font-size: 11px; color: var(--text-tertiary);">April 12</span>
+        <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;" onclick="openCapture('Notify Publication Drops','Standardized Reorganizations');return false;">Notify me →</a>
+      </div>
+
+      <!-- The Protection Gap -->
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0; border-bottom: 1px solid var(--border-subtle);">
+        <div class="series-card__status series-card__status--coming" style="flex-shrink: 0;"></div>
+        <span class="series-card__type series-card__type--video" style="flex-shrink: 0;">Video</span>
+        <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px; font-size: 14px;">The Protection Gap</span>
+        <span style="font-size: 11px; color: var(--text-tertiary);">April 16–18</span>
+        <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;" onclick="openCapture('Notify Video Drops','The Protection Gap');return false;">Notify me →</a>
+      </div>
+
+      <!-- More coming -->
+      <div style="padding: 12px 0; text-align: center;">
+        <span style="font-size: 13px; color: var(--text-tertiary); font-style: italic;">More coming.</span>
+      </div>
+
+    </div>
+
+    <div class="series-subscribe">
+      <h3>Be first to see every release</h3>
+      <p>Get notified the moment new content goes live: videos, articles, and events. One form, no spam.</p>
+      <a href="#" class="btn btn--primary btn--small" onclick="openCapture('Subscribe to All Drops');return false;">Get Notified →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DIALOGUE ===== -->
+<section class="dialogue-section" id="dialogue">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Direct dialogue</span>
+      <hr class="divider">
+      <h2>Start a Conversation</h2>
+      <p>Whether you have a specific concern, want to understand your rights, or want to find your role in what comes next. No prior knowledge of labor law required. We bring the expertise; you bring the reality.</p>
+    </div>
+
+    <div style="display: grid; gap: 2px;">
+      <!-- 1-on-1 -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 14px 20px; transition: background 0.15s; border-radius: 8px 8px 0 0;" class="compact-row">
+        <button onclick="var c=this.nextElementSibling;c.style.display=c.style.display==='none'?'block':'none';this.querySelector('.dlg-arrow').textContent=c.style.display==='none'?'▾':'▴';" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; width: 100%; background: none; border: none; cursor: pointer; padding: 0; text-align: left;">
+          <span class="dlg-arrow" style="font-size: 12px; color: var(--text-tertiary); flex-shrink: 0;">▾</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--red); letter-spacing: 1px; flex-shrink: 0;">25 MIN · 1-ON-1</span>
+          <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 120px; font-family: 'Teka', 'DM Sans', sans-serif; font-size: 14px;">Introduction</span>
+          <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 600; flex-shrink: 0;" onclick="event.stopPropagation();openCapture('Book 1o1');return false;">Request Slot →</a>
+        </button>
+        <div class="dlg-detail" style="display: none; margin-top: 10px; font-size: 15px; color: var(--text-secondary); line-height: 1.6;">
+          A short conversation about what matters to you. Pay, evaluations, restructuring, workplace flexibilities or simply how a Works Council can actually impact your daily work.
+        </div>
+      </div>
+
+      <!-- Team session -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 14px 20px; transition: background 0.15s; border-radius: 0 0 8px 8px;" class="compact-row">
+        <button onclick="var c=this.nextElementSibling;c.style.display=c.style.display==='none'?'block':'none';this.querySelector('.dlg-arrow').textContent=c.style.display==='none'?'▾':'▴';" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; width: 100%; background: none; border: none; cursor: pointer; padding: 0; text-align: left;">
+          <span class="dlg-arrow" style="font-size: 12px; color: var(--text-tertiary); flex-shrink: 0;">▾</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--red); letter-spacing: 1px; flex-shrink: 0;">50 MIN · TEAM</span>
+          <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 120px; font-family: 'Teka', 'DM Sans', sans-serif; font-size: 14px;">What Your Team Is Facing</span>
+          <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 600; flex-shrink: 0;" onclick="event.stopPropagation();openCapture('Book Team');return false;">Invite Us →</a>
+        </button>
+        <div class="dlg-detail" style="display: none; margin-top: 10px; font-size: 15px; color: var(--text-secondary); line-height: 1.6;">
+          We listen to what your team is experiencing and share what we're seeing across the company. We can deep dive into Works Council rights, dismissal protections, performance process gaps, workplace flexibility or a topic of your choice. Bring us to your next team meeting or coffee.
+        </div>
+      </div>
+    </div>
+
+    <p class="dialogue-note">Not sure what to ask? That's completely fine. Grab a coffee with us and we'll take it from there.</p>
+  </div>
+</section>
+
+<!-- ===== ENGAGEMENT ===== -->
+<section class="engage-section" id="join">
+  <div class="container">
+    <div class="section-header">
+      <h2>Your Move. Make It Count.</h2>
+    </div>
+
+    <!-- Tier 0: Vote — the pinnacle -->
+    <div class="vote-card">
+      <h3>Vote May 5–8. List 3.</h3>
+      <p>This is the only action that changes the outcome. Everything else supports it.</p>
+      <div style="margin-top: 20px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+        <button class="btn btn--ghost btn--small" id="cal-btn" style="color: rgba(255,255,255,0.9); border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.1);">Add to My Calendar</button>
+        <button class="btn btn--ghost btn--small" id="cal-btn-2" style="color: rgba(255,255,255,0.9); border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.1);">Add to Team Calendar</button>
+      </div>
+    </div>
+
+    <button class="engage-more__toggle" id="engage-more-toggle">More ways to get involved <span id="engage-more-arrow">▾</span></button>
+    <div class="engage-more__content" id="engage-more-content">
+      <div class="engage-tiers">
+        <div class="engage-tier">
+          <div class="engage-tier__info">
+            <h4>Stay Informed</h4>
+            <p>Get notified when content drops: articles, videos, and event invitations.</p>
+          </div>
+          <a href="#" class="btn btn--ghost btn--small" onclick="openCapture('Subscribe to All Drops');return false;">Subscribe</a>
+        </div>
+        <div class="engage-tier">
+          <div class="engage-tier__info">
+            <h4>Book a Conversation</h4>
+            <p>1-on-1 or team session. Bring questions, concerns, or just curiosity.</p>
+          </div>
+          <a href="#dialogue" class="btn btn--ghost btn--small" onclick="document.getElementById('dialogue').scrollIntoView({behavior:'smooth'});return false;">Schedule</a>
+        </div>
+        <div class="engage-tier">
+          <div class="engage-tier__info">
+            <h4>Become an Ambassador</h4>
+            <p>Share this page with at least 3 colleagues. Be a carrier for change. Ask for stickers, buttons, and awareness materials.</p>
+          </div>
+          <a href="https://zlife.zalando.net/workspaces/global-workforce-community/apps/content/join-the-movement" class="btn btn--primary btn--small">Join the Movement →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BEFORE YOU VOTE ===== -->
+<div class="before-vote" id="before-vote">
+  <div class="container">
+    <button class="before-vote__toggle" id="before-vote-toggle">
+      Before you vote — or decide not to <span class="before-vote__hint">tap to read</span> <span class="before-vote__arrow" id="before-vote-arrow">▾</span>
+    </button>
+    <div class="before-vote__content" id="before-vote-content">
+      <p>Employment in Germany is a social partnership (<em>Sozialpartnerschaft</em>), not a commodity, not a one-way purchase of labor. Your Works Council election is how that partnership is put into practice.</p>
+      <p>This election decides who sits across from management when your pay, your restructuring terms, and your flexibility are on the table. It's about not leaving your colleagues vulnerable: those whose residency, family, and livelihood depend on real representation.</p>
+      <!-- HIDDEN — Silesian/Mythos paragraph, pending review
+      <p>When Silesian weavers bore the cost, Germany responded by building the very labour protections present today. When successors of Claude Mythos raise the same question the Silesian weavers once faced: who bears the cost of economic transformation? When the workforce is sacrificed to a cost line on a shareholder report. The question is who has the resolve to apply the full scrutiny of the legal framework without flinching.</p>
+      -->
+      <p><strong>That answer is in your hands. Your vote is private. Your decision is yours alone. Not because a friend asked at a coffee chat. Not because you chose to stand in a list.</strong> We ask only this: read, compare, and vote for the representation you deserve.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">Global Workforce Community</div>
+    <div class="footer-tagline">A Works Council That Stands for You</div>
+    <div class="footer-date">Vote May 5 – 8, 2026</div>
+  </div>
+</footer>
+
+<!-- ===== CAPTURE MODAL ===== -->
+<div class="modal-overlay" id="gwc-modal">
+  <div class="modal">
+    <button class="modal__close" id="modal-close">×</button>
+    <!-- Form state -->
+    <div id="modal-form">
+      <p class="modal__context" id="modal-context"></p>
+      <div class="modal__field">
+        <label class="modal__label" for="modal-email">Company email</label>
+        <input type="email" class="modal__input" id="modal-email" placeholder="name@zalando.de" required>
+      </div>
+      <div class="modal__field" id="modal-interest-field">
+        <label class="modal__label" for="modal-interest">Anything specific? <span style="font-weight: 400; color: var(--text-tertiary);">(optional)</span></label>
+        <textarea class="modal__input modal__input--textarea" id="modal-interest" placeholder="e.g. a specific video, your team name, a question..."></textarea>
+      </div>
+      <button class="modal__submit" id="modal-submit">Submit</button>
+      <p style="font-size: 11px; color: var(--text-tertiary); text-align: center; margin-top: 12px;">Submits to an internal Google Form. Your data stays within our Zalando workspace.</p>
+    </div>
+    <!-- Success state -->
+    <div id="modal-success" style="display: none;">
+      <div class="modal__success">
+        <h3>Got it.</h3>
+        <p id="modal-success-msg">We'll be in touch.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+(function() {
+  var hub = document.getElementById('gwc-hub');
+
+  // Countdown (disabled — elements removed)
+  function updateCountdown() {
+    var wrap = hub.querySelector('#countdown-wrap');
+    if (!wrap) return;
+
+    if (now >= electionStart && now <= electionEnd) {
+      wrap.classList.add('countdown--open');
+      labelEl.textContent = 'Voting is open!';
+      daysEl.textContent = 'NOW';
+      suffixEl.textContent = '';
+      if (ctaDays) ctaDays.textContent = '0';
+    } else if (now > electionEnd) {
+      labelEl.textContent = 'Election closed';
+      daysEl.textContent = '\u2014';
+      suffixEl.textContent = '';
+      if (ctaDays) ctaDays.textContent = '0';
+    } else {
+      var diff = electionStart - now;
+      var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+      daysEl.textContent = days;
+      suffixEl.textContent = days === 1 ? 'day' : 'days';
+      labelEl.textContent = days <= 7 ? 'Election in' : 'Election opens in';
+      if (ctaDays) ctaDays.textContent = days;
+    }
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+
+  // Calendar .ics
+  function downloadICS() {
+    var ics = [
+      'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//GWC//Election Reminder//EN',
+      'BEGIN:VEVENT','DTSTART:20260505T080000Z','DTEND:20260508T160000Z',
+      'SUMMARY:Works Council Election \u2014 Vote GWC (List 3)',
+      'DESCRIPTION:Works Council Election 2026. Voting open May 5\u20138. Vote for Global Workforce Community.',
+      'LOCATION:Company premises',
+      'BEGIN:VALARM','TRIGGER:-P1D','ACTION:DISPLAY','DESCRIPTION:Election starts tomorrow!','END:VALARM',
+      'BEGIN:VALARM','TRIGGER:-PT2H','ACTION:DISPLAY','DESCRIPTION:Voting is open now \u2014 go vote!','END:VALARM',
+      'END:VEVENT','END:VCALENDAR'
+    ].join('\r\n');
+    var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'GWC_Election_Reminder.ics';
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+  }
+  hub.querySelector('#cal-btn').addEventListener('click', downloadICS);
+  hub.querySelector('#cal-btn-2').addEventListener('click', downloadICS);
+
+  // Format toggle (pills vs table)
+  hub.querySelector('#fmt-toggle').addEventListener('click', function() {
+    var pills = hub.querySelector('#fmt-pills');
+    var table = hub.querySelector('#fmt-table');
+    if (pills.style.display === 'none') {
+      pills.style.display = 'block';
+      table.style.display = 'none';
+    } else {
+      pills.style.display = 'none';
+      table.style.display = 'block';
+    }
+  });
+
+  // Drops — expand/collapse all details
+  var dropsToggle = hub.querySelector('#drops-toggle-all');
+  if (dropsToggle) {
+    var dropsOpen = false;
+    dropsToggle.addEventListener('click', function() {
+      dropsOpen = !dropsOpen;
+      var details = hub.querySelectorAll('.drop-detail');
+      var arrows = hub.querySelectorAll('.drp-arrow');
+      details.forEach(function(d) { d.style.display = dropsOpen ? 'block' : 'none'; });
+      arrows.forEach(function(a) { a.textContent = dropsOpen ? '▴' : '▾'; });
+      dropsToggle.textContent = dropsOpen ? 'hide all details' : 'show all details';
+    });
+  }
+
+  // Impact cards — expand/collapse all
+  var impactToggle = hub.querySelector('#impact-toggle-all');
+  if (impactToggle) {
+    var impactOpen = false;
+    impactToggle.addEventListener('click', function() {
+      impactOpen = !impactOpen;
+      var fixes = hub.querySelectorAll('.impact-card__fix');
+      var toggles = hub.querySelectorAll('.impact-card__toggle');
+      fixes.forEach(function(f) { impactOpen ? f.classList.add('impact-card__fix--open') : f.classList.remove('impact-card__fix--open'); });
+      toggles.forEach(function(t) { t.textContent = impactOpen ? 'Show less ▴' : 'What changes ▾'; });
+      impactToggle.textContent = impactOpen ? 'hide all details' : 'show all details';
+    });
+  }
+
+  // Before You Vote — collapsible toggle
+  var bvToggle = hub.querySelector('#before-vote-toggle');
+  bvToggle.addEventListener('click', function() {
+    var content = hub.querySelector('#before-vote-content');
+    var arrow = hub.querySelector('#before-vote-arrow');
+    content.classList.toggle('before-vote__content--open');
+    arrow.classList.toggle('before-vote__arrow--open');
+    bvToggle.classList.toggle('before-vote__toggle--open');
+  });
+
+  // Engage more — collapsible toggle
+  hub.querySelector('#engage-more-toggle').addEventListener('click', function() {
+    hub.querySelector('#engage-more-content').classList.toggle('engage-more__content--open');
+  });
+
+  // ============================================================
+  // CAPTURE MODAL — Google Form programmatic submission
+  // ============================================================
+  var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfTCj3WbN7o6OBTo2dSFF0b8QaeHbVUA_a517NF7ICEzpot8w/formResponse';
+  var FIELD_EMAIL = 'entry.1556369182';
+  var FIELD_ACTION = 'entry.1753222212';
+  var FIELD_INTEREST = 'entry.714373232';
+
+  var contextMessages = {
+    'Subscribe to All Drops': "You'll be notified about all upcoming content: videos, articles, and events.",
+    'Notify Video Drops': "You'll be notified when <strong>new videos</strong> drop.",
+    'Notify Publication Drops': "You'll be notified when <strong>new articles and statements</strong> are published.",
+    'Book 1o1': "We'll reach out to schedule a <strong>25-minute 1-on-1</strong> introduction.",
+    'Book Team': "We'll reach out to schedule a <strong>50-minute team session</strong>.",
+    'Other Feedback': "Share your thoughts. We'll get back to you."
+  };
+
+  var successMessages = {
+    'Subscribe to All Drops': "You'll hear from us when new content goes live.",
+    'Notify Video Drops': "We'll notify you when the video drops.",
+    'Notify Publication Drops': "We'll notify you when it's published.",
+    'Book 1o1': "We'll reach out to schedule your 1-on-1.",
+    'Book Team': "We'll reach out to schedule your team session.",
+    'Other Feedback': "Thanks for sharing. We'll get back to you."
+  };
+
+  var modal = hub.querySelector('#gwc-modal');
+  var modalForm = hub.querySelector('#modal-form');
+  var modalSuccess = hub.querySelector('#modal-success');
+  var modalEmail = hub.querySelector('#modal-email');
+  var modalInterest = hub.querySelector('#modal-interest');
+  var modalContext = hub.querySelector('#modal-context');
+  var modalSubmit = hub.querySelector('#modal-submit');
+  var modalSuccessMsg = hub.querySelector('#modal-success-msg');
+  var currentAction = '';
+
+  window.openCapture = function(actionType, specificInterest) {
+    currentAction = actionType;
+    modalContext.innerHTML = contextMessages[actionType] || '';
+    modalEmail.value = '';
+    modalInterest.value = specificInterest || '';
+    modalForm.style.display = 'block';
+    modalSuccess.style.display = 'none';
+    modalSubmit.disabled = false;
+    modalSubmit.textContent = 'Submit';
+    modal.classList.add('modal-overlay--open');
+  };
+
+  hub.querySelector('#modal-close').addEventListener('click', function() {
+    modal.classList.remove('modal-overlay--open');
+  });
+
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) modal.classList.remove('modal-overlay--open');
+  });
+
+  modalSubmit.addEventListener('click', function() {
+    var email = modalEmail.value.trim();
+    if (!email || !email.includes('@')) {
+      modalEmail.style.borderColor = 'var(--red)';
+      modalEmail.focus();
+      return;
+    }
+    modalSubmit.disabled = true;
+    modalSubmit.textContent = 'Submitting...';
+
+    var params = new URLSearchParams();
+    params.append(FIELD_EMAIL, email);
+    params.append(FIELD_ACTION, currentAction);
+    params.append(FIELD_INTEREST, modalInterest.value.trim());
+
+    fetch(FORM_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString()
+    }).then(function() {
+      modalForm.style.display = 'none';
+      modalSuccessMsg.textContent = successMessages[currentAction] || "We'll be in touch.";
+      modalSuccess.style.display = 'block';
+      setTimeout(function() { modal.classList.remove('modal-overlay--open'); }, 2500);
+    }).catch(function() {
+      // Fallback: redirect to pre-filled form
+      var fallback = 'https://docs.google.com/forms/d/e/1FAIpQLSfTCj3WbN7o6OBTo2dSFF0b8QaeHbVUA_a517NF7ICEzpot8w/viewform?usp=pp_url'
+        + '&' + FIELD_EMAIL + '=' + encodeURIComponent(email)
+        + '&' + FIELD_ACTION + '=' + encodeURIComponent(currentAction)
+        + '&' + FIELD_INTEREST + '=' + encodeURIComponent(modalInterest.value.trim());
+      window.open(fallback, '_blank');
+      modal.classList.remove('modal-overlay--open');
+    });
+  });
+
+  modalEmail.addEventListener('input', function() {
+    modalEmail.style.borderColor = 'var(--border-card)';
+  });
+
+  // Scroll animations
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  hub.querySelectorAll('.gap-block, .impact-card, .series-card, .dialogue-card, .breaking-card, .team-philosophy, .team-video, .early-cta, .engage-tier, .series-subscribe, .stat-callout, .pull-quote, .bridge__statement, .vote-card, .before-vote__toggle').forEach(function(el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
