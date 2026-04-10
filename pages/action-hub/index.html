@@ -84,7 +84,7 @@
 .gwc-hub .hero h1 em { font-style: italic; color: var(--red); }
 .gwc-hub .hero__sub { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(20px, 3.5vw, 28px); color: var(--text-primary); line-height: 1.3; margin-bottom: 32px; }
 .gwc-hub .hero__sub strong { color: var(--red); }
-.gwc-hub .hero__body { font-size: 17px; color: var(--text-secondary); max-width: 620px; margin-bottom: 40px; }
+.gwc-hub .hero__body { font-size: 17px; color: var(--text-secondary); margin-bottom: 40px; }
 .gwc-hub .hero__body strong { color: var(--text-primary); font-weight: 600; }
 .gwc-hub .hero__scroll { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
 .gwc-hub .hero__scroll:hover { color: var(--red); }
@@ -232,7 +232,7 @@
 .gwc-hub section { padding: 48px 0; }
 .gwc-hub .section-header { margin-bottom: 40px; }
 .gwc-hub .section-header h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(24px, 4vw, 36px); color: var(--text-primary); line-height: 1.2; margin-top: 8px; }
-.gwc-hub .section-header p { margin-top: 16px; font-size: 16px; color: var(--text-secondary); max-width: 600px; }
+.gwc-hub .section-header p { margin-top: 16px; font-size: 16px; color: var(--text-secondary); }
 
 /* ============================================================
    GAP BLOCKS
@@ -271,7 +271,7 @@
    IMPACT ZONES
    ============================================================ */
 .gwc-hub .impact-section { }
-.gwc-hub .impact-intro { font-style: italic; font-size: 17px; color: var(--text-primary); line-height: 1.75; border-left: 3px solid var(--red); padding-left: 24px; margin-bottom: 40px; max-width: 620px; }
+.gwc-hub .impact-intro { font-style: italic; font-size: 17px; color: var(--text-primary); line-height: 1.75; border-left: 3px solid var(--red); padding-left: 24px; margin-bottom: 40px; }
 .gwc-hub .impact-grid { display: grid; gap: 20px; }
 .gwc-hub .impact-card { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px; padding: 32px; transition: border-color 0.3s ease, box-shadow 0.3s ease; box-shadow: var(--shadow-card); }
 .gwc-hub .impact-card:hover { border-color: var(--red); box-shadow: var(--shadow-md); }
@@ -673,18 +673,18 @@
     <!-- OPTION C: Pills -->
     <div id="fmt-pills">
       <div class="pill-strip animate-in delay-3">
-        <a href="#perf-eval" class="pill-strip__item" onclick="document.getElementById('perf-eval').scrollIntoView({behavior:'smooth'});return false;">Your performance rating: who really decides?</a>
-        <a href="#reorg" class="pill-strip__item" onclick="document.getElementById('reorg').scrollIntoView({behavior:'smooth'});return false;">Your restructuring protections</a>
-        <a href="#fair-pay" class="pill-strip__item" onclick="document.getElementById('fair-pay').scrollIntoView({behavior:'smooth'});return false;">Pay gaps & unofficial quotas</a>
-        <a href="#flexibility" class="pill-strip__item" onclick="document.getElementById('flexibility').scrollIntoView({behavior:'smooth'});return false;">Protecting your work-life flexibility</a>
+        <a href="#perf-eval" class="pill-strip__item">Your performance rating: who really decides?</a>
+        <a href="#reorg" class="pill-strip__item">Your restructuring protections</a>
+        <a href="#fair-pay" class="pill-strip__item">Pay gaps & unofficial quotas</a>
+        <a href="#flexibility" class="pill-strip__item">Protecting your work-life flexibility</a>
       </div>
       <p class="pill-strip__intro" style="margin-top: 8px; font-size: 14px;">Go deeper:</p>
       <div class="pill-strip">
-        <!-- Hidden: <a href="#breaking" class="pill-strip__item" onclick="document.getElementById('breaking').scrollIntoView({behavior:'smooth'});return false;">A Bundestag member is watching</a> -->
-        <a href="#series" class="pill-strip__item" onclick="document.getElementById('series').scrollIntoView({behavior:'smooth'});return false;">Videos that confront uncomfortable truths</a>
-        <a href="#team" class="pill-strip__item" onclick="document.getElementById('team').scrollIntoView({behavior:'smooth'});return false;">70+ colleagues stood up</a>
-        <a href="#dialogue" class="pill-strip__item" onclick="document.getElementById('dialogue').scrollIntoView({behavior:'smooth'});return false;">Book a conversation</a>
-        <a href="#before-vote" class="pill-strip__item" onclick="document.getElementById('before-vote').scrollIntoView({behavior:'smooth'});return false;">Before you vote — or decide not to</a>
+        <!-- Hidden: <a href="#breaking" class="pill-strip__item">A Bundestag member is watching</a> -->
+        <a href="#series" class="pill-strip__item">Videos that confront uncomfortable truths</a>
+        <a href="#team" class="pill-strip__item">70+ colleagues stood up</a>
+        <a href="#dialogue" class="pill-strip__item">Book a conversation</a>
+        <a href="#before-vote" class="pill-strip__item">Before you vote — or decide not to</a>
       </div>
     </div>
 
@@ -693,23 +693,23 @@
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; font-size: 14px;">
         <div>
           <div style="font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--red); margin-bottom: 12px; text-transform: uppercase;">Where we see gaps</div>
-          <a href="#perf-eval" onclick="document.getElementById('perf-eval').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-primary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Your performance rating: who really decides?</a>
-          <a href="#reorg" onclick="document.getElementById('reorg').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-primary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Your restructuring protections</a>
-          <a href="#fair-pay" onclick="document.getElementById('fair-pay').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-primary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Pay gaps & unofficial quotas</a>
-          <a href="#flexibility" onclick="document.getElementById('flexibility').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; color: var(--text-primary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Protecting your work-life flexibility</a>
+          <a href="#perf-eval" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-primary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Your performance rating: who really decides?</a>
+          <a href="#reorg" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-primary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Your restructuring protections</a>
+          <a href="#fair-pay" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-primary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Pay gaps & unofficial quotas</a>
+          <a href="#flexibility" style="display: block; padding: 10px 0; color: var(--text-primary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Protecting your work-life flexibility</a>
         </div>
         <div>
           <div style="font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--text-tertiary); margin-bottom: 12px; text-transform: uppercase;">Go deeper</div>
           <!-- Hidden: A Bundestag member is watching -->
-          <a href="#series" onclick="document.getElementById('series').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-secondary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Videos that confront uncomfortable truths</a>
-          <a href="#team" onclick="document.getElementById('team').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-secondary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">70+ colleagues stood up</a>
-          <a href="#dialogue" onclick="document.getElementById('dialogue').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-secondary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Book a conversation</a>
-          <a href="#before-vote" onclick="document.getElementById('before-vote').scrollIntoView({behavior:'smooth'});return false;" style="display: block; padding: 10px 0; color: var(--text-secondary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Before you vote — or decide not to</a>
+          <a href="#series" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-secondary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Videos that confront uncomfortable truths</a>
+          <a href="#team" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-secondary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">70+ colleagues stood up</a>
+          <a href="#dialogue" style="display: block; padding: 10px 0; border-bottom: 1px solid var(--border-card); color: var(--text-secondary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Book a conversation</a>
+          <a href="#before-vote" style="display: block; padding: 10px 0; color: var(--text-secondary); text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--border-subtle);" class="table-link">Before you vote — or decide not to</a>
         </div>
       </div>
     </div>
 
-    <a href="#gap" class="hero__scroll animate-in delay-3" onclick="document.getElementById('gap').scrollIntoView({behavior:'smooth'});return false;" style="margin-top: 24px;">
+    <a href="#gap" class="hero__scroll animate-in delay-3" style="margin-top: 24px;">
       Read the full case <span class="arrow-down">↓</span>
     </a>
   </div>
@@ -730,6 +730,7 @@
       <span class="video-thumb__label">▶ Watch on Vimeo</span>
     </a>
     <p style="margin-top: 12px; font-size: 14px; color: var(--text-tertiary);">Three principles. One question: who is actually using the tools the law gives them to fight for your rights?</p>
+    <p style="margin-top: 8px; font-size: 13px;"><a href="#" style="color: var(--red); text-decoration: none; font-weight: 500;" onclick="openCapture('Book Event','The Case for Change — Live, April 15');return false;">Join the live session on April 15 →</a></p>
   </div>
 </section>
 
@@ -773,7 +774,7 @@
       <div style="display: none; margin-top: 14px;">
         <p>As this term comes to an end, the reorganization pattern is being disrupted. Where previous rounds followed the standard process, the negotiating team behind this reorg connected the dots between these rolling restructurings. And by insisting on binding standards for severance and job security, the process has been escalated to an independent conciliation committee.</p>
         <p>It matters who sits at the negotiating table. <strong>Legal leverage works when representatives are willing to use the tools provided by the law.</strong> Imagine what becomes possible when that willingness has the backing of your vote.</p>
-        <p>Why this restructuring could have gone worse, and how it got here. <a href="#series" style="color: var(--red); font-weight: 600; text-decoration: none;" onclick="document.getElementById('series').scrollIntoView({behavior:'smooth'});return false;">Read the full account, dropping April 12 →</a></p>
+        <p>Why this restructuring could have gone worse, and how it got here. <a href="#series" style="color: var(--red); font-weight: 600; text-decoration: none;">Read the full account, dropping April 17 →</a></p>
       </div>
     </div>
 
@@ -791,7 +792,7 @@
     </div>
 
     <p class="impact-intro">
-      <strong>Competence. Transparency. Legal standard.</strong> Balanced with diplomatic skill and the conviction to prioritize your protection over management comfort.
+      <strong>Legal standard. Competence. Transparency.</strong> And the will to prioritize your protection over management comfort.
     </p>
 
     <div style="text-align: right; margin-bottom: 4px;">
@@ -834,6 +835,8 @@
         <p class="impact-card__fix">This is exactly where Works Council members with the will to use the full legal leverage can make a change. The council has the legal right to access employee data like zBeat results, hold management accountable for acting on systemic issues, and ensure that transparency isn't optional. When feedback leads to binding agreements instead of internal presentations, the cycle of "acknowledge and move on" ends. <strong>Your voice stops being a data point and starts becoming a mandate.</strong></p>
       </div>
     </div>
+
+    <p style="margin-top: 24px; font-size: 15px; color: var(--text-secondary); text-align: center;">Something else affecting you or your team? Bring it to a conversation. <a href="#dialogue" style="color: var(--red); text-decoration: none; font-weight: 500;">Book a 1-on-1</a> or <a href="#dialogue" style="color: var(--red); text-decoration: none; font-weight: 500;">invite us to your team</a>.</p>
   </div>
 </section>
 
@@ -852,7 +855,7 @@
       </div>
       <div id="bk-details" style="display: none; padding: 0 20px 14px;">
         <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.6;">Bodo Ramelow, member of the German Bundestag and former Minister-President of Thüringen, shares his perspective on the restructuring dynamics at Zalando.</p>
-        <p style="font-size: 12px; color: var(--text-primary); font-weight: 500;">GWC official statement in response dropping soon. <a href="#series" style="color: var(--red); text-decoration: none;" onclick="document.getElementById('series').scrollIntoView({behavior:'smooth'});return false;">Stay notified in the drop section below ↓</a></p>
+        <p style="font-size: 12px; color: var(--text-primary); font-weight: 500;">GWC official statement in response dropping soon. <a href="#series" style="color: var(--red); text-decoration: none;">Stay notified in the drop section below ↓</a></p>
       </div>
     </div>
   </div>
@@ -866,7 +869,7 @@
       <span class="label">Who we are</span>
       <hr class="divider">
       <h2>The Face of the Movement</h2>
-      <p>We are your colleagues, supported by legal counsel and industry experience, with the will to stand eye-to-eye with management.</p>
+      <p>We are your colleagues, supported by legal counsel &amp; industry experience. Diplomatic enough to negotiate across the table. Determined enough to hold the line.</p>
     </div>
 
     <button onclick="var c=document.getElementById('team-details');c.style.display=c.style.display==='none'?'block':'none';this.querySelector('span').textContent=c.style.display==='none'?'▾':'▴';" style="background: none; border: none; padding: 8px 0; width: 100%; cursor: pointer; font-family: 'Teka', 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--red); text-align: left; transition: all 0.2s;">Our philosophy & team <span style="color: var(--text-tertiary); margin-left: 4px;">▾</span></button>
@@ -877,30 +880,17 @@
       <p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">Read more about our <a href="https://zlife.zalando.net/workspaces/global-workforce-community/apps/content/our-mission" style="color: var(--red); text-decoration: underline; text-underline-offset: 2px;">mission</a>, our <a href="https://zlife.zalando.net/workspaces/global-workforce-community/apps/content/our-commitment" style="color: var(--red); text-decoration: underline; text-underline-offset: 2px;">commitments</a>, and the <a href="https://zlife.zalando.net/workspaces/global-workforce-community/apps/content/who-we-are" style="color: var(--red); text-decoration: underline; text-underline-offset: 2px;">people behind this movement</a> on our zLife pages.</p>
     </div>
 
-    <!-- Voices video — LIVE VERSION (hidden — unhide when published, hide Coming version) -->
-    <div style="display: none; margin-top: 12px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 14px 20px;">
-      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-        <div class="series-card__status series-card__status--live" style="flex-shrink: 0;"></div>
-        <span class="series-card__type series-card__type--video" style="flex-shrink: 0;">Video</span>
-        <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px;">Voices of 25+ Nations</span>
-        <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;">Watch →</a>
-      </div>
+    <!-- Voices video row -->
+    <div style="margin-top: 12px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0; border-top: 1px solid var(--border-subtle);">
+      <div class="series-card__status series-card__status--coming" style="flex-shrink: 0;"></div>
+      <span class="series-card__type series-card__type--video" style="flex-shrink: 0;">Video</span>
+      <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px; font-size: 14px;">Voices of 25+ Nations</span>
+      <span style="font-size: 11px; color: var(--text-tertiary);">April 23</span>
+      <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;" onclick="openCapture('Notify Video Drops','Voices of 25+ Nations');return false;">Notify me →</a>
     </div>
 
-    <!-- Voices video — Coming April 11 -->
-    <div style="margin-top: 12px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 14px 20px;">
-      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-        <div class="series-card__status series-card__status--soon" style="flex-shrink: 0;"></div>
-        <span class="series-card__type series-card__type--video" style="flex-shrink: 0;">Video</span>
-        <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px;">Voices of 25+ Nations</span>
-        <span style="font-size: 11px; color: var(--text-tertiary);">April 11</span>
-        <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;" onclick="openCapture('Notify Video Drops','Voices of 25+ Nations');return false;">Notify me →</a>
-      </div>
-    </div>
   </div>
-</section>
-
-<!-- ===== CAMPAIGN SERIES ===== -->
+</section> ===== -->
 <section class="series-section" id="series">
   <div class="container">
     <div class="section-header">
@@ -918,16 +908,7 @@
         <span class="series-card__type series-card__type--video" style="flex-shrink: 0;">Video</span>
         <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px; font-size: 14px;">The Case for Change</span>
         <span style="font-size: 11px; color: var(--green); font-weight: 600;">April 7</span>
-        <a href="#featured-video" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;" onclick="document.getElementById('featured-video').scrollIntoView({behavior:'smooth'});return false;">Watch ↑</a>
-      </div>
-
-      <!-- The Accountability Gap -->
-      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0; border-bottom: 1px solid var(--border-subtle);">
-        <div class="series-card__status series-card__status--soon" style="flex-shrink: 0;"></div>
-        <span class="series-card__type series-card__type--video" style="flex-shrink: 0;">Video</span>
-        <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px; font-size: 14px;">The Accountability Gap</span>
-        <span style="font-size: 11px; color: var(--text-tertiary);">April 9–10</span>
-        <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;" onclick="openCapture('Notify Video Drops','The Accountability Gap');return false;">Notify me →</a>
+        <a href="#featured-video" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;">Watch ↑</a>
       </div>
 
       <!-- Standardized Reorgs Article -->
@@ -935,8 +916,26 @@
         <div class="series-card__status series-card__status--soon" style="flex-shrink: 0;"></div>
         <span class="series-card__type series-card__type--article" style="flex-shrink: 0;">Article</span>
         <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px; font-size: 14px;">Standardized Reorganizations</span>
-        <span style="font-size: 11px; color: var(--text-tertiary);">April 12</span>
+        <span style="font-size: 11px; color: var(--text-tertiary);">April 17</span>
         <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;" onclick="openCapture('Notify Publication Drops','Standardized Reorganizations');return false;">Notify me →</a>
+      </div>
+
+      <!-- The Accountability Gap -->
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0; border-bottom: 1px solid var(--border-subtle);">
+        <div class="series-card__status series-card__status--soon" style="flex-shrink: 0;"></div>
+        <span class="series-card__type series-card__type--video" style="flex-shrink: 0;">Video</span>
+        <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px; font-size: 14px;">The Accountability Gap</span>
+        <span style="font-size: 11px; color: var(--text-tertiary);">April 13</span>
+        <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;" onclick="openCapture('Notify Video Drops','The Accountability Gap');return false;">Notify me →</a>
+      </div>
+
+      <!-- The Case for Change — Live Event -->
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0; border-bottom: 1px solid var(--border-subtle);">
+        <div class="series-card__status series-card__status--soon" style="flex-shrink: 0;"></div>
+        <span class="series-card__type" style="color: #1a6b8a; background: rgba(26,107,138,0.08); flex-shrink: 0;">Live Event</span>
+        <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px; font-size: 14px;">The Case for Change — Live</span>
+        <span style="font-size: 11px; color: var(--text-tertiary);">April 15</span>
+        <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;" onclick="openCapture('Book Event','The Case for Change — Live, April 15');return false;">Register →</a>
       </div>
 
       <!-- The Protection Gap -->
@@ -944,7 +943,7 @@
         <div class="series-card__status series-card__status--coming" style="flex-shrink: 0;"></div>
         <span class="series-card__type series-card__type--video" style="flex-shrink: 0;">Video</span>
         <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 140px; font-size: 14px;">The Protection Gap</span>
-        <span style="font-size: 11px; color: var(--text-tertiary);">April 16–18</span>
+        <span style="font-size: 11px; color: var(--text-tertiary);">April 17</span>
         <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 500; flex-shrink: 0;" onclick="openCapture('Notify Video Drops','The Protection Gap');return false;">Notify me →</a>
       </div>
 
@@ -973,31 +972,19 @@
       <p>Whether you have a specific concern, want to understand your rights, or want to find your role in what comes next. No prior knowledge of labor law required. We bring the expertise; you bring the reality.</p>
     </div>
 
-    <div style="display: grid; gap: 2px;">
+    <div style="margin-top: 8px;">
       <!-- 1-on-1 -->
-      <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 14px 20px; transition: background 0.15s; border-radius: 8px 8px 0 0;" class="compact-row">
-        <button onclick="var c=this.nextElementSibling;c.style.display=c.style.display==='none'?'block':'none';this.querySelector('.dlg-arrow').textContent=c.style.display==='none'?'▾':'▴';" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; width: 100%; background: none; border: none; cursor: pointer; padding: 0; text-align: left;">
-          <span class="dlg-arrow" style="font-size: 12px; color: var(--text-tertiary); flex-shrink: 0;">▾</span>
-          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--red); letter-spacing: 1px; flex-shrink: 0;">25 MIN · 1-ON-1</span>
-          <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 120px; font-family: 'Teka', 'DM Sans', sans-serif; font-size: 14px;">Introduction</span>
-          <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 600; flex-shrink: 0;" onclick="event.stopPropagation();openCapture('Book 1o1');return false;">Request Slot →</a>
-        </button>
-        <div class="dlg-detail" style="display: none; margin-top: 10px; font-size: 15px; color: var(--text-secondary); line-height: 1.6;">
-          A short conversation about what matters to you. Pay, evaluations, restructuring, workplace flexibilities or simply how a Works Council can actually impact your daily work.
-        </div>
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0; border-bottom: 1px solid var(--border-subtle);">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--red); letter-spacing: 1px; flex-shrink: 0;">25 MIN · 1-ON-1</span>
+        <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 120px; font-size: 14px;">Introduction</span>
+        <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 600; flex-shrink: 0;" onclick="openCapture('Book 1o1');return false;">Request Slot →</a>
       </div>
 
       <!-- Team session -->
-      <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 14px 20px; transition: background 0.15s; border-radius: 0 0 8px 8px;" class="compact-row">
-        <button onclick="var c=this.nextElementSibling;c.style.display=c.style.display==='none'?'block':'none';this.querySelector('.dlg-arrow').textContent=c.style.display==='none'?'▾':'▴';" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; width: 100%; background: none; border: none; cursor: pointer; padding: 0; text-align: left;">
-          <span class="dlg-arrow" style="font-size: 12px; color: var(--text-tertiary); flex-shrink: 0;">▾</span>
-          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--red); letter-spacing: 1px; flex-shrink: 0;">50 MIN · TEAM</span>
-          <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 120px; font-family: 'Teka', 'DM Sans', sans-serif; font-size: 14px;">What Your Team Is Facing</span>
-          <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 600; flex-shrink: 0;" onclick="event.stopPropagation();openCapture('Book Team');return false;">Invite Us →</a>
-        </button>
-        <div class="dlg-detail" style="display: none; margin-top: 10px; font-size: 15px; color: var(--text-secondary); line-height: 1.6;">
-          We listen to what your team is experiencing and share what we're seeing across the company. We can deep dive into Works Council rights, dismissal protections, performance process gaps, workplace flexibility or a topic of your choice. Bring us to your next team meeting or coffee.
-        </div>
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0; border-bottom: 1px solid var(--border-subtle);">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--red); letter-spacing: 1px; flex-shrink: 0;">50 MIN · TEAM</span>
+        <span style="font-weight: 600; color: var(--text-primary); flex: 1; min-width: 120px; font-size: 14px;">What Your Team Is Facing</span>
+        <a href="#" style="font-size: 12px; color: var(--red); text-decoration: none; font-weight: 600; flex-shrink: 0;" onclick="openCapture('Book Team');return false;">Invite Us →</a>
       </div>
     </div>
 
@@ -1037,7 +1024,7 @@
             <h4>Book a Conversation</h4>
             <p>1-on-1 or team session. Bring questions, concerns, or just curiosity.</p>
           </div>
-          <a href="#dialogue" class="btn btn--ghost btn--small" onclick="document.getElementById('dialogue').scrollIntoView({behavior:'smooth'});return false;">Schedule</a>
+          <a href="#dialogue" class="btn btn--ghost btn--small">Schedule</a>
         </div>
         <div class="engage-tier">
           <div class="engage-tier__info">
@@ -1231,6 +1218,7 @@
     'Notify Publication Drops': "You'll be notified when <strong>new articles and statements</strong> are published.",
     'Book 1o1': "We'll reach out to schedule a <strong>25-minute 1-on-1</strong> introduction.",
     'Book Team': "We'll reach out to schedule a <strong>50-minute team session</strong>.",
+    'Book Event': "We'll send you the details for <strong>{EVENT}</strong>.",
     'Other Feedback': "Share your thoughts. We'll get back to you."
   };
 
@@ -1240,6 +1228,7 @@
     'Notify Publication Drops': "We'll notify you when it's published.",
     'Book 1o1': "We'll reach out to schedule your 1-on-1.",
     'Book Team': "We'll reach out to schedule your team session.",
+    'Book Event': "You're registered. We'll send the details.",
     'Other Feedback': "Thanks for sharing. We'll get back to you."
   };
 
@@ -1255,7 +1244,11 @@
 
   window.openCapture = function(actionType, specificInterest) {
     currentAction = actionType;
-    modalContext.innerHTML = contextMessages[actionType] || '';
+    var contextMsg = contextMessages[actionType] || '';
+    if (actionType === 'Book Event' && specificInterest) {
+      contextMsg = contextMsg.replace('{EVENT}', specificInterest);
+    }
+    modalContext.innerHTML = contextMsg;
     modalEmail.value = '';
     modalInterest.value = specificInterest || '';
     modalForm.style.display = 'block';
